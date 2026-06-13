@@ -1,0 +1,22 @@
+.deck {
+    will-change: transform;
+}
+
+.deck.menu-open {
+    pointer-events: none;
+    transform: scale(0.98);
+}
+
+.f-link {
+    display: block;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--indigo-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    cursor: pointer;
+    font-weight: 500
+}

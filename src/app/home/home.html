@@ -1,0 +1,466 @@
+<div class="brand">
+    <img src="logo.png" alt="" width="160">
+</div>
+
+<div class="section-tag">
+    <span class="pip"></span>
+    <span>{{ currentSection }}</span>
+</div>
+
+<a class="tm-credit" href="https://templatemo.com" target="_blank" rel="nofollow noopener">
+    <span class="tm-dot"></span><span class="tm-label">Version 1.0</span>
+</a>
+
+<div class="deck" [class.menu-open]="menuOpen">
+
+    <section class="slide existing active" #slideRef data-section="Home">
+        <div class="slide-inner s-cover">
+            <div class="s-cover-inner">
+                <div class="s-cover-glow"></div>
+
+                <div class="eyebrow reveal">
+                    <span class="dt"></span>Powered by OpenAI <i class="bi bi-openai"></i>
+                </div>
+
+                <h1 class="h-display">
+                    <span class="line"><span>Avant d'acheter,</span></span>
+                    <span class="line"><span><span class="grd">connaissez sa vraie valeur.</span></span></span>
+                </h1>
+
+                <p class="body-lg reveal" style="max-width:680px">
+                    Apprexia analyse le prix, <br>détecte les anomalies et transforme les données en décision claire.
+                </p>
+
+                <div class="s-cover-meta reveal">
+                    <span>ACHETER</span><span class="sep"></span>
+                    <span>NEGOCIER</span><span class="sep"></span>
+                    <span>EVITER</span>
+                </div>
+
+                <div class="s-cover-cta reveal">
+                    <a class="btn-primary">Essayez gratuitement →</a>
+                    <a class="btn-secondary">Se connecter</a>
+                </div>
+
+                <div class="s-cover-version">
+                    Immobilier · Véhicules · Luxe · Technologie · Plus encore
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="The problem">
+        <div class="slide-inner s-problem">
+            <div class="s-problem-grid">
+
+                <div class="s-problem-left">
+                    <div class="eyebrow reveal">
+                        <span class="dt"></span>Problèmatique
+                    </div>
+
+                    <h2 class="h-display reveal">
+                        Le prix affiché n'est pas toujours le <em>juste</em> prix.
+                    </h2>
+
+                    <p class="body-lg reveal" style="max-width:520px">
+                        Voiture, appartement, montre ou sac de luxe : il est souvent difficile de savoir si une offre
+                        est réellement
+                        intéressante.
+                        <strong style="color:#fff;font-weight:500">Apprexia</strong> analyse le marché.
+                    </p>
+                </div>
+
+                <div class="s-problem-right">
+                    <div class="problem-card glass-card reveal">
+                        <div class="pc-num"><i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="pc-body"><h3>ACHETER</h3>
+                            <p>Prix juste, risque faible, décision favorable à l’achat.</p></div>
+                    </div>
+
+                    <div class="problem-card glass-card reveal">
+                        <div class="pc-num"><i class="bi bi-exclamation-circle"></i></div>
+                        <div class="pc-body"><h3>NEGOCIER</h3>
+                            <p>Une bonne opportunité si le prix est renégocié.</p></div>
+                    </div>
+
+                    <div class="problem-card glass-card reveal">
+                        <div class="pc-num"><i class="bi bi-x-circle"></i></div>
+                        <div class="pc-body"><h3>EVITER</h3>
+                            <p>Risque élevé, déséquilibre prix/valeur, décision défavorable.</p></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="Analyze & Compare">
+        <div class="slide-inner s-product">
+            <div class="s-product-grid">
+                <div class="s-product-left">
+                    <span class="product-tag reveal">&#10022; Analyze & Compare</span>
+                    <h2 class="h-display reveal"><span class="grd">Apprexia</span> vous révèle la vérité sur le prix
+                    </h2>
+                    <p class="body-lg reveal">Nous analysons les données de marché, les prix historiques, les signaux de
+                        la demande et les actifs comparables pour estimer la valeur réelle</p>
+                    <div class="s-product-features reveal">
+                        <div class="pf">
+                            <div class="pf-ic"><i class="bi bi-car-front"></i></div>
+                            <span>Une voiture légèrement trop chère</span></div>
+                        <div class="pf">
+                            <div class="pf-ic"><i class="bi bi-houses"></i></div>
+                            <span>Un bien immobilier acheté au mauvais moment</span></div>
+                        <div class="pf">
+                            <div class="pf-ic"><i class="bi bi-handbag"></i></div>
+                            <span>Un article de luxe dont la valeur marchande est gonflée.</span></div>
+                        <div class="pf">
+                            <div class="pf-ic"><i class="bi bi-emoji-frown"></i></div>
+                            <span>Une « bonne affaire » qui n'en est pas une.</span></div>
+                    </div>
+                </div>
+                <div class="s-product-right">
+                    <div class="mock-ui glass-card">
+                        <div class="mock-head">
+                            <div class="mh-l"><span class="mh-dot"></span>Analyse du marché</div>
+                            <div class="mh-r"><i></i><i></i><i></i></div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="ms-l">
+                                <span>P95 latency &middot; last hour</span>
+                                <strong>184<span
+                                    style="font-size:.55em;color:var(--ink-3);font-weight:400">ms</span></strong>
+                            </div>
+                            <div class="ms-delta">&darr; 12% vs avg</div>
+                        </div>
+                        <div class="mock-chart">
+                            <svg viewBox="0 0 500 140" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="mockGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#a5b4fc" stop-opacity=".45" />
+                                        <stop offset="100%" stop-color="#a5b4fc" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <path class="area-path"
+                                      d="M0,90 C40,80 70,70 100,75 S160,55 200,60 S260,40 300,50 S360,30 400,35 S460,55 500,40 L500,140 L0,140 Z" />
+                                <path class="line-path"
+                                      d="M0,90 C40,80 70,70 100,75 S160,55 200,60 S260,40 300,50 S360,30 400,35 S460,55 500,40" />
+                            </svg>
+                        </div>
+                        <div class="mock-tiles">
+                            <div class="mock-tile"><span>Errors</span><strong>0.04%</strong></div>
+                            <div class="mock-tile"><span>Throughput</span><strong>2.4k/s</strong></div>
+                            <div class="mock-tile"><span>Saturation</span><strong>62%</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="How it works">
+        <div class="slide-inner s-features">
+            <div class="s-features-head">
+                <div class="sf-l">
+                    <div class="eyebrow reveal"><span class="dt"></span>How it works</div>
+
+                    <h2 class="h-display reveal">Les <span class="grd">achats importants</span> méritent plus qu'une
+                        intuition.</h2>
+                </div>
+                <p class="sf-r reveal">Les petites erreurs de prix n'ont pas d'importance sur les articles bon marché.
+                    Mais sur les achats importants, elles peuvent coûter des milliers d'euros, voire plus. Apprexia vous
+                    aide à éviter ces erreurs.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature glass-card reveal">
+                    <div class="f-num">01</div>
+                    <div class="f-ic"><i class="bi bi-magic"></i></div>
+                    <h3>Market-level intelligence</h3>
+                    <p>Compare chaque bien aux prix observés sur le marché afin d'estimer sa valeur réelle et son
+                        potentiel de négociation.</p>
+                </div>
+                <div class="feature glass-card reveal">
+                    <div class="f-num">02</div>
+                    <div class="f-ic"><i class="bi bi-shop-window"></i></div>
+                    <h3>Cross-market comparison</h3>
+                    <p>Compare les annonces similaires sur différents marchés pour évaluer le juste prix</p>
+                </div>
+                <div class="feature glass-card reveal">
+                    <div class="f-num">03</div>
+                    <div class="f-ic"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h3>Trend-aware analysis</h3>
+                    <p>Une analyse qui prend en compte les tendances du marché en temps réel</p>
+                </div>
+                <div class="feature glass-card reveal">
+                    <div class="f-num">04</div>
+                    <div class="f-ic"><i class="bi bi-lightbulb"></i></div>
+                    <h3>Clear decision system</h3>
+                    <p>Une recommandation claire. Un verdict exploitable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="Technologies">
+        <div class="slide-inner s-roadmap">
+            <div class="s-roadmap-head">
+                <div class="eyebrow reveal"><span class="dt"></span>Technologies</div>
+                <h2 class="h-display reveal">Une technologie conçue pour <span class="grd">révéler</span> la vraie
+                    valeur</h2>
+                <p class="body-lg reveal">Apprexia combine Intelligence Artificielle, Computer Vision, NLP et données de
+                    marché pour analyser instantanément la valeur, la fiabilité et le potentiel de chaque annonce.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item now reveal">
+                    <div class="tl-quarter"><i class="bi bi-activity"></i> NLP Engine</div>
+                    <div class="tl-card">
+                        <h3>Analyse Sémantique</h3>
+                        <ul>
+                            <li>Extraction automatique des informations clés</li>
+                            <li>Compréhension du contexte de l'annonce</li>
+                            <li>Détection des incohérences et informations manquantes</li>
+                            <li>Identification des signaux de risque</li>
+                            <li>Analyse de la qualité et de la transparence du contenu</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-quarter"><i class="bi bi-eye"></i> Vision AI</div>
+                    <div class="tl-card">
+                        <h3>Vision par Ordinateur</h3>
+                        <ul>
+                            <li>Analyse intelligente des photos</li>
+                            <li>Détection d'images dupliquées ou réutilisées</li>
+                            <li>Vérification de la cohérence entre photos et description</li>
+                            <li>Identification d'anomalies visuelles</li>
+                            <li>Contrôle de la qualité des visuels</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-quarter"><i class="bi bi-shop-window"></i> Market Intelligence</div>
+                    <div class="tl-card">
+                        <h3>Intelligence Marché</h3>
+                        <ul>
+                            <li>Comparaison avec des biens similaires</li>
+                            <li>Estimation de la valeur réelle du marché</li>
+                            <li>Analyse des tendances et évolutions de prix</li>
+                            <li>Calcul du potentiel de négociation</li>
+                            <li>Détection des surcotes et sous-évaluations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-quarter"><i class="bi bi-shield-shaded"></i> Trust & Fraud Detection</div>
+                    <div class="tl-card">
+                        <h3>Détection de Fraude</h3>
+                        <ul>
+                            <li>Identification des annonces suspectes</li>
+                            <li>Détection des comportements à risque</li>
+                            <li>Analyse des écarts de prix anormaux</li>
+                            <li>Vérification de la cohérence des informations</li>
+                            <li>Attribution d'un score de confiance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="Metrics">
+        <div class="slide-inner s-metrics">
+            <div class="s-metrics-head">
+                <div class="eyebrow reveal"><span class="dt"></span>Metrics</div>
+                <h2 class="h-display reveal">Des décisions <span class="grd">plus rapides</span>. Des achats <span
+                    class="grd">plus sûrs</span>.
+                </h2>
+            </div>
+            <div class="metric-grid">
+                <div class="metric glass-card reveal">
+                    <div>
+                        <div class="metric-num grd">83<span class="unit">%</span></div>
+                        <div class="metric-lbl">
+                            des acheteurs comparent les prix avant d'acheter.
+                            <a class="f-link"
+                               href="https://getrivalert.com/blog/83-percent-shoppers-compare-prices-online">
+                                Source getrivalert.com
+                            </a>
+                        </div>
+                    </div>
+                    <div class="metric-spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                            <path d="M0,18 L15,16 L30,12 L45,14 L60,8 L75,6 L90,4 L100,3" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="metric glass-card reveal">
+                    <div>
+                        <div class="metric-num grd">53<span class="unit">%</span></div>
+                        <div class="metric-lbl">
+                            consultent plusieurs plateformes avant de prendre une décision.
+                            <a class="f-link"
+                               href="https://ecommercenews.eu/58-of-consumers-use-ai-tools-to-research-products">
+                                Source ecommercenews.eu
+                            </a>
+                        </div>
+                    </div>
+                    <div class="metric-spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                            <path d="M0,20 L15,16 L30,14 L45,10 L60,8 L75,6 L90,4 L100,3" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="metric glass-card reveal">
+                    <div>
+                        <div class="metric-num grd">37<span class="unit">%</span></div>
+                        <div class="metric-lbl">
+                            ont déjà été confrontés à une arnaque sur une marketplace.
+                            <a class="f-link"
+                               href="https://www.experianplc.com/newsroom/press-releases/2025/almost-two-fifths-of-brits-have-experienced-scams-on-online-mark">
+                                Source experianplc.com
+                            </a>
+                        </div>
+                    </div>
+                    <div class="metric-spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                            <path d="M0,12 L15,10 L30,8 L45,7 L60,5 L75,4 L90,3 L100,2" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="metric glass-card reveal">
+                    <div>
+                        <div class="metric-num grd">50+ <span class="unit">signaux</span></div>
+                        <div class="metric-lbl">analysés par Apprexia pour produire un score de confiance. <i>(Prix &
+                            Marché, Qualité de l'annonce, Analyse des photos, Confiance vendeur, Risques & anomalies...)</i>
+                        </div>
+                    </div>
+                    <div class="metric-spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                            <path d="M0,20 L15,16 L30,14 L45,10 L60,8 L75,6 L90,4 L100,3" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="s-metrics-quote glass-card reveal">
+                <div class="q-mark">&ldquo;</div>
+                <blockquote>Avant Apprexia, je passais des heures à comparer les annonces. Aujourd'hui, je sais
+                    immédiatement si une offre <em
+                        style="color:var(--indigo-soft);font-style:normal">mérite mon attention ou non</em>.
+                </blockquote>
+                <div class="q-attr">
+                    <strong>Julien R.</strong>
+                    <span>Utilisateur Apprexia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slide" #slideRef data-section="Pricings & Capabilities">
+        <div class="slide-inner s-compare">
+            <div class="s-compare-head">
+                <div class="eyebrow reveal"><span class="dt"></span>Pricings & Capabilities</div>
+                <h2 class="h-display reveal">Choisissez le niveau d'analyse <span class="grd">adapté à vos
+                    besoins</span></h2>
+                <p class="body-lg reveal">De la vérification ponctuelle à l'analyse avancée, Apprexia vous accompagne
+                    dans chacune de vos décisions d'achat.</p>
+            </div>
+            <div class="cmp-table-wrap glass-card reveal">
+                <table class="cmp-table">
+                    <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th class="featured center">
+                            <div class="vendor-name" style="justify-content:center;">
+                                <span class="v-logo"></span>Premium <br>
+                                29,90€
+                            </div>
+                            <span class="recommended-badge">Recommended</span>
+                        </th>
+                        <th class="center" style="text-align:center">Free <br> 9,90€</th>
+                        <th class="center" style="text-align:center">Business <br> Sur devis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Analyses</td>
+                        <td class="featured" style="color:var(--indigo-soft);font-weight:600">50/mois</td>
+                        <td class="center">1</td>
+                        <td class="center">Illimité</td>
+                    </tr>
+                    <tr>
+                        <td>Apprexia Score™</td>
+                        <td class="featured"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Valeur de marché</td>
+                        <td class="featured"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Analyse IA complète</td>
+                        <td class="featured"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="cross">&#10005;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Détection de fraude</td>
+                        <td class="featured"><span class="check">&#10003;</span></td>
+                        <td class="center"><span class="cross">&#10005;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>API & Intégrations</td>
+                        <td class="featured" style="color:var(--indigo-soft);font-weight:600"><span class="cross">&#10005;</span>
+                        </td>
+                        <td class="center"><span class="cross">&#10005;</span></td>
+                        <td class="center"><span class="check">&#10003;</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="body-lg reveal">Chaque analyse inclut l'évaluation du prix, de la confiance, du risque et du potentiel de négociation.</p>
+        </div>
+    </section>
+</div>
+
+<div class="menu-overlay" [class.open]="menuOpen" (click)="menuOpen = false;"></div>
+
+<div class="menu-panel" [class.open]="menuOpen">
+    <div class="menu-header">
+        <h3>Jump to slide</h3>
+        <div class="menu-meta">
+            <span>{{ currentDisplay }}</span> / <span>{{ totalDisplay }}</span>
+        </div>
+    </div>
+    <div class="menu-list">
+        @for (section of sections; track $index) {
+            <div class="menu-item" (click)="menuOpen = false; go($index)"
+                 [class.active]="$index === idx" [class.current]="$index === idx">
+                <span class="mi-num">{{ $index + 1 }}</span>
+                <div style="flex:1">
+                    <div class="mi-label">{{ section.label }}</div>
+                    <div class="mi-sub"><font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto"
+                              style="vertical-align: inherit;">{{ section.sublabel }}</font></font></div>
+                </div>
+                <span class="mi-arr">→</span></div>
+        }
+    </div>
+
+    <div class="menu-footer">
+        <span>APPREXIA</span>
+        <span>Powered by OpenAI <i class="bi bi-openai"></i></span>
+    </div>
+</div>
+
+<div class="nav">
+    <button (click)="prev()">←</button>
+
+    <button class="menu-btn" (click)="openMenu()" [class.open]="menuOpen">
+        <span class="icon"><i></i><i></i><i></i></span>
+    </button>
+
+    <div class="counter">
+        <span>{{ currentDisplay }}</span> / <span>{{ totalDisplay }}</span>
+    </div>
+
+    <button (click)="next()">→</button>
+</div>
