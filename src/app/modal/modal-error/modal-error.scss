@@ -1,0 +1,69 @@
+$clr-red: #fe6c9b;
+@mixin mQ($rem) {
+    @media screen and (min-width: $rem) {
+        @content;
+    }
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 26, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 200;
+    transition: opacity 0.35s var(--ee), visibility 0.35s;
+}
+
+.red {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+            ellipse at right top,
+            #a63d2a82 0%,
+            #151419 47%,
+            #151419 100%
+    );
+    opacity: 0.95;
+    transition: opacity 0.25s ease-in;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    .icon {
+        color: $clr-red;
+    }
+
+    .card-body {
+        align-items: flex-end;
+    }
+
+    &:before {
+        background: linear-gradient(
+                45deg,
+                #232228,
+                #232228,
+                #232228,
+                #232228,
+                #a63d2a
+        ) border-box;
+    }
+
+    .btn-first {
+        margin-left: 0;
+
+        &:hover {
+            background: #ff6d57;
+            color: #111;
+        }
+    }
+
+    .btn-second {
+        &:hover {
+            background: $clr-red;
+        }
+    }
+}

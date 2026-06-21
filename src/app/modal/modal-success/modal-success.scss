@@ -1,0 +1,60 @@
+$clr-green: #2eea9d;
+@mixin mQ($rem) {
+    @media screen and (min-width: $rem) {
+        @content;
+    }
+}
+
+.green {
+    background: radial-gradient(
+            ellipse at right top,
+            #107667ed 0%,
+            #151419 47%,
+            #151419 100%
+    );
+    opacity: 0.95;
+    transition: opacity 0.25s ease-in;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    .icon {
+        color: $clr-green;
+    }
+
+    .card-body {
+        align-items: flex-end;
+    }
+
+    &:before {
+        background: linear-gradient(
+                45deg,
+                #232228,
+                #232228,
+                #232228,
+                #232228,
+                #01c3a8
+        )
+        border-box;
+    }
+
+    .progress-bar:after {
+        width: 90%;
+        background: $clr-green;
+    }
+
+    .btn-first {
+        margin-left: 0;
+        &:hover {
+            background: #ccff00;
+            color: #111;
+        }
+    }
+
+    .btn-second {
+        &:hover {
+            background: $clr-green;
+        }
+    }
+}

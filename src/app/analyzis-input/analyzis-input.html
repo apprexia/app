@@ -1,0 +1,66 @@
+<a class="brand" routerLink="/">
+    <img src="logo.png" alt="" width="160">
+    <button routerLink="/analyze-list" class="account"><i class="bi bi-person"></i></button>
+</a>
+
+<div class="section-tag">
+    <span class="pip"></span>
+    <span>Analysis</span>
+</div>
+
+<a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+    <span class="tm-dot"></span><span class="tm-label">Version 1.0</span>
+</a>
+
+<div class="deck">
+    <section class="slide existing active" #slideRef data-section="Analysis">
+        <div class="slide-inner s-cover">
+            <div class="s-cover-inner">
+                <div class="s-cover-glow"></div>
+
+                <div class="eyebrow reveal">
+                    <span class="dt"></span>Powered by OpenAI <i class="bi bi-openai"></i>
+                </div>
+
+                <h1 class="h-display">
+                    <span class="line"><span>Achetez</span></span>
+                    <span class="line"><span><span class="grd">en toute confiance</span></span></span>
+                </h1>
+
+                <p class="body-lg reveal" style="max-width:680px">
+                    Collez une annonce, laissez Apprexia l'analyser et obtenez instantanément une estimation fiable
+                    accompagnée de ses points d'attention.
+                </p>
+
+                <div class="prompt-bar">
+                    <div class="glow-border"></div>
+                    <div class="inner">
+                        <span class="sparkle">✦</span>
+                        <input class="placeholder" [(ngModel)]="url" placeholder="Collez l'url de l'annonce" />
+                        <button (click)="submit()"
+                                class="ask-btn"
+                                [disabled]="loading">{{ loading ? 'Analyse...' : 'Analyser ✦' }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="s-cover-meta reveal">
+                    <img src="images/logo-leboncoin.png" width="100" alt="">
+                    <img src="images/bienici.png" width="170" alt="">
+                    <img src="images/logicimmo.png" width="70" alt="">
+                    <img src="images/seloger.png" width="100" alt="">
+                    <img src="images/pap.png" width="70" alt="">
+                </div>
+
+                <div class="s-cover-version">
+                    Immobilier · Véhicules · Luxe · Technologie · Plus encore
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<app-modal-error
+    [isOpen]="isOpen"
+    (closed)="isOpen = false">
+</app-modal-error>

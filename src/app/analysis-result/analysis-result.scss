@@ -1,0 +1,87 @@
+.s-features {
+    gap: 2vmin;
+}
+
+.feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+
+    .glass-card {
+
+        .card-title {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+
+        }
+    }
+}
+
+.feature-grid-bottom {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.feature {
+    animation: moreCardIn 1s var(--ee) forwards;
+    animation-delay: 0.6s;
+
+    p {
+        font-size: 16px;
+        color: var(--ink-2)
+    }
+}
+
+@media (max-width: 640px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 80px 32px;
+
+    .slide {
+        position: initial;
+
+        .slide-inner {
+            padding: 0;
+        }
+    }
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(132, 0, 122, .25);
+    border-radius: 999px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(132, 0, 122, .45);
+}
+
+.logout {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 20px;
+}

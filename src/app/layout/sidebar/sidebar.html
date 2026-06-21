@@ -1,0 +1,57 @@
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div routerLink="/" class="sidebar__logo">
+        <img src="logo.png" alt="Apprexia" width="150">
+    </div>
+
+    <div class="sidebar__section">
+
+        <span class="sidebar__label">Analyse</span>
+
+        <a routerLink="/analyze" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-plus-circle"></i>
+            <span>Nouvelle analyse</span>
+        </a>
+
+        <a routerLink="/analyze-list" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-bar-chart"></i>
+            <span>Mes analyses</span>
+        </a>
+
+        <a routerLink="/compare" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-columns-gap"></i>
+            <span>Comparateur</span>
+        </a>
+
+        <a routerLink="/favorites" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-heart"></i>
+            <span>Favoris</span>
+        </a>
+
+        <!--            <a routerLink="/alerts" class="sidebar__item">-->
+        <!--                <i class="bi bi-bell"></i>-->
+        <!--                <span>Alertes</span>-->
+        <!--            </a>-->
+
+    </div>
+
+    <div class="sidebar__divider"></div>
+
+    <div class="sidebar__section">
+
+        <span class="sidebar__label">Support</span>
+
+        <a routerLink="/settings" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-gear"></i>
+            <span>Paramètres</span>
+        </a>
+
+        <a routerLink="/help" routerLinkActive="active" class="sidebar__item">
+            <i class="bi bi-question-circle"></i>
+            <span>Aide</span>
+        </a>
+
+    </div>
+
+</aside>

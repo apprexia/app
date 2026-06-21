@@ -1,0 +1,57 @@
+$clr-blue: #5a81ff;
+@mixin mQ($rem) {
+    @media screen and (min-width: $rem) {
+        @content;
+    }
+}
+
+.blue {
+    background: radial-gradient(
+            ellipse at right top,
+            #00458f8f 0%,
+            #151419 45%,
+            #151419 100%
+    );
+    opacity: 0.95;
+    transition: opacity 0.25s ease-in;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    .icon {
+        color: $clr-blue;
+    }
+
+    &:before {
+        background: linear-gradient(
+                45deg,
+                #232228,
+                #232228,
+                #232228,
+                #232228,
+                #1890ff
+        )
+        border-box;
+    }
+
+    .progress-bar:after {
+        width: 68%;
+        background: $clr-blue;
+        background: linear-gradient(90deg, #1d1da3 0%, #4242cf 60%, #5a81ff 100%);
+    }
+    .btn-first {
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+
+        @include mQ(33.75rem) {
+            margin-left: 2.5em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        &:hover {
+            background: $clr-blue;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+<a class="brand" routerLink="/">
+    <img src="logo.png" alt="" width="160">
+    <button class="account"><i class="bi bi-person"></i></button>
+</a>
+
+<div class="section-tag">
+    <span class="pip"></span>
+    <span>Analyse {{ isAnalysisCompleted() ? 'terminée' : 'en cours' }}</span>
+</div>
+
+<a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+    <span class="tm-dot"></span><span class="tm-label">Version 1.0</span>
+</a>
+
+<div class="deck">
+    <section class="slide existing active" #slideRef data-section="Analysis">
+        <div class="stp-04">
+            <div class="stp-04__wrap">
+                <div class="stp-04__header">
+                    <div class="eyebrow reveal" style="margin-bottom: 5px">
+                        <span class="dt"></span> Analyse {{ isAnalysisCompleted() ? 'terminée' : 'en cours' }}
+                    </div>
+                    <p class="body-md reveal" style="max-width:520px; margin-top: 10px;">
+                        Nous analysons cette annonce selon plus de 50 critères afin d'évaluer sa valeur réelle et
+                        d'identifier les éventuels points de vigilance.
+                    </p>
+                </div>
+
+                <div class="stp-04__timeline">
+                    @for (step of steps; track step.title) {
+                        <div class="stp-04__entry"
+                             [class.is-done]="getStatus($index) === 'done'"
+                             [class.is-active]="getStatus($index) === 'active'">
+                            <div class="stp-04__spine">
+                                <div class="stp-04__node">
+                                    <i class="bi {{ step.icon }}"></i>
+                                </div>
+                                <div class="stp-04__line"></div>
+                            </div>
+
+                            <div class="stp-04__content">
+                                <span class="stp-04__step-tag">
+                                    {{ getTag($index) }}
+                                </span>
+                                <h3>{{ step.title }}</h3>
+                                <p class="body-sm reveal">
+                                    {{ step.description }}
+                                </p>
+                                @if (getStatus($index) === 'done') {
+                                    <span class="stp-04__done-badge">
+                                        ✓ &nbsp;Terminée
+                                    </span>
+                                }
+
+                                @if (getStatus($index) === 'active') {
+                                    <span class="loader"></span>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

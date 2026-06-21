@@ -8,11 +8,13 @@ import {
     PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.html',
     styleUrl: './home.scss',
+    imports: [RouterLink],
 })
 export class Home implements AfterViewInit {
     private platformId = inject(PLATFORM_ID);
@@ -22,33 +24,33 @@ export class Home implements AfterViewInit {
 
     sections = [
         {
-            label: 'Home',
-            sublabel: 'Présentation d’Apprexia'
+            label: 'Accueil',
+            sublabel: 'Analysez avant d’investir',
         },
         {
-            label: 'Problem',
-            sublabel: 'Pourquoi les acheteurs hésitent'
+            label: 'Problématique',
+            sublabel: 'Le prix affiché n’est pas toujours le juste prix',
         },
         {
-            label: 'Analyze & Compare',
-            sublabel: 'Analyse IA et comparaison marché'
+            label: 'Analyse & Décision',
+            sublabel: 'Valeur, rentabilité et risques',
         },
         {
-            label: 'How it Works',
-            sublabel: 'Fonctionnement du Score Apprexia'
+            label: 'Comment ça fonctionne',
+            sublabel: 'La méthodologie Apprexia',
         },
         {
-            label: 'Technologies',
-            sublabel: 'IA, données et architecture'
+            label: 'Technologie',
+            sublabel: 'Données, IA et intelligence marché',
         },
         {
-            label: 'Metrics',
-            sublabel: 'Performance et indicateurs clés'
+            label: 'Indicateurs',
+            sublabel: 'Les chiffres qui comptent',
         },
         {
-            label: 'Pricing & Capabilities',
-            sublabel: 'Offres, fonctionnalités et usages'
-        }
+            label: 'Tarifs',
+            sublabel: 'Choisissez votre niveau d’analyse',
+        },
     ];
 
     idx = 0;
@@ -107,7 +109,6 @@ export class Home implements AfterViewInit {
     openMenu() {
         this.menuOpen = true;
     }
-
 
     toggleMenu(target?: number) {
         this.menuOpen = false;
