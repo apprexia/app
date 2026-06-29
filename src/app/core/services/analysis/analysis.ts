@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Analysis } from '../models/analysis.model';
-import { PaginatedResponse } from '../models/paginated-response.model';
+import { Analysis } from '../../models/analysis.model';
+import { PaginatedResponse } from '../../models/paginated-response.model';
 
 @Injectable({
     providedIn: 'root',

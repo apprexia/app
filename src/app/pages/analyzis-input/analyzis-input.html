@@ -1,6 +1,6 @@
-<a class="brand" routerLink="/">
-    <img src="logo.png" alt="" width="160">
-    <button routerLink="/analyze-list" class="account"><i class="bi bi-person"></i></button>
+<a class="brand">
+    <img src="logo.png" alt="" width="160" routerLink="/">
+    <button routerLink="/account" class="account"><i class="bi bi-person"></i></button>
 </a>
 
 <div class="section-tag">
@@ -45,15 +45,16 @@
                 </div>
 
                 <div class="s-cover-meta reveal">
-                    <img src="images/logo-leboncoin.png" width="100" alt="">
-                    <img src="images/bienici.png" width="170" alt="">
-                    <img src="images/logicimmo.png" width="70" alt="">
-                    <img src="images/seloger.png" width="100" alt="">
-                    <img src="images/pap.png" width="70" alt="">
+                    <img src="images/logos/orpi.svg" width="50" alt="">
+                    <img src="images/logos/century21.svg" width="120" alt="">
+                    <img src="images/logos/logicimmo.png" width="70" alt="">
+                    <img src="images/logos/seloger.png" width="100" alt="">
+                    <img src="images/logos/pap.png" width="70" alt="">
+                    <img src="images/logos/paruvendu.png" width="70" alt="">
                 </div>
 
                 <div class="s-cover-version">
-                    Immobilier · Véhicules · Luxe · Technologie · Plus encore
+                    Analyse IA · Valeur marché · Rentabilité · Négociation · Risques
                 </div>
             </div>
         </div>
@@ -62,5 +63,7 @@
 
 <app-modal-error
     [isOpen]="isOpen"
-    (closed)="isOpen = false">
+    (closed)="isOpen = false"
+    [title]="titleError"
+    [message]="messageError">
 </app-modal-error>

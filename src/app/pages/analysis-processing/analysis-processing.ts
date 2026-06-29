@@ -3,7 +3,7 @@ import { Component, Inject, OnInit, OnDestroy, PLATFORM_ID, computed, signal } f
 import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
-import { AnalysisService } from '../core/services/analysis';
+import { AnalysisService } from '../../core/services/analysis/analysis';
 
 interface Step {
     title: string;
@@ -79,14 +79,14 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             return;
         }
 
-        this.startFakeProcessing();
+        this.startProcessing();
     }
 
     ngOnDestroy(): void {
         this.timeoutIds.forEach(clearTimeout);
     }
 
-    private startFakeProcessing(): void {
+    private startProcessing(): void {
         const url = history.state.url;
 
         if (!url) {

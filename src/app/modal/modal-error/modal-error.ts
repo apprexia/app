@@ -1,4 +1,4 @@
-import { Component, input, Input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
     selector: 'app-modal-error',
@@ -9,4 +9,8 @@ import { Component, input, Input, output } from '@angular/core';
 export class ModalError {
     isOpen = input(false);
     closed = output<void>();
+    title = input('');
+    message = input('');
+
+    constructor() {}
 }

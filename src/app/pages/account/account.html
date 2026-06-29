@@ -1,0 +1,259 @@
+<div class="app-layout">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+        @if (user(); as profile) {
+
+            <!-- HEADER PROFIL -->
+            <section class="slide exiting active">
+                <div class="slide-inner s-more">
+                    <div class="s-more-head">
+                        <div class="sm-l">
+                            <div class="profile-header">
+                                <img
+                                    class="profile-avatar"
+                                    [src]="profile.avatar || 'images/avatar.png'"
+                                    alt="avatar"
+                                >
+                                <div>
+                                    <h2 class="h-display">
+                                    <span class="grd">
+                                        Hello {{ profile.name }},
+                                    </span>
+                                    </h2>
+
+                                    <p style="margin-top: 10px">
+                                        <i class="bi bi-envelope-at"></i> {{ profile.email }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="slide-inner s-features">
+                    <!-- STATS PRINCIPALES -->
+                    <div class="feature-grid">
+                        <!-- ANALYSES -->
+                        <div class="feature glass-card reveal">
+
+                            <div style="display:flex;align-items:center">
+
+                                <div class="f-ic icon-secondary">
+                                    <i class="bi bi-search"></i>
+                                </div>
+
+                                <h2 class="text-secondary title-card">
+                                    Analyses réalisées
+                                </h2>
+
+                            </div>
+
+
+                            <div class="metric-num grd">
+                                {{ profile.stats.analyses }}
+                            </div>
+
+                        </div>
+
+
+                        <!-- CREDITS -->
+
+                        <div class="feature glass-card reveal">
+
+
+                            <div style="display:flex;align-items:center">
+
+                                <div class="f-ic icon-info">
+                                    <i class="bi bi-wallet2"></i>
+                                </div>
+
+
+                                <h2 class="text-info title-card">
+                                    Crédits disponibles
+                                </h2>
+
+                            </div>
+
+
+                            <div class="metric-num grd">
+                                {{ profile.credits }}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="feature-grid">
+
+
+                        <!-- SCORE -->
+
+                        <div class="feature glass-card reveal">
+
+
+                            <div style="display:flex;align-items:center">
+
+                                <div class="f-ic icon-success">
+                                    <i class="bi bi-award"></i>
+                                </div>
+
+
+                                <h2 class="text-success title-card">
+                                    Score moyen
+                                </h2>
+
+
+                            </div>
+
+
+                            <div class="metric-num grd">
+
+                                {{ profile.stats.averageScore }}
+
+                                <span class="unit">
+                                /100
+                            </span>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- FAVORIS -->
+
+
+                        <div class="feature glass-card reveal">
+
+
+                            <div style="display:flex;align-items:center">
+
+                                <div class="f-ic icon-danger">
+                                    <i class="bi bi-heart"></i>
+                                </div>
+
+
+                                <h2 class="text-danger title-card">
+                                    Favoris
+                                </h2>
+
+
+                            </div>
+
+
+                            <div class="metric-num grd">
+
+                                {{ profile.stats.favorites }}
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- VERDICTS -->
+
+
+                    <div class="feature glass-card reveal verdict-card">
+
+
+                        <div style="display:flex;align-items:center">
+
+                            <div class="f-ic icon-warning">
+                                <i class="bi bi-bar-chart"></i>
+                            </div>
+
+
+                            <h2 class="text-warning title-card">
+                                Répartition des opportunités
+                            </h2>
+
+
+                        </div>
+
+
+                        <div class="verdict-grid">
+
+
+                            <div>
+                            <span class="invest">
+                                INVESTIR
+                            </span>
+
+                                <strong>
+                                    {{ profile.stats.investir }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                            <span class="negotiate">
+                                NÉGOCIER
+                            </span>
+
+
+                                <strong>
+                                    {{ profile.stats.negocier }}
+                                </strong>
+
+
+                            </div>
+
+
+                            <div>
+
+                            <span class="avoid">
+                                ÉVITER
+                            </span>
+
+
+                                <strong>
+                                    {{ profile.stats.eviter }}
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+        </section>
+
+        }
+
+
+    </main>
+
+</div>

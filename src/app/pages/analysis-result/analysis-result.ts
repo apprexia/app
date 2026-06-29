@@ -7,11 +7,11 @@ import {
 
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Sidebar } from '../layout/sidebar/sidebar';
-import { ModalError } from '../modal/modal-error/modal-error';
+import { Sidebar } from '../../layout/sidebar/sidebar';
+import { ModalError } from '../../modal/modal-error/modal-error';
 
-import { AnalysisService } from '../core/services/analysis';
-import { Analysis } from '../core/models/analysis.model';
+import { AnalysisService } from '../../core/services/analysis/analysis';
+import { Analysis } from '../../core/models/analysis.model';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -61,6 +61,7 @@ export class AnalysisResult implements OnInit {
     }
 
     logout() {
+        localStorage.removeItem('token');
         this.router.navigate(['/login']);
         this.isOpen = true;
     }

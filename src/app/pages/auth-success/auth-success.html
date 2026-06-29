@@ -1,0 +1,27 @@
+<div
+    class="page"
+    (mousemove)="onMouseMove($event)"
+>
+
+    <div
+        id="grid"
+        [style.background-position]="backgroundPosition()"
+    ></div>
+    <div id="hud">
+        <div class="core"></div>
+
+        <div class="status">
+            {{ status() }}
+        </div>
+
+        @if (!isAuthorized()) {
+            <button
+                id="access"
+                (click)="authorize()"
+                [class.hide]="energy() > 0"
+            >
+                ACCESS
+            </button>
+        }
+    </div>
+</div>

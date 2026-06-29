@@ -803,7 +803,7 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 10px;
     color: var(--ink-4);
     letter-spacing: .3em;
     text-transform: uppercase;
@@ -1493,7 +1493,7 @@ html, body {
 .metric-num {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: clamp(36px, 4.5vw, 60px);
+    font-size: clamp(36px, 4vw, 60px);
     letter-spacing: -.04em;
     line-height: 1
 }
@@ -1949,7 +1949,7 @@ html, body {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 
-    -webkit-line-clamp: 3; /* nombre de lignes */
+    -webkit-line-clamp: 8; /* nombre de lignes */
     line-clamp: 3;
 }
 
@@ -2195,7 +2195,7 @@ html, body {
     }
     .brand {
         top: 18px;
-        left: 18px;
+        left: 0;
         font-size: 14px
     }
     .brand .logo {

@@ -16,7 +16,7 @@
         @if (analysis(); as a) {
             <section class="slide exiting active" #slideRef data-section="Résultat d'analyse">
                 <div class="slide-inner s-features">
-                    <div class="feature-grid">
+                    <div class="feature-grid-head">
 
                         <!-- BIEN ANALYSÉ -->
                         <div class="more-card glass-card" rel="nofollow noopener">
@@ -40,9 +40,13 @@
                                 <div class="mc-desc">
                                     {{ a.description }}
                                 </div>
-
-                                <img src="images/logo-leboncoin.png" width="80" alt="">
-
+                                @if (a.sourceSite) {
+                                    <img
+                                        [src]="'images/logos/' + a.sourceSite + '.png'"
+                                        [alt]="a.sourceSite"
+                                        width="60"
+                                    />
+                                }
                                 <a [href]="a.url" target="_blank" class="mc-cta">
                                     Voir l'annonce <span>→</span>
                                 </a>
@@ -51,7 +55,6 @@
                         </div>
 
                         <!-- SCORE -->
-
                         <div class="feature glass-card reveal">
 
                             <div style="display:flex;align-items:center">
@@ -73,7 +76,6 @@
                         </div>
 
                         <!-- VERDICT -->
-
                         <div class="feature glass-card reveal">
 
                             <div style="display:flex;align-items:center">
@@ -101,7 +103,6 @@
                     <div class="feature-grid">
 
                         <!-- VALEUR -->
-
                         <div class="feature glass-card reveal">
 
                             <div style="display:flex;align-items:center">
@@ -113,23 +114,49 @@
                                     Valeur estimée
                                 </h2>
                             </div>
-
-                            <p>
-                                Prix affiché :
-                                <strong>{{ a.askingPrice | currency:'EUR':'symbol':'1.0-0' }}</strong>
-                            </p>
-                            <p>
-                                Valeur estimée :
-                                <strong>{{ a.estimatedValue | currency:'EUR':'symbol':'1.0-0' }}</strong>
-                            </p>
-                            <p>
-                                <strong>{{ a.marketPosition ? 'Le bien est affiché environ' + a.marketPosition + '.' : '' }}</strong>
-                            </p>
-
+                            <div>
+                                <h5 class="text-secondary"> PRIX AFFICHE</h5>
+                                <div class="metric-num grd">
+                                    {{ a.askingPrice | currency:'EUR':'symbol':'1.0-0' }}
+                                </div>
+                                <h5 class="text-secondary"> VALEUR ESTIMEE </h5>
+                                <div class="metric-num grd">
+                                    {{ a.estimatedValue | currency:'EUR':'symbol':'1.0-0' }}
+                                </div>
+                                <p>{{ a.marketPosition }} </p>
+                            </div>
                         </div>
 
-                        <!-- RENTABILITÉ -->
+                        <!-- NÉGOCIATION -->
+                        <div class="feature glass-card reveal">
 
+                            <div style="display:flex;align-items:center">
+                                <div class="f-ic icon-info">
+                                    <i class="bi bi-chat-dots"></i>
+                                </div>
+
+                                <h2 class="text-info" style="margin-left:10px">
+                                    Négociation
+                                </h2>
+                            </div>
+                            <div>
+                                <h5 class="text-info"> PRIX CONSEILLE </h5>
+                                <div class="metric-num grd">
+                                    {{ a.recommendedPrice | currency:'EUR':'symbol':'1.0-0' }}
+                                </div>
+                                <h5 class="text-info"> NEGOCIATION ESTIME</h5>
+                                <div class="metric-num grd">
+                                    {{ a.negotiationAmount | currency:'EUR':'symbol':'1.0-0' }}
+                                </div>
+                                <p>
+                                    {{ a.negotiationAnalysis }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-grid-bottom">
+                        <!-- RENTABILITÉ -->
                         <div class="feature glass-card reveal">
 
                             <div style="display:flex;align-items:center">
@@ -149,13 +176,31 @@
                             <p>
                                 {{ a.yieldAnalysis }}
                             </p>
-                            <p>
-                                <strong>{{ a.yieldLevel ? 'Niveau : ' + a.yieldLevel : '' }}</strong>
-                            </p>
+                            <div class="eyebrow reveal">
+                                <span class="dt"></span>{{ a.yieldLevel ? 'Niveau : ' + a.yieldLevel : '' }}
+                            </div>
                         </div>
+                        <!-- POSITIFS -->
+                        <div class="feature glass-card reveal">
 
+                            <div style="display:flex;align-items:center">
+                                <div class="f-ic icon-success">
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                </div>
+
+                                <h2 class="text-success" style="margin-left:10px">
+                                    Points forts
+                                </h2>
+                            </div>
+
+                            <div>
+                                @for (strength of a.strengths; track strength) {
+                                    <p><i class="bi bi-check-lg text-success"></i> {{ strength }}</p>
+                                }
+                            </div>
+
+                        </div>
                         <!-- RISQUES -->
-
                         <div class="feature glass-card reveal">
 
                             <div style="display:flex;align-items:center">
@@ -164,51 +209,16 @@
                                 </div>
 
                                 <h2 class="text-warning" style="margin-left:10px">
-                                    Risques & vigilance
+                                    Points de vigilance
                                 </h2>
                             </div>
 
-                            <p>
-                                @for (strength of a.strengths; track strength) {
-                                    <div>✓ {{ strength }}</div>
-                                }
-                            </p>
-                            <p>
+                            <div>
                                 @for (risk of a.risks; track risk) {
-                                    <div>⚠ {{ risk }}</div>
+                                    <p><i class="bi bi-exclamation-triangle text-warning"></i> {{ risk }}</p>
                                 }
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="feature-grid-bottom">
-
-                        <!-- NÉGOCIATION -->
-                        <div class="feature glass-card reveal">
-
-                            <div style="display:flex;align-items:center">
-                                <div class="f-ic icon-info">
-                                    <i class="bi bi-chat-dots"></i>
-                                </div>
-
-                                <h2 class="text-info" style="margin-left:10px">
-                                    Potentiel de négociation
-                                </h2>
                             </div>
 
-                            <p>
-                                Prix conseillé :
-                                <strong>{{ a.recommendedPrice | currency:'EUR':'symbol':'1.0-0' }}</strong>
-                            </p>
-                            <p>
-                                Potentiel estimé :
-                                <strong>{{ a.negotiationAmount | currency:'EUR':'symbol':'1.0-0' }}</strong>
-                            </p>
-                            <p>
-                                {{ a.negotiationAnalysis }}
-                            </p>
                         </div>
                     </div>
                 </div>

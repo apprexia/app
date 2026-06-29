@@ -3,8 +3,8 @@
     <app-sidebar></app-sidebar>
 
     <!-- CONTENU PRINCIPAL -->
-    <main class="main-content">
-        <a class="logout text-info" routerLink="/login">
+    <main class="main-content" #mainContent>
+        <a class="logout text-info" (click)="logout()">
             <i class="bi bi-power"></i>
         </a>
         <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
@@ -37,7 +37,17 @@
                     @for (analysis of filteredAnalyses(); track analysis.id) {
                         <a class="more-card glass-card"
                            [style.animation-delay.ms]="600 + ($index * 150)">
-
+                            <button
+                                type="button"
+                                class="favorite-btn"
+                                (click)="toggleFavorite(analysis.id); $event.preventDefault(); $event.stopPropagation()"
+                            >
+                                <i
+                                    class="bi"
+                                    [class.bi-heart]="!isFavorite(analysis.id)"
+                                    [class.bi-heart-fill]="isFavorite(analysis.id)"
+                                ></i>
+                            </button>
                             <div class="mc-thumb">
                                 <img
                                     [src]="analysis.imageUrl || 'images/img5.png'"
@@ -98,7 +108,8 @@
 
                 <div class="pagination-component">
                     <div class="pagination-anim">
-                        <button id="prev-page" aria-label="Previous Page" title="Go To Previous Page" (click)="goToPage(currentPage - 1)"
+                        <button id="prev-page" aria-label="Previous Page" title="Go To Previous Page"
+                                (click)="goToPage(currentPage - 1)"
                                 [disabled]="currentPage === 1"></button>
                         <div>
                             <span>Page</span>
@@ -107,33 +118,34 @@
                             </ul>
                             <span>of {{ totalPages }}</span>
                         </div>
-                        <button id="nxt-page" aria-label="Next Page" title="Go To Next Page" (click)="goToPage(currentPage + 1)"
+                        <button id="nxt-page" aria-label="Next Page" title="Go To Next Page"
+                                (click)="goToPage(currentPage + 1)"
                                 [disabled]="currentPage === totalPages"></button>
                     </div>
                 </div>
 
-<!--                <div class="pagination">-->
+                <!--                <div class="pagination">-->
 
-<!--                    <button-->
-<!--                        (click)="goToPage(currentPage - 1)"-->
-<!--                        [disabled]="currentPage === 1"-->
-<!--                    >-->
-<!--                        ←-->
-<!--                    </button>-->
+                <!--                    <button-->
+                <!--                        (click)="goToPage(currentPage - 1)"-->
+                <!--                        [disabled]="currentPage === 1"-->
+                <!--                    >-->
+                <!--                        ←-->
+                <!--                    </button>-->
 
-<!--                    <span>-->
-<!--                            Page {{ currentPage }}-->
-<!--                        / {{ totalPages }}-->
-<!--                        </span>-->
+                <!--                    <span>-->
+                <!--                            Page {{ currentPage }}-->
+                <!--                        / {{ totalPages }}-->
+                <!--                        </span>-->
 
-<!--                    <button-->
-<!--                        (click)="goToPage(currentPage + 1)"-->
-<!--                        [disabled]="currentPage === totalPages"-->
-<!--                    >-->
-<!--                        →-->
-<!--                    </button>-->
+                <!--                    <button-->
+                <!--                        (click)="goToPage(currentPage + 1)"-->
+                <!--                        [disabled]="currentPage === totalPages"-->
+                <!--                    >-->
+                <!--                        →-->
+                <!--                    </button>-->
 
-<!--                </div>-->
+                <!--                </div>-->
             </div>
         </section>
 

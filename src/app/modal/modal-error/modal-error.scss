@@ -35,6 +35,7 @@ $clr-red: #fe6c9b;
 
     .icon {
         color: $clr-red;
+        width: 10rem;
     }
 
     .card-body {
@@ -54,6 +55,7 @@ $clr-red: #fe6c9b;
 
     .btn-first {
         margin-left: 0;
+        text-decoration: none;
 
         &:hover {
             background: #ff6d57;

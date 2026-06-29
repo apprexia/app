@@ -1,0 +1,134 @@
+<div class="app-layout">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-content" #mainContent>
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+        <section class="slide exiting active" data-section="More templates" data-sub="Mes opportunités">
+            @if (favorites().length > 0) {
+                <div class="slide-inner s-more">
+                    <div class="s-more-head">
+                        <div class="sm-l">
+                            <h2 class="h-display reveal">Mes <span class="grd">favoris</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="categories">
+                        @for (category of categories; track category) {
+                            <div
+                                class="eyebrow reveal"
+                                [class.active]="selectedCategory() === category"
+                                (click)="setCategory(category)"
+                            >
+                                <span class="dt"></span>
+                                {{ category }}
+                            </div>
+                        }
+                    </div>
+                    <div class="more-grid">
+
+                        @for (analysis of filteredAnalyses(); track analysis.id) {
+                            <a class="more-card glass-card"
+                               [style.animation-delay.ms]="600 + ($index * 150)">
+                                <button
+                                    type="button"
+                                    class="favorite-btn"
+                                    (click)="$event.preventDefault(); $event.stopPropagation(); toggleFavorite(analysis.id)"
+                                >
+                                    <i
+                                        class="bi"
+                                        [class.bi-heart]="!isFavorite(analysis.id)"
+                                        [class.bi-heart-fill]="isFavorite(analysis.id)"
+                                    ></i>
+                                </button>
+                                <div class="mc-thumb">
+                                    <img
+                                        [src]="analysis.imageUrl || 'images/img5.png'"
+                                        alt=""
+                                        loading="lazy"
+                                    >
+                                </div>
+
+                                <div class="mc-body">
+
+                                    <div class="mc-tag">
+                                        <span class="pip"></span>
+                                        {{ analysis.city }}
+                                        · {{ analysis.rooms ? 'T' + analysis.rooms : 'N/A' }}
+                                        · {{ analysis.surface ? analysis.surface + 'm²' : 'N/A' }}
+                                    </div>
+
+                                    <div
+                                        class="eyebrow reveal"
+                                        [class.invest]="analysis.verdict === 'INVESTIR'"
+                                        [class.negotiate]="analysis.verdict === 'NÉGOCIER'"
+                                        [class.avoid]="analysis.verdict === 'ÉVITER'"
+                                    >
+                                        <span class="dt"></span>
+                                        {{ analysis.verdict }}
+                                    </div>
+
+                                    <span class="recommended-badge">
+            Apprexia Score™
+            <b>{{ analysis.score }}/100</b>
+        </span>
+
+                                    <div class="mc-title">
+                                        {{ analysis.title }}
+                                    </div>
+
+                                    <div class="mc-price">
+                                        {{ analysis.askingPrice | currency:'EUR':'symbol':'1.0-0' }}
+                                    </div>
+
+                                    <div class="mc-desc">
+                                        {{ analysis.description }}
+                                    </div>
+
+                                    <div
+                                        class="mc-cta"
+                                        [routerLink]="['/analyze-result', analysis.id]"
+                                    >
+                                        Voir le rapport
+                                        <span>&rarr;</span>
+                                    </div>
+
+                                </div>
+
+                            </a>
+                        }
+                    </div>
+
+                    <div class="pagination-component">
+                        <div class="pagination-anim">
+                            <button id="prev-page" aria-label="Previous Page" title="Go To Previous Page"
+                                    (click)="goToPage(currentPage - 1)"
+                                    [disabled]="currentPage === 1"></button>
+                            <div>
+                                <span>Page</span>
+                                <ul>
+                                    <li>{{ currentPage }}</li>
+                                </ul>
+                                <span>of {{ totalPages }}</span>
+                            </div>
+                            <button id="nxt-page" aria-label="Next Page" title="Go To Next Page"
+                                    (click)="goToPage(currentPage + 1)"
+                                    [disabled]="currentPage === totalPages"></button>
+                        </div>
+                    </div>
+                </div>
+            } @else {
+            }
+        </section>
+
+    </main>
+
+</div>

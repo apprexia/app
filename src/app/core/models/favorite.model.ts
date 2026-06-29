@@ -1,4 +1,4 @@
-export interface Analysis {
+export interface Favorite {
     id: string;
     userId: string;
     sourceSite: string;

@@ -1,0 +1,99 @@
+
+.loading-content {
+    width: 100%;
+    height: 100%;
+    background: #06080c;
+    overflow: hidden;
+    font-family: monospace;
+    color: #9fb6ff;
+}
+
+/* GRID */
+#grid {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(120, 140, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 140, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: drift 20s linear infinite;
+}
+
+@keyframes drift {
+    from {
+        background-position: 0 0, 0 0;
+    }
+    to {
+        background-position: 400px 400px, 400px 400px;
+    }
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* CORE */
+.core {
+    width: 160px;
+    height: 160px;
+    border: 2px solid rgba(160, 180, 255, 0.4);
+    position: relative;
+    animation: rotate 12s linear infinite;
+}
+
+.core::before,
+.core::after {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(160, 180, 255, 0.3);
+}
+
+.core::after {
+    inset: 40px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* STATUS */
+.status {
+    letter-spacing: 6px;
+    font-size: 14px;
+    opacity: 0.8;
+    padding-top: 30px;
+}
+
+/* BUTTON */
+#access {
+    background: transparent;
+    border: 1px solid rgba(160, 180, 255, 0.4);
+    padding: 12px 40px;
+    color: inherit;
+    cursor: pointer;
+    letter-spacing: 4px;
+    transition: 0.4s;
+}
+
+#access:hover {
+    background: rgba(160, 180, 255, 0.1);
+    box-shadow: 0 0 20px rgba(160, 180, 255, 0.4);
+}
+
+#access.hide {
+    opacity: 0;
+    transform: scale(0.7);
+    pointer-events: none;
+}
