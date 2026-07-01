@@ -1,0 +1,109 @@
+.app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+.main-content {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 80px 32px;
+
+    .slide {
+        position: initial;
+
+        .slide-inner {
+            padding: 0;
+            align-items: center;
+        }
+    }
+}
+
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(132, 0, 122, .25);
+    border-radius: 999px;
+}
+
+
+.logout {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 20px;
+}
+
+.legal-content {
+
+    margin-top: 10px;
+
+    max-width: 850px;
+
+    padding: 45px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, .03);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    backdrop-filter: blur(20px);
+
+
+    .update {
+
+        opacity: .55;
+
+        font-size: 14px;
+
+        margin-bottom: 40px;
+
+    }
+
+
+    h3 {
+
+        margin-top: 40px;
+
+        margin-bottom: 15px;
+
+        font-size: 22px;
+
+    }
+
+
+    p {
+
+        opacity: .8;
+
+        line-height: 1.7;
+
+        font-size: 16px;
+
+        margin-bottom: 15px;
+
+    }
+
+}
+
+
+@media(max-width: 640px) {
+
+    .legal-content {
+
+        padding: 25px;
+
+    }
+
+}

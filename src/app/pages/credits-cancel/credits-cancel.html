@@ -1,0 +1,82 @@
+<div class="app-layout">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+        <section class="slide existing active" data-sub="apprexia store">
+
+            <div class="slide-inner s-more">
+
+                <div class="s-more-head">
+
+                    <div class="sm-l">
+
+                        <div class="eyebrow reveal">
+                            <span class="dt"></span>
+                            APPREXIA Store
+                        </div>
+
+                        <h2 class="h-display reveal">
+                            Paiement
+                            <span class="grd"> Annulé</span>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="cancel-card reveal">
+
+                    <div class="cancel-icon">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+
+                    <h3>
+                        Le paiement a été annulé
+                    </h3>
+
+                    <p>
+                        Aucun montant n'a été débité et aucun crédit n'a été ajouté à votre compte.
+                        Vous pouvez réessayer à tout moment ou revenir à la boutique pour choisir un autre pack.
+                    </p>
+
+                    <div class="cancel-actions">
+
+                        <button
+                            class="btn-primary"
+                            routerLink="/credits">
+
+                            <i class="bi bi-bag"></i>
+                            Choisir un pack
+
+                        </button>
+
+                        <button
+                            class="btn-secondary"
+                            routerLink="/account">
+
+                            <i class="bi bi-person"></i>
+                            Mon compte
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>

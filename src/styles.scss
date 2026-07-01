@@ -1626,7 +1626,7 @@ html, body {
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -.01em;
-    text-align: left;
+    text-align: center;
     color: var(--ink-2);
     border-bottom: 1px solid var(--line);
     position: relative;
@@ -2182,7 +2182,7 @@ html, body {
         overflow: hidden
     }
     .slide-inner, .s-cover, .s-cta {
-        padding: 72px 18px 24px
+        padding: 130px 18px 24px
     }
     .s-cover-inner {
         gap: 24px
@@ -2203,7 +2203,7 @@ html, body {
         height: 24px
     }
     .nav {
-        top: 16px;
+        top: 80px;
         right: 16px;
         gap: 5px
     }

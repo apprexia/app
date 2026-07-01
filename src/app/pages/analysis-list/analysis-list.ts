@@ -32,13 +32,13 @@ export class AnalysisList implements OnInit {
 
     limit = 9;
 
-    categories: string[] = ['Toutes', 'INVESTIR', 'NÉGOCIER', 'ÉVITER'];
+    categories: string[] = ['TOUTES', 'INVESTIR', 'NEGOCIER', 'EVITER'];
     readonly analyses = signal<Analysis[]>([]);
 
-    readonly selectedCategory = signal('Toutes');
+    readonly selectedCategory = signal('TOUTES');
 
     readonly filteredAnalyses = computed(() => {
-        if (this.selectedCategory() === 'Toutes') {
+        if (this.selectedCategory() === 'TOUTES') {
             return this.analyses();
         }
 

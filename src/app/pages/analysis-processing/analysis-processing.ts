@@ -114,19 +114,45 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
     }
 
     private startPolling() {
-        const interval = setInterval(() => {
+        const poll = () => {
             this.analysisService.getStatus(this.analysisId).subscribe({
                 next: (response) => {
-                    console.log(response.status);
+                    console.log('STATUS:', response.status);
 
-                    if (response.status === 'COMPLETED' || response.status === 'AI_FAILED') {
-                        clearInterval(interval);
+                    switch (response.status) {
+                        case 'COMPLETED':
+                            this.router.navigate(['/analyze-result', this.analysisId]);
+                            break;
 
-                        this.router.navigate(['/analyze-result', this.analysisId]);
+                        case 'AI_FAILED':
+                        case 'INSUFFICIENT_DATA':
+                            this.router.navigate(['/analyze-failed', this.analysisId]);
+                            break;
+
+                        case 'SCRAPING':
+                        case 'SCRAPED':
+                        case 'AI_PROCESSING':
+                            // on continue à attendre
+                            setTimeout(poll, 1000);
+                            break;
+
+                        default:
+                            console.warn('Statut inconnu:', response.status);
+
+                            setTimeout(poll, 1000);
+                            break;
                     }
                 },
+
+                error: (error) => {
+                    console.error('Erreur récupération statut analyse', error);
+
+                    setTimeout(poll, 2000);
+                },
             });
-        }, 1000);
+        };
+
+        poll();
     }
 
     private runAnalysis(url: string): void {

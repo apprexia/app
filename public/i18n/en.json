@@ -1,0 +1,289 @@
+{
+    "home": {
+        "hero": {
+            "section": "Home",
+            "powered": "Powered by OpenAI",
+            "titleLine1": "Before buying,",
+            "titleLine2": "know its true value",
+            "subtitle": "Analyze the price, profitability and risks of a property before making an investment decision.",
+            "actions": {
+                "invest": "INVEST",
+                "negotiate": "NEGOTIATE",
+                "avoid": "AVOID"
+            },
+            "ctaPrimary": "Try for free",
+            "ctaSecondary": "Log in",
+            "footer": "Real Estate · Rental Investment"
+        },
+        "problem": {
+            "section": "The Problem",
+            "eyebrow": "The Challenge",
+            "titleBefore": "The listed price is not always the",
+            "titleHighlight": "right",
+            "titleAfter": "price.",
+            "descriptionBefore": "A property's price alone is not enough to determine whether it is a good investment.",
+            "brand": "Apprexia",
+            "descriptionAfter": " analyzes the market, profitability and risks to reveal the true potential of an opportunity.",
+            "cards": {
+                "invest": {
+                    "title": "INVEST",
+                    "text": "Market-aligned price, attractive profitability and controlled risk."
+                },
+                "negotiate": {
+                    "title": "NEGOTIATE",
+                    "text": "The opportunity is interesting, but the current price limits expected returns."
+                },
+                "avoid": {
+                    "title": "AVOID",
+                    "text": "Overpriced property, insufficient yield or excessive risks."
+                }
+            }
+        },
+        "analysis": {
+            "menu": "Analysis & Decision",
+            "tag": "Analysis & Decision",
+            "brand": "Apprexia",
+            "title": " reveals the true potential of an investment",
+            "subtitle": "We analyze price, profitability, market data and risks to help you identify the best real estate opportunities.",
+            "features": {
+                "price": "A property purchased above market price",
+                "rentability": "An overestimated rental profitability",
+                "risks": "Hidden risks inside the listing",
+                "negociation": "An opportunity that could have been better negotiated"
+            },
+            "dashboard": {
+                "title": "Market analysis",
+                "metric": "Average latency · last hour",
+                "average": "vs average",
+                "errors": "Errors",
+                "throughput": "Throughput",
+                "saturation": "Saturation"
+            }
+        },
+        "features": {
+            "menu": "How it works",
+            "eyebrow": "How it works",
+            "titleHighlight": "Invest",
+            "title": " based on facts, not assumptions.",
+            "subtitle": "Apprexia transforms real estate market data into clear recommendations to help you identify the best rental opportunities.",
+            "cards": {
+                "market": {
+                    "title": "Market price",
+                    "description": "Compare each property with similar transactions and listings to estimate its true value and negotiation potential."
+                },
+                "rentability": {
+                    "title": "Rental profitability",
+                    "description": "Analyze observed rents, acquisition price and property characteristics to evaluate rental attractiveness."
+                },
+                "risks": {
+                    "title": "Risks & opportunities",
+                    "description": "Potential renovations, rental vacancy, market pressure or inconsistencies in the listing: Apprexia highlights key points to watch."
+                },
+                "verdict": {
+                    "title": "Investment verdict",
+                    "description": "Invest, Negotiate or Avoid: Apprexia summarizes market data into an easy-to-understand decision."
+                }
+            }
+        },
+        "technology": {
+            "label": "Technology",
+            "title": "A technology designed to reveal the true potential of an investment",
+            "description": "Apprexia combines artificial intelligence, real estate data and market analysis to automatically evaluate the value, profitability and risks of a property.",
+            "market": {
+                "title": "Real estate market analysis",
+                "items": [
+                    "Comparison with similar properties",
+                    "Analysis of locally observed prices",
+                    "Market trend monitoring",
+                    "Property real value estimation",
+                    "Negotiation potential calculation"
+                ]
+            },
+            "property": {
+                "title": "Understanding property characteristics",
+                "items": [
+                    "Automatic extraction of key information",
+                    "Listing description analysis",
+                    "Identification of value-enhancing elements",
+                    "Detection of missing information",
+                    "Evaluation of quality and transparency"
+                ]
+            },
+            "rentability": {
+                "title": "Investment potential evaluation",
+                "items": [
+                    "Rental yield estimation",
+                    "Price / rent ratio analysis",
+                    "Identification of value creation opportunities",
+                    "Evaluation of operating potential",
+                    "Investment attractiveness measurement"
+                ]
+            },
+            "decision": {
+                "title": "Decision support",
+                "items": [
+                    "Risk signal detection",
+                    "Inconsistency and anomaly analysis",
+                    "Confidence level evaluation",
+                    "Apprexia Score™ calculation",
+                    "Recommendation: Invest, Negotiate or Avoid"
+                ]
+            }
+        },
+        "tech": {
+            "menu": "Technology",
+            "eyebrow": "Technology",
+            "title1": "Technology designed to",
+            "titleHighlight": "reveal",
+            "title2": "the true potential of a real estate investment",
+            "subtitle": "Apprexia combines artificial intelligence, real estate data and market analysis to automatically evaluate a property's value, profitability and investment risks.",
+            "market": {
+                "label": "Market Data",
+                "title": "Real Estate Market Analysis",
+                "1": "Comparison with similar properties",
+                "2": "Analysis of local market prices",
+                "3": "Monitoring market trends",
+                "4": "Estimate of the property's true value",
+                "5": "Negotiation potential assessment"
+            },
+            "property": {
+                "label": "Property Analysis",
+                "title": "Understanding Property Characteristics",
+                "1": "Automatic extraction of key information",
+                "2": "Listing description analysis",
+                "3": "Identification of value-enhancing features",
+                "4": "Detection of missing information",
+                "5": "Assessment of listing quality and transparency"
+            },
+            "rental": {
+                "label": "Rental Profitability",
+                "title": "Investment Potential Evaluation",
+                "1": "Rental yield estimation",
+                "2": "Price-to-rent ratio analysis",
+                "3": "Identification of value creation opportunities",
+                "4": "Operational potential assessment",
+                "5": "Investment attractiveness evaluation"
+            },
+            "decision": {
+                "label": "Risk & Decision",
+                "title": "Decision Support",
+                "1": "Risk signal detection",
+                "2": "Analysis of inconsistencies and anomalies",
+                "3": "Confidence level evaluation",
+                "4": "Apprexia™ Score calculation",
+                "5": "Recommendation: Invest, Negotiate or Avoid"
+            }
+        },
+        "metrics": {
+            "eyebrow": "Key Metrics",
+            "title1": "Make",
+            "highlight1": "smarter decisions",
+            "title2": "Achieve",
+            "highlight2": "better investments",
+            "cards": {
+                "1": {
+                    "text": "of investors analyze several properties before making a decision.",
+                    "quote": "Comparing multiple opportunities is essential to identify the best investment."
+                },
+                "2": {
+                    "text": "price differences may exist between otherwise comparable properties.",
+                    "quote": "Two similar apartments can have significantly different market values."
+                },
+                "3": {
+                    "text": "may be required to recover from a poor investment decision.",
+                    "quote": "Buying above market price has a long-term impact on profitability.",
+                    "value": "5–10 years"
+                },
+                "4": {
+                    "text": "signals are analyzed by Apprexia™ for every opportunity.",
+                    "quote": "Price, profitability, local market, risks, negotiation potential and listing quality."
+                }
+            },
+            "testimonial": {
+                "text": "Before Apprexia, I analyzed every investment using multiple spreadsheets. Today I get a clear picture of value, risks and negotiation potential in just a few seconds.",
+                "author": "Thomas M.",
+                "role": "Rental Property Investor"
+            }
+        },
+        "pricing": {
+            "menu": "Pricing",
+            "eyebrow": "Pricing",
+            "title": "Choose the plan that fits your",
+            "titleHighlight": "investment project",
+            "subtitle": "Start for free with the Apprexia Score™, then unlock a detailed analysis when you are ready to make a decision.",
+            "popular": "Most popular",
+            "unlimited": "Unlimited",
+            "table": {
+                "features": "Features"
+            },
+            "plans": {
+                "free": {
+                    "name": "Free"
+                },
+                "starter": {
+                    "name": "Starter pack",
+                    "price": "4,99 €"
+                },
+                "discovery": {
+                    "name": "Discovery Pack",
+                    "price": "8,99 €"
+                },
+                "investors": {
+                    "name": "Investor Pack",
+                    "price": "24,99 €"
+                },
+                "expert": {
+                    "name": "Expert Pack",
+                    "price": "59,99 €"
+                },
+                "business": {
+                    "name": "Business",
+                    "price": "Sur devis"
+                }
+            },
+            "features": {
+                "score": "Apprexia Score™",
+                "verdict": "Investment verdict",
+                "details": "Detailed analysis",
+                "value": "Estimated value",
+                "market": "Market comparables",
+                "rentability": "Rental profitability",
+                "risks": "Risk analysis",
+                "negotiation": "Negotiation potential",
+                "analysisCount": "Number of detailed analyses",
+                "favorites": "Favorites",
+                "history": "Analysis history",
+                "api": "API & Integrations"
+            },
+            "footer": "Each Premium analysis includes the Apprexia Score™, estimated value, market analysis, real estate comparables, profitability evaluation, identified risks and a clear recommendation: Invest, Negotiate or Avoid."
+        },
+        "footer": {
+            "brand": "APPREXIA",
+            "powered": "Powered by OpenAI"
+        },
+        "menu": {
+            "previous": "Previous",
+            "next": "Next"
+        }
+    },
+    "menu": {
+        "sections": {
+            "home": "Try for free",
+            "problem": "The problem",
+            "analysis": "Analysis & Decision",
+            "features": "How it works",
+            "tech": "Technology",
+            "metrics": "Metrics",
+            "pricing": "Pricing"
+        },
+        "subtitles": {
+            "homeSubtitle": "Analyze before investing",
+            "problemSubtitle": "The listed price is not always the fair price",
+            "analysisSubtitle": "Value, profitability and risks",
+            "featuresSubtitle": "The Apprexia methodology",
+            "techSubtitle": "Data, AI and market intelligence",
+            "metricsSubtitle": "The numbers that matter",
+            "pricingSubtitle": "Choose your analysis level"
+        }
+    }
+}

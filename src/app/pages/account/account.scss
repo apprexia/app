@@ -20,23 +20,6 @@
     }
 }
 
-.main-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.main-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.main-content::-webkit-scrollbar-thumb {
-    background: rgba(132, 0, 122, .25);
-    border-radius: 999px;
-}
-
-.main-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(132, 0, 122, .45);
-}
-
 .logout {
     position: fixed;
     right: 30px;
@@ -152,5 +135,12 @@
 
     }
 
+}
+
+@media (max-width: 640px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 10px;
+    }
 }
 

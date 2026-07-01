@@ -16,7 +16,7 @@ export interface UserStats {
 
     favorites: number;
 
-    averageScore: number;
+    opportunityRate: number;
 
     investir: number;
 

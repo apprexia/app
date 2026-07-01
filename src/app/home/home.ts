@@ -9,12 +9,15 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../core/services/language/language';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { LanguageSwitcher } from '../shared/components/language-switcher/language-switcher';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.html',
     styleUrl: './home.scss',
-    imports: [RouterLink],
+    imports: [RouterLink, TranslocoPipe, LanguageSwitcher],
 })
 export class Home implements AfterViewInit {
     private platformId = inject(PLATFORM_ID);
@@ -24,32 +27,32 @@ export class Home implements AfterViewInit {
 
     sections = [
         {
-            label: 'Accueil',
-            sublabel: 'Analysez avant d’investir',
+            label: 'home',
+            sublabel: 'homeSubtitle',
         },
         {
-            label: 'Problématique',
-            sublabel: 'Le prix affiché n’est pas toujours le juste prix',
+            label: 'problem',
+            sublabel: 'problemSubtitle',
         },
         {
-            label: 'Analyse & Décision',
-            sublabel: 'Valeur, rentabilité et risques',
+            label: 'analysis',
+            sublabel: 'analysisSubtitle',
         },
         {
-            label: 'Comment ça fonctionne',
-            sublabel: 'La méthodologie Apprexia',
+            label: 'features',
+            sublabel: 'featuresSubtitle',
         },
         {
-            label: 'Technologie',
-            sublabel: 'Données, IA et intelligence marché',
+            label: 'tech',
+            sublabel: 'techSubtitle',
         },
         {
-            label: 'Indicateurs',
-            sublabel: 'Les chiffres qui comptent',
+            label: 'metrics',
+            sublabel: 'metricsSubtitle',
         },
         {
-            label: 'Tarifs',
-            sublabel: 'Choisissez votre niveau d’analyse',
+            label: 'pricing',
+            sublabel: 'pricingSubtitle',
         },
     ];
 
@@ -61,6 +64,8 @@ export class Home implements AfterViewInit {
     get slidesCount(): number {
         return this.sections.length;
     }
+
+    constructor(public languageService: LanguageService) {}
 
     ngAfterViewInit(): void {
         if (!isPlatformBrowser(this.platformId)) return;
@@ -128,5 +133,15 @@ export class Home implements AfterViewInit {
 
     get totalDisplay(): string {
         return String(this.sections.length).padStart(2, '0');
+    }
+
+    changeToFrench() {
+        console.log('fr');
+        this.languageService.setLanguage('fr');
+    }
+
+    changeToEnglish() {
+        console.log('en');
+        this.languageService.setLanguage('en');
     }
 }

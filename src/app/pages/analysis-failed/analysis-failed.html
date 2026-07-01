@@ -1,0 +1,113 @@
+<div class="app-layout">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+
+        <section class="slide existing active" data-sub="Analyse impossible">
+
+            <div class="slide-inner s-more">
+
+
+                <div class="s-more-head">
+
+                    <div class="sm-l">
+
+                        <div class="eyebrow reveal">
+                            <span class="dt"></span>
+                            Analyse Apprexia
+                        </div>
+
+
+                        <h2 class="h-display reveal">
+                            Analyse
+                            <span class="grd"> impossible</span>
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cancel-card reveal">
+
+
+                    <div class="cancel-icon warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+
+
+                    <h3>
+                        Nous n'avons pas pu analyser cette annonce
+                    </h3>
+
+
+                    <p>
+                        Les informations récupérées depuis cette annonce
+                        ne sont pas suffisantes pour générer une analyse fiable.
+                        <br><br>
+
+                        Apprexia analyse uniquement les biens disposant
+                        de données suffisantes afin de garantir un score,
+                        une estimation de valeur et une recommandation pertinents.
+                    </p>
+
+
+                    <div class="glass-card credit-badge">
+
+                        <div>
+                            <i class="bi bi-coin"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Aucun crédit n'a été consommé pour cette analyse.
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="cancel-actions">
+
+
+                        <button
+                            class="btn-primary"
+                            routerLink="/analyze">
+                            <i class="bi bi-search"></i>
+                            Analyser une autre annonce
+                        </button>
+
+
+                        <button
+                            class="btn-secondary"
+                            routerLink="/analyze-list">
+                            <i class="bi bi-clock-history"></i>
+                            Mes analyses
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+</div>

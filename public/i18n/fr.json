@@ -1,0 +1,244 @@
+{
+    "home": {
+        "hero": {
+            "section": "Accueil",
+            "powered": "Powered by OpenAI",
+            "titleLine1": "Avant d'acheter,",
+            "titleLine2": "connaissez sa vraie valeur",
+            "subtitle": "Analysez le prix, la rentabilité et les risques d'un bien immobilier avant de prendre une décision.",
+            "actions": {
+                "invest": "INVESTIR",
+                "negotiate": "NÉGOCIER",
+                "avoid": "ÉVITER"
+            },
+            "ctaPrimary": "Essayez gratuitement",
+            "ctaSecondary": "Se connecter",
+            "footer": "Immobilier · Investissement locatif"
+        },
+        "problem": {
+            "section": "Problématique",
+            "eyebrow": "Problématique",
+            "titleBefore": "Le prix affiché n'est pas toujours le",
+            "titleHighlight": "juste",
+            "titleAfter": "prix.",
+            "descriptionBefore": "Le prix d'un bien ne suffit pas à déterminer s'il s'agit d'un bon investissement.",
+            "brand": "Apprexia",
+            "descriptionAfter": " analyse le marché, la rentabilité et les risques pour révéler le véritable potentiel d'une opportunité.",
+            "cards": {
+                "invest": {
+                    "title": "INVESTIR",
+                    "text": "Prix cohérent avec le marché, rentabilité attractive et risque maîtrisé."
+                },
+                "negotiate": {
+                    "title": "NÉGOCIER",
+                    "text": "Le potentiel est présent, mais le prix actuel limite la rentabilité attendue."
+                },
+                "avoid": {
+                    "title": "ÉVITER",
+                    "text": "Prix excessif, rendement insuffisant ou risques trop importants."
+                }
+            }
+        },
+        "analysis": {
+            "menu": "Analyse & Décision",
+            "tag": "Analyse & Décision",
+            "brand": "Apprexia",
+            "title": " révèle le véritable potentiel d'un investissement",
+            "subtitle": "Nous analysons le prix, la rentabilité, les données du marché et les risques pour vous aider à identifier les meilleures opportunités immobilières.",
+            "features": {
+                "price": "Un bien acheté au-dessus du prix du marché",
+                "rentability": "Une rentabilité surestimée",
+                "risks": "Des risques invisibles dans l'annonce",
+                "negociation": "Une opportunité qui aurait pu être mieux négociée"
+            },
+            "dashboard": {
+                "title": "Analyse du marché",
+                "metric": "Latence moyenne · dernière heure",
+                "average": "vs moyenne",
+                "errors": "Erreurs",
+                "throughput": "Débit",
+                "saturation": "Saturation"
+            }
+        },
+        "features": {
+            "menu": "Comment ça fonctionne",
+            "eyebrow": "Comment ça fonctionne",
+            "titleHighlight": "Investissez",
+            "title": " sur des faits, pas sur des intuitions.",
+            "subtitle": "Apprexia transforme les données du marché immobilier en recommandations claires pour vous aider à identifier les meilleures opportunités locatives.",
+            "cards": {
+                "market": {
+                    "title": "Prix de marché",
+                    "description": "Compare chaque bien aux transactions et annonces similaires afin d'estimer sa valeur réelle et son potentiel de négociation."
+                },
+                "rentability": {
+                    "title": "Rentabilité locative",
+                    "description": "Analyse les loyers observés, le prix d'acquisition et les caractéristiques du bien pour évaluer son attractivité locative."
+                },
+                "risks": {
+                    "title": "Risques & opportunités",
+                    "description": "Travaux potentiels, vacance locative, tension du marché ou incohérences dans l'annonce : Apprexia met en lumière les points à surveiller."
+                },
+                "verdict": {
+                    "title": "Verdict d'investissement",
+                    "description": "Investir, Négocier ou Éviter : Apprexia synthétise les données du marché en une décision facile à comprendre."
+                }
+            }
+        },
+        "tech": {
+            "menu": "Technologie",
+            "eyebrow": "Technologie",
+            "title1": "Une technologie conçue pour",
+            "titleHighlight": "révéler",
+            "title2": "le potentiel réel d'un investissement",
+            "subtitle": "Apprexia combine intelligence artificielle, données immobilières et analyse de marché pour évaluer automatiquement la valeur, la rentabilité et les risques d'un bien immobilier.",
+            "market": {
+                "label": "Données de marché",
+                "title": "Analyse du marché immobilier",
+                "1": "Comparaison avec des biens similaires",
+                "2": "Analyse des prix observés localement",
+                "3": "Suivi des tendances du marché",
+                "4": "Estimation de la valeur réelle du bien",
+                "5": "Calcul du potentiel de négociation"
+            },
+            "property": {
+                "label": "Analyse du bien",
+                "title": "Compréhension des caractéristiques",
+                "1": "Extraction automatique des informations clés",
+                "2": "Analyse de la description de l'annonce",
+                "3": "Identification des éléments valorisants",
+                "4": "Détection des informations manquantes",
+                "5": "Évaluation de la qualité et de la transparence"
+            },
+            "rental": {
+                "label": "Rentabilité locative",
+                "title": "Évaluation du potentiel d'investissement",
+                "1": "Estimation du rendement locatif",
+                "2": "Analyse du rapport prix / loyer",
+                "3": "Identification des opportunités de création de valeur",
+                "4": "Évaluation du potentiel d'exploitation",
+                "5": "Mesure de l'attractivité de l'investissement"
+            },
+            "decision": {
+                "label": "Risques & décision",
+                "title": "Aide à la décision",
+                "1": "Détection des signaux de risque",
+                "2": "Analyse des incohérences et anomalies",
+                "3": "Évaluation du niveau de confiance",
+                "4": "Calcul du Score Apprexia™",
+                "5": "Recommandation : Investir, Négocier ou Éviter"
+            }
+        },
+        "metrics": {
+            "eyebrow": "Indicateurs",
+            "title1": "Des décisions",
+            "highlight1": "plus éclairées",
+            "title2": "Des investissements",
+            "highlight2": "plus performants",
+            "cards": {
+                "1": {
+                    "text": "des investisseurs analysent plusieurs biens avant de prendre une décision.",
+                    "quote": "Comparer plusieurs opportunités est essentiel pour identifier le meilleur investissement."
+                },
+                "2": {
+                    "text": "d'écart de prix peuvent exister entre des biens pourtant comparables.",
+                    "quote": "Deux appartements similaires peuvent présenter des valorisations très différentes."
+                },
+                "3": {
+                    "text": "peuvent être nécessaires pour compenser une mauvaise décision d'investissement.",
+                    "quote": "Un bien acheté trop cher impacte durablement la rentabilité.",
+                    "value": "5–10 ans"
+                },
+                "4": {
+                    "text": "signaux sont analysés par Apprexia™ pour évaluer chaque opportunité.",
+                    "quote": "Prix, marché, rentabilité, risques, négociation et qualité de l'annonce."
+                }
+            },
+            "testimonial": {
+                "text": "Avant Apprexia, j'analysais chaque investissement dans plusieurs tableurs. Aujourd'hui, j'obtiens une vision claire de la valeur, des risques et du potentiel de négociation en quelques secondes.",
+                "author": "Thomas M.",
+                "role": "Investisseur locatif"
+            }
+        },
+        "pricing": {
+            "menu": "Tarifs",
+            "eyebrow": "Tarifs",
+            "title": "Choisissez la formule adaptée à votre",
+            "titleHighlight": "projet d'investissement",
+            "subtitle": "Commencez gratuitement avec le Score Apprexia™, puis débloquez une analyse détaillée lorsque vous êtes prêt à prendre une décision.",
+            "popular": "Le plus populaire",
+            "unlimited": "Illimité",
+            "table": {
+                "features": "Fonctionnalités"
+            },
+            "plans": {
+                "free": {
+                    "name": "Gratuit"
+                },
+                "starter": {
+                    "name": "Pack Starter",
+                    "price": "4,99 €"
+                },
+                "discovery": {
+                    "name": "Pack Découverte",
+                    "price": "8,99 €"
+                },
+                "investors": {
+                    "name": "Pack Investisseur",
+                    "price": "24,99 €"
+                },
+                "expert": {
+                    "name": "Pack Expert",
+                    "price": "59,99 €"
+                },
+                "business": {
+                    "name": "Business",
+                    "price": "Sur devis"
+                }
+            },
+            "features": {
+                "score": "Score Apprexia™",
+                "verdict": "Verdict d'investissement",
+                "details": "Analyse détaillée",
+                "value": "Valeur estimée",
+                "market": "Comparables marché",
+                "rentability": "Rentabilité locative",
+                "risks": "Analyse des risques",
+                "negotiation": "Potentiel de négociation",
+                "analysisCount": "Nombre d'analyses détaillées",
+                "favorites": "Favoris",
+                "history": "Historique des analyses",
+                "api": "API & Intégrations"
+            },
+            "footer": "Chaque analyse Premium inclut le Score Apprexia™, l'estimation de valeur, l'analyse du marché, les comparables immobiliers, l'évaluation de la rentabilité, les risques identifiés et une recommandation claire : Investir, Négocier ou Éviter."
+        },
+        "footer": {
+            "brand": "APPREXIA",
+            "powered": "Propulsé par OpenAI"
+        },
+        "menu": {
+            "previous": "Précédent",
+            "next": "Suivant"
+        }
+    },
+    "menu": {
+        "sections": {
+            "home": "Essayez gratuitement",
+            "problem": "Problématique",
+            "analysis": "Analyse & Décision",
+            "features": "Comment ça fonctionne",
+            "tech": "Technologie",
+            "metrics": "Indicateurs",
+            "pricing": "Tarifs"
+        },
+        "subtitles": {
+            "homeSubtitle": "Analysez avant d’investir",
+            "problemSubtitle": "Le prix affiché n’est pas toujours le juste prix",
+            "analysisSubtitle": "Valeur, rentabilité et risques",
+            "featuresSubtitle": "La méthodologie Apprexia",
+            "techSubtitle": "Données, IA et intelligence marché",
+            "metricsSubtitle": "Les chiffres qui comptent",
+            "pricingSubtitle": "Choisissez votre niveau d’analyse"
+        }
+    }
+}

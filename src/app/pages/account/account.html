@@ -114,29 +114,18 @@
                             <div style="display:flex;align-items:center">
 
                                 <div class="f-ic icon-success">
-                                    <i class="bi bi-award"></i>
+                                    <i class="bi bi-crosshair"></i>
                                 </div>
 
 
                                 <h2 class="text-success title-card">
-                                    Score moyen
+                                    Opportunités trouvées
                                 </h2>
-
-
                             </div>
-
-
                             <div class="metric-num grd">
-
-                                {{ profile.stats.averageScore }}
-
-                                <span class="unit">
-                                /100
-                            </span>
-
+                                {{ profile.stats.opportunityRate }}
+                                <span class="unit"> %</span>
                             </div>
-
-
                         </div>
 
 
@@ -249,7 +238,7 @@
                 </div>
 
 
-        </section>
+            </section>
 
         }
 

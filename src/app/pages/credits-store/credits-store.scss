@@ -1,0 +1,76 @@
+.app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 80px 32px;
+
+    .slide {
+        position: initial;
+
+        .slide-inner {
+            padding: 0;
+        }
+    }
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(132, 0, 122, .25);
+    border-radius: 999px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(132, 0, 122, .45);
+}
+
+.logout {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 20px;
+}
+
+
+.more-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 640px) {
+    .more-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn-primary {
+    display: flex;
+    max-width: 210px;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s;
+    margin-top: 20px;
+}
+
+
+.btn-primary {
+    border: none;
+    background: #84007a;
+    color: white;
+}

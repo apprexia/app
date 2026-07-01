@@ -1,0 +1,72 @@
+<div class="app-layout">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+        <section class="slide existing active" data-sub="apprexia store">
+            <div class="slide-inner s-more">
+                <div class="s-more-head">
+                    <div class="sm-l">
+                        <div class="eyebrow reveal"><span class="dt"></span>APPREXIA Store</div>
+                        <h2 class="h-display reveal">Boostez vos analyses <span class="grd"> immobilières</span></h2>
+                    </div>
+                    <p class="sm-r reveal">Rechargez vos crédits et continuez à identifier les meilleures opportunités
+                        d'investissement.
+                    </p>
+                </div>
+                <div class="more-grid">
+
+                    @for (pack of creditPackages; track pack.id) {
+
+                        <a class="more-card glass-card">
+
+                            <div class="mc-thumb">
+                                <img
+                                    src="{{pack.img}}"
+                                    alt="Pack crédits Apprexia"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="mc-body">
+                                <div class="mc-tag">
+                                    <span class="pip"></span>
+                                    {{ pack.tag }}
+                                </div>
+                                <div class="mc-title">
+                                    {{ pack.name }}
+                                </div>
+                                <div class="mc-desc">
+                                    {{ pack.description }}
+                                </div>
+                                <div class="mc-price">
+                                    <b>{{ pack.price | currency:'EUR':'symbol':'1.2-2' }}</b>
+                                </div>
+                                <span class="recommended-badge"
+                                      [class.active]="pack.popular">
+                                    Apprexia Credits™ <br>
+                                    <b class="text-info">
+                                        {{ pack.credits }} analyses
+                                    </b>
+                                </span>
+                                <div class="btn-primary" (click)="buy(pack.id)">
+                                    Acheter maintenant
+                                    <span>&rarr;</span>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

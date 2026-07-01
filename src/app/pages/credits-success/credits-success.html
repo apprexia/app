@@ -1,0 +1,86 @@
+<div class="app-layout">
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+
+        <a class="logout text-info" (click)="logout()">
+            <i class="bi bi-power"></i>
+        </a>
+
+        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+            <span class="tm-dot"></span>
+            <span class="tm-label">Version 1.0</span>
+        </a>
+
+
+        <section class="slide existing active" data-sub="apprexia store">
+
+            <div class="slide-inner s-more">
+
+                <div class="s-more-head">
+
+                    <div class="sm-l">
+
+                        <div class="eyebrow reveal">
+                            <span class="dt"></span>
+                            APPREXIA Store
+                        </div>
+
+                        <h2 class="h-display reveal">
+                            Paiement
+                            <span class="grd"> Confirmé</span>
+                        </h2>
+
+                    </div>
+                </div>
+
+                <div class="success-card reveal">
+
+                    <div class="success-icon icon-success">
+                        <i class="bi bi-check-lg text-success"></i>
+                    </div>
+
+                    <h3> Merci pour votre confiance 🎉 </h3>
+
+                    <p>
+                        Vos
+                        <strong>{{ creditsAdded() }} crédits Apprexia</strong>
+                        ont été ajoutés à votre compte.
+                        Vous pouvez maintenant analyser de nouveaux biens immobiliers.
+                    </p>
+                    @if (paymentConfirmed()) {
+                        <div class="credit-badge">
+                            <i class="bi bi-coin"></i>
+                            +{{ creditsAdded() }} crédits ajoutés
+                        </div>
+                    }
+                    <div class="success-actions">
+
+                        <button
+                            class="btn-primary"
+                            routerLink="/analyze">
+
+                            <i class="bi bi-search"></i>
+                            Analyser un bien
+
+                        </button>
+
+                        <button
+                            class="btn-secondary"
+                            routerLink="/account">
+
+                            <i class="bi bi-person"></i>
+                            Mon compte
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>

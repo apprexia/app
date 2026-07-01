@@ -1,0 +1,192 @@
+.app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 80px 32px;
+
+    .slide {
+        position: initial;
+
+        .slide-inner {
+            padding: 0;
+        }
+    }
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(132, 0, 122, .25);
+    border-radius: 999px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(132, 0, 122, .45);
+}
+
+.logout {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 20px;
+}
+
+
+.more-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 640px) {
+    .more-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cancel-card {
+    max-width: 650px;
+
+    padding: 45px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, .03);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    backdrop-filter: blur(20px);
+
+}
+
+.cancel-icon {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(220, 53, 69, .12);
+
+    margin-bottom: 25px;
+
+    i {
+        font-size: 34px;
+        color: #dc3545;
+    }
+
+}
+
+.cancel-card h3 {
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+
+}
+
+.cancel-card p {
+
+    opacity: .75;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+}
+
+.cancel-actions {
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 35px;
+
+}
+
+.btn-primary,
+.btn-secondary {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: .2s;
+
+}
+
+.btn-primary {
+
+    border: none;
+
+    background: #84007a;
+
+    color: white;
+
+}
+
+.btn-secondary {
+
+    background: transparent;
+
+    border: 1px solid rgba(255, 255, 255, .15);
+
+    color: inherit;
+
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+
+    transform: translateY(-2px);
+
+}
+
+@media (max-width: 640px) {
+
+    .cancel-card {
+        padding: 30px;
+    }
+
+    .cancel-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+}
