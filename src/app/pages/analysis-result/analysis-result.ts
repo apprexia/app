@@ -65,6 +65,4 @@ export class AnalysisResult implements OnInit {
         this.router.navigate(['/login']);
         this.isOpen = true;
     }
-
-    protected readonly isFinite = isFinite;
 }

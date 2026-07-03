@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalError } from '../../modal/modal-error/modal-error';
 import { finalize } from 'rxjs';
 import { UserService } from '../../core/services/user/user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-analyzis-input',
@@ -66,8 +67,17 @@ export class AnalyzisInput {
                     });
                 },
 
-                error: (error) => {
+                error: (error: HttpErrorResponse) => {
                     console.error(error);
+
+                    if (error.status === 401) {
+                        this.router.navigate(['/login']);
+                        return;
+                    }
+
+                    this.titleError = 'Une erreur est survenue';
+                    this.messageError =
+                        "Impossible de vérifier votre compte pour le moment. Veuillez réessayer dans quelques instants.";
                     this.openModal();
                 },
             });

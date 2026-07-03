@@ -1,0 +1,246 @@
+$clr-red: #fe6c9b;
+$clr-blue: #5a81ff;
+
+/* =========================
+   MIXIN BREAKPOINTS
+========================= */
+@mixin mQ($bp) {
+    @media (min-width: $bp) {
+        @content;
+    }
+}
+
+/* =========================
+   GLOBAL OVERLAY
+========================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 26, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1101;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+}
+
+/* =========================
+   CARD CONTAINER
+========================= */
+.red {
+    width: min(900px, 90%);
+    max-height: 90vh;
+    padding: clamp(16px, 2vw, 28px);
+    border-radius: 16px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at right top, rgba(228, 7, 191, 0.56) 0%, #151419 45%, #151419 100%);
+    transition: opacity 0.25s ease-in;
+    display: flex;
+    flex-direction: column;
+    z-index: 1102;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+                45deg,
+                #232228,
+                #232228,
+                #232228,
+                #232228,
+                #a63d2a
+        );
+        opacity: 0.15;
+        pointer-events: none;
+    }
+
+    .card-body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+}
+
+/* =========================
+   TYPO
+========================= */
+h3 {
+    font-size: clamp(18px, 2vw, 30px);
+    margin: 10px 0 20px;
+}
+
+p {
+    font-size: 12px;
+}
+
+/* =========================
+   INPUT SYSTEM (RESPONSIVE CORE)
+========================= */
+input,
+select {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 14px 16px;
+    border-radius: 10px;
+
+    background: #222127;
+    color: white;
+    border: none;
+
+    font-size: 15px;
+    font-family: var(--font-sans);
+}
+
+select {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   AUTOCOMPLETE LIST
+========================= */
+ul {
+    position: absolute;
+    width: 100%;
+    max-width: 500px;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 14px;
+
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+
+    li {
+        padding: 15px;
+        cursor: pointer;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+/* =========================
+   FLEX SYSTEM (IMPORTANT FIX)
+========================= */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+/* =========================
+   CHECKBOX
+========================= */
+label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 0;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================
+   ICON
+========================= */
+.icon {
+    color: $clr-blue;
+    width: 4rem;
+}
+
+/* =========================
+   PROGRESS / ACTIONS
+========================= */
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 0.7em 2em 0.5em 2em;
+}
+
+/* =========================
+   BUTTONS (CLEAN SYSTEM)
+========================= */
+.btn-primary,
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 22px;
+    border-radius: 14px;
+
+    cursor: pointer;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.btn-primary {
+    border: none;
+    background: #84007a;
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: inherit;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   TABLET & DESKTOP EXTENSIONS
+========================= */
+@include mQ(768px) {
+    .red {
+        padding: 24px;
+    }
+
+    .d-flex {
+        flex-wrap: nowrap;
+    }
+}
+
+@include mQ(1024px) {
+    .red {
+        width: min(900px, 85%);
+    }
+}

@@ -1,0 +1,139 @@
+@if (isOpen()) {
+    <div class="overlay" (click)="close()"></div>
+    <div class="card red">
+        <div class="card-header" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor"
+                 class="close">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </div>
+        <div class="card-body">
+
+            <p>ETAPE {{ step() + 1 }} / 4</p>
+            <!-- STEP 1 -->
+            @if (step() === 0) {
+                <h3>
+                    <i class="bi bi-geo"></i>
+                    Localisation
+                </h3>
+                <div style="position: relative; margin: 0;">
+                    <input
+                        type="text"
+                        placeholder="Adresse"
+                        [(ngModel)]="form.adresse"
+                        (ngModelChange)="query.set($event)">
+
+                    @if (addresses().length > 0) {
+                        <ul>
+                            @for (address of addresses(); track address.properties.id) {
+                                <li (click)="selectAddress(address)">
+                                    {{ address.properties.label }}
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            }
+
+            <!-- STEP 2 -->
+            @if (step() === 1) {
+                <h3>
+                    <i class="bi bi-card-list"></i>
+                    Caractéristiques
+                </h3>
+                <select class="type" [(ngModel)]="form.sourceSite">
+                    <option value="" selected>Site de l'annonce</option>
+                    <option value="leboncoin">Le Bon Coin</option>
+                    <option value="paruvendy">Paru Vendu</option>
+                    <option value="pap">PAP</option>
+                    <option value="seloger">Se Loger</option>
+                    <option value="orpi">Orpi</option>
+                    <option value="century21">Century 21</option>
+                    <option value="figaroimmobilier">Figaro immobilier</option>
+                    <option value="autres">Autres</option>
+                </select>
+
+                <select class="type" [(ngModel)]="form.type">
+                    <option value="" selected>Type de bien</option>
+                    <option value="appartement">Appartement</option>
+                    <option value="maison">Maison</option>
+                </select>
+
+                <div class="d-flex">
+                    <input type="number" class="etage" placeholder="Pièces" [(ngModel)]="form.pieces">
+                    <input type="number" class="etage" placeholder="Étage" [(ngModel)]="form.etage">
+                    <input type="number" class="etage" placeholder="Surface" [(ngModel)]="form.surface">
+                </div>
+            }
+
+            <!-- STEP 3 -->
+            @if (step() === 2) {
+                <h3>
+                    <i class="bi bi-lightbulb"></i>
+                    Prestations
+                </h3>
+                <select class="etat" [(ngModel)]="form.etat">
+                    <option value="" selected>État du bien</option>
+                    <option value="neuf">Neuf</option>
+                    <option value="excellent">Excellent état</option>
+                    <option value="bon">Bon état</option>
+                    <option value="à_rafraîchir">À rafraîchir</option>
+                    <option value="à_rénover">À rénover</option>
+                </select>
+                <select class="dpe" [(ngModel)]="form.dpe">
+                    <option value="">DPE</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                    <option>F</option>
+                    <option>G</option>
+                </select>
+
+
+                <div class="d-flex">
+                    <label class="container">
+                        Balcon
+                        <input type="checkbox" [(ngModel)]="form.balcon">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container">
+                        Parking
+                        <input type="checkbox" [(ngModel)]="form.parking">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            }
+
+            <!-- STEP 4 -->
+            @if (step() === 3) {
+                <h3>
+                    <i class="bi bi-currency-euro"></i>
+                    Prix
+                </h3>
+
+                <input type="number" placeholder="Prix demandé" [(ngModel)]="form.prix">
+            }
+
+
+        </div>
+        <!-- NAVIGATION -->
+        <div class="actions progress">
+
+            @if (step() > 0) {
+                <button class="btn-secondary" (click)="back()">Retour</button>
+            }
+
+            @if (step() < 3) {
+                <a class="btn-primary" (click)="next()">Suivant</a>
+            }
+
+            @if (step() === 3) {
+                <a class="btn-primary" (click)="submit()">Valider</a>
+            }
+        </div>
+    </div>
+}

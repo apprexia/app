@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, OnDestroy, PLATFORM_ID, computed, signal } from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { AnalysisService } from '../../core/services/analysis/analysis';
 
@@ -19,11 +19,10 @@ interface Step {
 })
 export class AnalysisProcessing implements OnInit, OnDestroy {
     private timeoutIds: ReturnType<typeof setTimeout>[] = [];
-
+    private analysisInput: any;
+    private isManual = false;
     private analysisId = '';
-
     private analysisCompleted = false;
-
     readonly currentStep = signal(0);
 
     readonly steps: Step[] = [
@@ -64,31 +63,70 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
         private router: Router,
+        private route: ActivatedRoute,
         private analysisService: AnalysisService,
     ) {}
 
     ngOnInit(): void {
-        if (!isPlatformBrowser(this.platformId)) {
+        if (!isPlatformBrowser(this.platformId)) return;
+
+        this.isManual = this.route.snapshot.queryParamMap.get('isManual') === 'true';
+
+        if (this.isManual) {
+            this.analysisInput = this.analysisService.manualAnalysis();
+
+            if (!this.analysisInput) {
+                this.router.navigate(['/']);
+                return;
+            }
+
+            this.startProcessingManual();
             return;
         }
 
-        const url = history.state.url;
+        const url: string = history.state.url;
 
         if (!url) {
             this.router.navigate(['/']);
             return;
         }
 
-        this.startProcessing();
+        this.startProcessingAuto(url);
     }
 
     ngOnDestroy(): void {
         this.timeoutIds.forEach(clearTimeout);
     }
 
-    private startProcessing(): void {
-        const url = history.state.url;
+    private startProcessingManual(): void {
+        // ici tu peux transformer analysisInput en payload API
+        const payload = this.analysisInput;
 
+        for (let index = 0; index < this.steps.length - 1; index++) {
+            const timeout = setTimeout(() => {
+                this.currentStep.set(index + 1);
+
+                if (index === this.steps.length - 2) {
+                    this.runManualAnalysis(payload);
+                }
+            }, (index + 1) * 2000);
+
+            this.timeoutIds.push(timeout);
+        }
+    }
+
+    private runManualAnalysis(payload: any): void {
+        this.analysisService.createManual(payload).subscribe({
+            next: (response) => {
+                this.analysisId = response.id;
+                this.startPolling();
+            },
+            error: console.error,
+        });
+    }
+
+
+    private startProcessingAuto(url: string): void {
         if (!url) {
             this.router.navigate(['/']);
             return;
