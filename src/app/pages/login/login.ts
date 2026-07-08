@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-login',
@@ -10,9 +11,14 @@ import { Router, RouterLink } from '@angular/router';
 export class Login implements OnInit {
     private router = inject(Router);
 
-    ngOnInit() {
-        const token = localStorage.getItem('token');
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
+    ngOnInit() {
+        if (!isPlatformBrowser(this.platformId)) {
+            return;
+        }
+
+        const token = localStorage.getItem('token');
         if (token) {
             this.router.navigate(['/analyze-list']);
         }

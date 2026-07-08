@@ -210,7 +210,7 @@
             "eyebrow": "Pricing",
             "title": "Choose the plan that fits your",
             "titleHighlight": "investment project",
-            "subtitle": "Start for free with the Apprexia Score™, then unlock a detailed analysis when you are ready to make a decision.",
+            "subtitle": "Start for free with your first analyses, then choose the Apprexia Credits™ plan that best fits your investment pace.",
             "popular": "Most popular",
             "unlimited": "Unlimited",
             "table": {
@@ -255,7 +255,7 @@
                 "history": "Analysis history",
                 "api": "API & Integrations"
             },
-            "footer": "Each Premium analysis includes the Apprexia Score™, estimated value, market analysis, real estate comparables, profitability evaluation, identified risks and a clear recommendation: Invest, Negotiate or Avoid."
+            "footer": "Each analysis includes the Apprexia Score™, estimated value, market analysis, real estate comparables, profitability evaluation, identified risks and a clear recommendation: Invest, Negotiate or Avoid."
         },
         "footer": {
             "brand": "APPREXIA",

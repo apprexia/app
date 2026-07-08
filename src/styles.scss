@@ -1,3 +1,5 @@
+@import "animate.css";
+
 :root {
     --ee: cubic-bezier(0.19, 1, 0.22, 1);
     --eq: cubic-bezier(0.77, 0, 0.175, 1);
@@ -135,7 +137,8 @@ html, body {
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 16px;
-    letter-spacing: -.01em
+    letter-spacing: -.01em;
+    cursor: pointer;
 }
 
 .brand .logo {

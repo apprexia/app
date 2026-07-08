@@ -44,7 +44,7 @@
                                     <img
                                         [src]="'images/logos/' + a.sourceSite + '.png'"
                                         [alt]="a.sourceSite"
-                                        width="60"
+                                        width="90"
                                     />
                                 }
                                 <a [href]="a.url" target="_blank" class="mc-cta">
@@ -120,10 +120,13 @@
                                     {{ a.askingPrice | currency:'EUR':'symbol':'1.0-0' }}
                                 </div>
                                 <h5 class="text-secondary"> VALEUR ESTIMEE </h5>
-                                <div class="metric-num grd">
-                                    {{ a.estimatedValue | currency:'EUR':'symbol':'1.0-0' }}
+                                <div class="metric-num grd estimated-value">
+                                    {{ a.estimatedValueLow | currency:'EUR':'symbol':'1.0-0' }} -
+                                    {{ a.estimatedValueHigh | currency:'EUR':'symbol':'1.0-0' }}
                                 </div>
-                                <p>{{ a.marketPosition }} </p>
+                                <div class="eyebrow reveal">
+                                    <span class="dt"></span>{{ a.yieldLevel ? 'Estimation : ' + a.marketPosition : '' }}
+                                </div>
                             </div>
                         </div>
 

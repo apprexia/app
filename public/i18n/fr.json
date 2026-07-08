@@ -13,7 +13,7 @@
             },
             "ctaPrimary": "Essayez gratuitement",
             "ctaSecondary": "Se connecter",
-            "footer": "Immobilier · Investissement locatif"
+            "footer": "Immobilier · Investissement locatif · Premier achat"
         },
         "problem": {
             "section": "Problématique",
@@ -165,7 +165,7 @@
             "eyebrow": "Tarifs",
             "title": "Choisissez la formule adaptée à votre",
             "titleHighlight": "projet d'investissement",
-            "subtitle": "Commencez gratuitement avec le Score Apprexia™, puis débloquez une analyse détaillée lorsque vous êtes prêt à prendre une décision.",
+            "subtitle": "Commencez gratuitement avec vos premières analyses, puis choisissez le pack Apprexia Credits™ le plus adapté à votre rythme d'investissement.",
             "popular": "Le plus populaire",
             "unlimited": "Illimité",
             "table": {
@@ -210,7 +210,7 @@
                 "history": "Historique des analyses",
                 "api": "API & Intégrations"
             },
-            "footer": "Chaque analyse Premium inclut le Score Apprexia™, l'estimation de valeur, l'analyse du marché, les comparables immobiliers, l'évaluation de la rentabilité, les risques identifiés et une recommandation claire : Investir, Négocier ou Éviter."
+            "footer": "Chaque analyse inclut le Score Apprexia™, l'estimation de valeur, l'analyse du marché, les comparables immobiliers, l'évaluation de la rentabilité, les risques identifiés et une recommandation claire : Investir, Négocier ou Éviter."
         },
         "footer": {
             "brand": "APPREXIA",

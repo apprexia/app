@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { AnalysisService } from '../../core/services/analysis/analysis';
+import { AnalysisStatus } from '../../core/enums/analysis-status.enum';
 
 interface Step {
     title: string;
@@ -158,18 +159,19 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
                     console.log('STATUS:', response.status);
 
                     switch (response.status) {
-                        case 'COMPLETED':
+                        case AnalysisStatus.COMPLETED:
                             this.router.navigate(['/analyze-result', this.analysisId]);
                             break;
 
-                        case 'AI_FAILED':
-                        case 'INSUFFICIENT_DATA':
+                        case AnalysisStatus.AI_FAILED:
+                        case AnalysisStatus.SCRAPING_FAILED:
+                        case AnalysisStatus.INSUFFICIENT_DATA:
                             this.router.navigate(['/analyze-failed', this.analysisId]);
                             break;
 
-                        case 'SCRAPING':
-                        case 'SCRAPED':
-                        case 'AI_PROCESSING':
+                        case AnalysisStatus.SCRAPING:
+                        case AnalysisStatus.SCRAPED:
+                        case AnalysisStatus.AI_PROCESSING:
                             // on continue à attendre
                             setTimeout(poll, 1000);
                             break;

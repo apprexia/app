@@ -26,12 +26,16 @@
     .metric-num.grd {
         margin-bottom: 15px;
     }
+
+    .estimated-value {
+        font-size: clamp(36px, 2.5vw, 60px);
+    }
 }
 
 .feature-grid-bottom {
     display: grid;
     gap: 18px;
-    grid-template-columns: repeat(3 , 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .feature {
@@ -72,22 +76,22 @@
     }
 }
 
-.main-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.main-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.main-content::-webkit-scrollbar-thumb {
-    background: rgba(132, 0, 122, .25);
-    border-radius: 999px;
-}
-
-.main-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(132, 0, 122, .45);
-}
+//.main-content::-webkit-scrollbar {
+//    width: 8px;
+//}
+//
+//.main-content::-webkit-scrollbar-track {
+//    background: transparent;
+//}
+//
+//.main-content::-webkit-scrollbar-thumb {
+//    background: rgba(132, 0, 122, .25);
+//    border-radius: 999px;
+//}
+//
+//.main-content::-webkit-scrollbar-thumb:hover {
+//    background: rgba(132, 0, 122, .45);
+//}
 
 .logout {
     position: fixed;
