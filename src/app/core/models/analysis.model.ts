@@ -6,15 +6,15 @@ export interface Analysis {
     url: string;
 
     title: string | null;
-    city: string |null;
-
+    city: string | null;
+    codePostal: number | null;
     rooms: number | null;
     surface: number | null;
 
     score: number | null;
     scoreExplanation: string | null;
 
-    verdict: string | null;
+    verdict: Verdict;
     verdictExplanation: string | null;
 
     // Référence DVF
@@ -35,15 +35,22 @@ export interface Analysis {
     negotiationAnalysis: string | null;
 
     // Position marché
-    marketPosition: string | null;
+    marketPosition: MarketPosition;
     marketAdjustment: string | null;
 
     // Risque
     riskLevel: number | null;
 
-    // Rentabilité
+    // Rentabilité locative
+    estimatedRentMonthly: number | null;
+    estimatedRentLow: number | null;
+    estimatedRentHigh: number | null;
+
+    rentPerSquareMeter: number | null;
+    rentConfidence: number | null;
+
     grossYield: number | null;
-    yieldLevel: string | null;
+    yieldLevel: YieldLevel;
     yieldAnalysis: string | null;
 
     // Description
@@ -55,3 +62,9 @@ export interface Analysis {
 
     createdAt: string;
 }
+
+type YieldLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'UNKNOWN' | null;
+
+type Verdict = 'INVESTIR' | 'NEGOCIER' | 'EVITER' | 'ACHETER' | null;
+
+type MarketPosition = 'SOUS_EVALUE' | 'PRIX_MARCHE' | 'LEGEREMENT_SURCOTE' | 'SURCOTE' | null;

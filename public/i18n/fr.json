@@ -8,8 +8,8 @@
             "subtitle": "Analysez le prix, la rentabilité et les risques d'un bien immobilier avant de prendre une décision.",
             "actions": {
                 "invest": "INVESTIR",
-                "negotiate": "NÉGOCIER",
-                "avoid": "ÉVITER"
+                "negotiate": "NEGOCIER",
+                "avoid": "EVITER"
             },
             "ctaPrimary": "Essayez gratuitement",
             "ctaSecondary": "Se connecter",
@@ -30,11 +30,11 @@
                     "text": "Prix cohérent avec le marché, rentabilité attractive et risque maîtrisé."
                 },
                 "negotiate": {
-                    "title": "NÉGOCIER",
+                    "title": "NEGOCIER",
                     "text": "Le potentiel est présent, mais le prix actuel limite la rentabilité attendue."
                 },
                 "avoid": {
-                    "title": "ÉVITER",
+                    "title": "EVITER",
                     "text": "Prix excessif, rendement insuffisant ou risques trop importants."
                 }
             }

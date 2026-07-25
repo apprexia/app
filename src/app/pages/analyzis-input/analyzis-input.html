@@ -43,7 +43,12 @@
                         </button>
                     </div>
                 </div>
-
+                ou
+                <button (click)="openModalForm()"
+                        class="ask-btn"
+                        [disabled]="loading">{{ loading ? 'Analyse...' : 'Analyse manuelle' }} <i
+                    class="bi bi-arrow-right"></i>
+                </button>
                 <div class="s-cover-meta reveal">
                     <img src="images/logos/orpi.svg" width="50" alt="">
                     <img src="images/logos/century21.svg" width="120" alt="">
@@ -60,10 +65,13 @@
         </div>
     </section>
 </div>
-
 <app-modal-error
-    [isOpen]="isOpen"
-    (closed)="isOpen = false"
-    [title]="titleError"
-    [message]="messageError">
+    [isOpen]="isOpen()"
+    (closed)="modalService.close()"
+    [title]="titleError()"
+    [message]="messageError()">
 </app-modal-error>
+@if (isOpenForm) {
+    <app-modal-form-property [isOpen]="isOpenForm"
+                             (closed)="isOpenForm = false"></app-modal-form-property>
+}

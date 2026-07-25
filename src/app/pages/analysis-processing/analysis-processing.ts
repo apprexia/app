@@ -54,7 +54,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         {
             title: 'Rapport & recommandation',
             description:
-                'Calcul du Score Apprexia™, estimation de valeur et verdict final : Investir, Négocier ou Éviter.',
+                "Ouverture de l'annonce pour confirmation, Calcul du Score Apprexia™, estimation de valeur et verdict final : Investir, Négocier ou Éviter.",
             icon: 'bi-award',
         },
     ];
@@ -104,13 +104,16 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         const payload = this.analysisInput;
 
         for (let index = 0; index < this.steps.length - 1; index++) {
-            const timeout = setTimeout(() => {
-                this.currentStep.set(index + 1);
+            const timeout = setTimeout(
+                () => {
+                    this.currentStep.set(index + 1);
 
-                if (index === this.steps.length - 2) {
-                    this.runManualAnalysis(payload);
-                }
-            }, (index + 1) * 2000);
+                    if (index === this.steps.length - 2) {
+                        this.runManualAnalysis(payload);
+                    }
+                },
+                (index + 1) * 2000,
+            );
 
             this.timeoutIds.push(timeout);
         }
@@ -125,7 +128,6 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             error: console.error,
         });
     }
-
 
     private startProcessingAuto(url: string): void {
         if (!url) {

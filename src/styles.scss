@@ -1,4 +1,5 @@
 @import "animate.css";
+@import "leaflet/dist/leaflet.css";
 
 :root {
     --ee: cubic-bezier(0.19, 1, 0.22, 1);
@@ -1870,7 +1871,7 @@ html, body {
 }
 
 .more-card .mc-thumb {
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     overflow: hidden;
     position: relative;
     background: linear-gradient(135deg, rgba(99, 102, 241, .15), rgba(236, 72, 153, .08));
@@ -2570,4 +2571,78 @@ html, body {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+/* LEAFLET */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: transparent;
+    box-shadow: none;
+}
+
+.leaflet-popup-content {
+    margin: 0;
+    padding: 0;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    color: white;
+    right: 3px;
+}
+
+/* Boutons + et - */
+.leaflet-control-zoom a {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+
+    background: rgba(10, 14, 26, 0.75);
+    backdrop-filter: blur(12px);
+
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    transition: all .25s ease;
+}
+
+/* Supprime les bordures par défaut */
+.leaflet-bar {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Premier bouton */
+.leaflet-touch .leaflet-bar a:first-child {
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Deuxième bouton */
+.leaflet-touch .leaflet-bar a:last-child {
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hover */
+.leaflet-control-zoom a:hover {
+    color: white;
+    background: linear-gradient(
+            135deg,
+            #6366f1,
+            #ec4899
+    );
+
+    border-color: transparent;
+}
+
+/* Supprime la séparation entre les deux boutons */
+.leaflet-bar a {
+    border-bottom: none !important;
 }

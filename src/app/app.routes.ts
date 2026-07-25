@@ -8,7 +8,7 @@ import { Login } from './pages/login/login';
 import { AuthSuccess } from './pages/auth-success/auth-success';
 import { Account } from './pages/account/account';
 import { Favorite } from './pages/favorite/favorite';
-import { authGuard } from './core/guards/auth-guard';
+import { authGuard } from './core/guards/auth/auth-guard';
 import { CreditsStore } from './pages/credits-store/credits-store';
 import { CreditsSuccess } from './pages/credits-success/credits-success';
 import { CreditsCancel } from './pages/credits-cancel/credits-cancel';
@@ -17,13 +17,18 @@ import { Terms } from './pages/terms/terms';
 import { Rgpd } from './pages/rgpd/rgpd';
 import { Cgu } from './pages/cgu/cgu';
 import { AnalysisFailed } from './pages/analysis-failed/analysis-failed';
+import { creditGuard } from './core/guards/credit/credit-guard';
 
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'login', component: Login },
     { path: 'analyze', component: AnalyzisInput },
     { path: 'analyze-list', component: AnalysisList, canActivate: [authGuard] },
-    { path: 'analyze-processing', component: AnalysisProcessing, canActivate: [authGuard] },
+    {
+        path: 'analyze-processing',
+        component: AnalysisProcessing,
+        canActivate: [authGuard, creditGuard],
+    },
     { path: 'analyze-failed/:id', component: AnalysisFailed, canActivate: [authGuard] },
     { path: 'analyze-result/:id', component: AnalysisResult, canActivate: [authGuard] },
     { path: 'auth/success', component: AuthSuccess },

@@ -33,17 +33,18 @@ $clr-blue: #5a81ff;
 .red {
     width: min(900px, 90%);
     max-height: 90vh;
-    padding: clamp(16px, 2vw, 28px);
+    padding: 0px;
     border-radius: 16px;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse at right top, rgba(228, 7, 191, 0.56) 0%, #151419 45%, #151419 100%);
+    background: radial-gradient(ellipse at right top, #3F51B5 0%, #151419 45%, #151419 100%);
     transition: opacity 0.25s ease-in;
     display: flex;
     flex-direction: column;
     z-index: 1102;
+    overflow: hidden;
 
     &:hover {
         opacity: 1;
@@ -65,6 +66,30 @@ $clr-blue: #5a81ff;
         pointer-events: none;
     }
 
+    .card-header {
+        position: initial;
+        text-align: left;
+        justify-content: flex-start;
+        flex-direction: column;
+
+        p{
+            text-align: left;
+            margin-bottom: 10px;
+            color: #9fabeb;
+        }
+
+        h1 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        svg {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    }
+
     .card-body {
         width: 100%;
         display: flex;
@@ -77,7 +102,7 @@ $clr-blue: #5a81ff;
    TYPO
 ========================= */
 h3 {
-    font-size: clamp(18px, 2vw, 30px);
+    font-size: clamp(18px, 2vw, 24px);
     margin: 10px 0 20px;
 }
 
@@ -162,6 +187,7 @@ label {
     align-items: center;
     gap: 8px;
     margin-right: 0;
+    padding-left: 31px;
 }
 
 input[type="checkbox"] {
@@ -211,7 +237,11 @@ input[type="checkbox"] {
 
 .btn-primary {
     border: none;
-    background: #84007a;
+    background: linear-gradient(
+            135deg,
+            #7c3aed,
+            #6366f1,
+            #38bdf8);
     color: white;
 }
 
@@ -243,4 +273,21 @@ input[type="checkbox"] {
     .red {
         width: min(900px, 85%);
     }
+}
+
+.error-message {
+    background: rgba(255, 70, 70, 0.15);
+    border: 1px solid rgba(255, 70, 70, 0.4);
+    color: #ff6b6b;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 30px;
+    left: 58px;
+    font-size: 13px;
+    width: 45%;
+    text-align: left;
 }

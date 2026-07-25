@@ -67,6 +67,8 @@
 }
 
 .ask-btn {
+    display: flex;
+    align-items: center;
     padding: 11px 24px;
     border: none;
     border-radius: 14px;
@@ -75,9 +77,14 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow:
-        0 0 24px rgba(124, 58, 237, .4),
-        0 0 64px rgba(99, 102, 241, .12);
+    box-shadow: 0 0 24px rgba(124, 58, 237, .4),
+    0 0 64px rgba(99, 102, 241, .12);
+
+    i {
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+    }
 }
 
 @keyframes spin {
@@ -87,7 +94,7 @@
 }
 
 @media (max-width: 640px) {
-    .inner{
+    .inner {
         gap: 10px;
     }
     .s-cover-version {

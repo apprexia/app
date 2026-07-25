@@ -16,44 +16,17 @@
         @if (analysis(); as a) {
             <section class="slide exiting active" #slideRef data-section="Résultat d'analyse">
                 <div class="slide-inner s-features">
-                    <div class="feature-grid-head">
-
-                        <!-- BIEN ANALYSÉ -->
-                        <div class="more-card glass-card" rel="nofollow noopener">
-                            <div class="mc-thumb">
-                                <img src="{{a.imageUrl}}" alt="" loading="lazy">
-                            </div>
-
-                            <div class="mc-body">
-
-                                <div class="mc-tag">
-                                    <span class="pip"></span>
-                                    {{ a.city }} · {{ a.rooms }}
-                                    · {{ a.surface ? a.surface + 'm²' : 'N/A' }}
-                                    · {{ a.askingPrice | currency:'EUR':'symbol':'1.0-0' }}
-                                </div>
-
-                                <div class="mc-title">
-                                    {{ a.title }} {{ a.city }}
-                                </div>
-
-                                <div class="mc-desc">
-                                    {{ a.description }}
-                                </div>
-                                @if (a.sourceSite) {
-                                    <img
-                                        [src]="'images/logos/' + a.sourceSite + '.png'"
-                                        [alt]="a.sourceSite"
-                                        width="90"
-                                    />
+                    @if (a) {
+                        <div class="btn-download-pdf">
+                            <button (click)="downloadReport(a!.id)">
+                                <i class="bi bi-download"></i> Télécharger le rapport
+                                @if (isDownloading()) {
+                                    <span class="loader"></span>
                                 }
-                                <a [href]="a.url" target="_blank" class="mc-cta">
-                                    Voir l'annonce <span>→</span>
-                                </a>
-
-                            </div>
+                            </button>
                         </div>
-
+                    }
+                    <div class="feature-grid-head">
                         <!-- SCORE -->
                         <div class="feature glass-card reveal">
 
@@ -98,6 +71,44 @@
 
                         </div>
 
+
+                        <!-- BIEN ANALYSÉ -->
+                        <div class="more-card glass-card" rel="nofollow noopener">
+                            <div class="mc-thumb">
+                                <img src="{{a.imageUrl}}" alt="" loading="lazy">
+                            </div>
+
+                            <div class="mc-body">
+
+                                <div class="mc-tag">
+                                    <span class="pip"></span>
+                                    {{ a.city }} · {{ a.rooms }}
+                                    · {{ a.surface ? a.surface + 'm²' : 'N/A' }}
+                                    · {{ a.askingPrice | currency:'EUR':'symbol':'1.0-0' }}
+                                </div>
+
+                                <div class="mc-title">
+                                    {{ a.title }} {{ a.city }}
+                                </div>
+
+                                <div class="mc-desc">
+                                    {{ a.description }}
+                                </div>
+                                @if (a.sourceSite && a.sourceSite !== 'autres') {
+                                    <img
+                                        [src]="'images/logos/' + a.sourceSite + '.png'"
+                                        [alt]="a.sourceSite"
+                                        width="90"
+                                    />
+                                }
+
+                                @if (a.url !== 'manual') {
+                                    <a [href]="a.url" target="_blank" class="mc-cta">
+                                        Voir l'annonce <span>→</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
                     </div>
 
                     <div class="feature-grid">
@@ -124,9 +135,16 @@
                                     {{ a.estimatedValueLow | currency:'EUR':'symbol':'1.0-0' }} -
                                     {{ a.estimatedValueHigh | currency:'EUR':'symbol':'1.0-0' }}
                                 </div>
-                                <div class="eyebrow reveal">
-                                    <span class="dt"></span>{{ a.yieldLevel ? 'Estimation : ' + a.marketPosition : '' }}
+                                <h5 class="text-secondary"> VALEUR DE REFERENCE DVF</h5>
+                                <div class="metric-num grd">
+                                    {{ a.dvfReferenceValue | currency:'EUR':'symbol':'1.0-0' }}
                                 </div>
+                                @if (a.yieldLevel) {
+                                    <div class="eyebrow reveal">
+                                        <span
+                                            class="dt"></span>{{ a.yieldLevel ? 'Estimation : ' + a.marketPosition : '' }}
+                                    </div>
+                                }
                             </div>
                         </div>
 
@@ -172,20 +190,76 @@
                                 </h2>
                             </div>
 
+
+                            <!-- Rendement principal -->
                             <div class="metric-num grd">
-                                {{ a.grossYield }}<span class="unit">%</span>
+                                {{ a.grossYield ?? '-' }}
+                                @if (a.grossYield) {
+                                    <span class="unit">%</span>
+                                }
                             </div>
+
 
                             <p>
                                 {{ a.yieldAnalysis }}
                             </p>
-                            <div class="eyebrow reveal">
-                                <span class="dt"></span>{{ a.yieldLevel ? 'Niveau : ' + a.yieldLevel : '' }}
+
+
+                            <!-- Données locatives -->
+                            <div>
+
+                                @if (a.estimatedRentMonthly) {
+                                    <p>
+                                        <i class="bi bi-house text-apprexia"></i>
+                                        Loyer estimé :
+                                        <strong>{{ a.estimatedRentMonthly }} €/mois</strong>
+                                    </p>
+                                }
+
+
+                                @if (a.estimatedRentLow && a.estimatedRentHigh) {
+                                    <p>
+                                        <i class="bi bi-arrow-left-right text-warning"></i>
+                                        Fourchette :
+                                        <strong>
+                                            {{ a.estimatedRentLow }} - {{ a.estimatedRentHigh }} €
+                                        </strong>
+                                    </p>
+                                }
+
+
+                                @if (a.rentPerSquareMeter) {
+                                    <p>
+                                        <i class="bi bi-rulers"></i>
+                                        Prix locatif :
+                                        <strong>
+                                            {{ a.rentPerSquareMeter.toFixed(2) }} €/m²
+                                        </strong>
+                                    </p>
+                                }
+
+
+                                @if (a.rentConfidence) {
+                                    <p>
+                                        <i class="bi bi-shield-check text-success"></i>
+                                        Confiance :
+                                        <strong>
+                                            {{ (a.rentConfidence * 100).toFixed(0) }} %
+                                        </strong>
+                                    </p>
+                                }
+
                             </div>
+                            <!-- Niveau -->
+                            @if (a.yieldLevel) {
+                                <div class="eyebrow reveal">
+                                    <span class="dt"></span>
+                                    Niveau : {{ a.yieldLevel }}
+                                </div>
+                            }
                         </div>
                         <!-- POSITIFS -->
                         <div class="feature glass-card reveal">
-
                             <div style="display:flex;align-items:center">
                                 <div class="f-ic icon-success">
                                     <i class="bi bi-hand-thumbs-up"></i>
@@ -222,6 +296,17 @@
                                 }
                             </div>
 
+                        </div>
+                    </div>
+                    <!-- MAP -->
+                    <div class="feature-grid" style="grid-template-columns: repeat(1, 1fr);">
+                        <div class="feature glass-card reveal">
+                            <div id="analysis-map"></div>
+                            @if (errorMessage()) {
+                                <div class="error-message">
+                                    {{ errorMessage() }}
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
