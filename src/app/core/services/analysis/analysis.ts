@@ -31,7 +31,7 @@ export class AnalysisService {
 
     findAll(page = 1, limit = 10) {
         return this.http.get<PaginatedResponse<Analysis>>(
-            `${this.apiUrl}/analyses?page=${page}&limit=${limit}`,
+            `${this.apiUrl}/analyses?page=${page}&limit=${limit}&status=COMPLETED`,
         );
     }
 

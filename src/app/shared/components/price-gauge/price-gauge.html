@@ -1,0 +1,32 @@
+<div class="price-gauge">
+    <div class="track">
+        <div class="range"></div>
+        @if (dvfPosition() !== null) {
+            <div
+                class="marker dvf"
+                [style.left.%]="dvfPosition()!"
+            >
+                <div class="tooltip valeur-dvf">
+                    {{referenceLabel()}}
+                </div>
+            </div>
+        }
+
+        <div
+            class="marker asking"
+            [style.left.%]="askingPosition()"
+        >
+            <div class="tooltip prix-affiche">
+                {{askingLabel()}}
+            </div>
+        </div>
+
+    </div>
+    <div class="labels">
+
+        <span>{{ format(min()) }}</span>
+
+        <span>{{ format(max()) }}</span>
+
+    </div>
+</div>

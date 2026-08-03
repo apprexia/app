@@ -1,0 +1,29 @@
+@if (chartOptions(); as options) {
+
+    <div class="price-card">
+
+        <div class="header">
+
+            <h3>
+                Analyse du prix
+            </h3>
+
+            <span>
+      Estimation Apprexia
+    </span>
+
+        </div>
+
+        <apx-chart
+            [series]="options.series"
+            [chart]="options.chart"
+            [xaxis]="options.xaxis"
+            [plotOptions]="options.plotOptions"
+            [dataLabels]="options.dataLabels"
+            [annotations]="options.annotations"
+            [tooltip]="options.tooltip"
+            [grid]="options.grid"
+        />
+    </div>
+
+}

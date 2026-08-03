@@ -1,0 +1,71 @@
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+
+
+    h3 {
+
+        margin: 0;
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+        color: #0f172a;
+
+    }
+
+
+    span {
+
+        font-size: 13px;
+
+        color: #64748b;
+
+    }
+
+}
+
+
+::ng-deep {
+
+
+    .apexcharts-rangebar-area {
+
+        fill: #6366f1;
+
+    }
+
+
+    .apexcharts-xaxis-label {
+
+        fill: #64748b;
+
+        font-size: 12px;
+
+    }
+
+
+}
+
+
+@media(max-width: 600px) {
+
+
+    .price-card {
+
+        padding: 16px;
+
+        border-radius: 16px;
+
+    }
+
+
+}

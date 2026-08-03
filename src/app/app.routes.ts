@@ -18,6 +18,7 @@ import { Rgpd } from './pages/rgpd/rgpd';
 import { Cgu } from './pages/cgu/cgu';
 import { AnalysisFailed } from './pages/analysis-failed/analysis-failed';
 import { creditGuard } from './core/guards/credit/credit-guard';
+import { AnalysisUnsupported } from './pages/analysis-unsupported/analysis-unsupported';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -30,6 +31,7 @@ export const routes: Routes = [
         canActivate: [authGuard, creditGuard],
     },
     { path: 'analyze-failed/:id', component: AnalysisFailed, canActivate: [authGuard] },
+    { path: 'analyze-unsupported/:id', component: AnalysisUnsupported, canActivate: [authGuard] },
     { path: 'analyze-result/:id', component: AnalysisResult, canActivate: [authGuard] },
     { path: 'auth/success', component: AuthSuccess },
     { path: 'account', component: Account, canActivate: [authGuard] },

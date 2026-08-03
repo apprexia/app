@@ -1,0 +1,83 @@
+:host {
+    display: block;
+}
+
+.price-gauge {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #94A3B8;
+    font-size: .85rem;
+    margin-top: 10px;
+}
+
+.track {
+    position: relative;
+    height: 12px;
+    border-radius: 999px;
+    background: #1E293B;
+    overflow: visible;
+}
+
+.range {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+            90deg,
+            #16A34A,
+            #F59E0B,
+            #EF4444
+    );
+}
+
+.marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: left .8s cubic-bezier(.19, 1, .22, 1);
+}
+
+.marker::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: block;
+    border: 3px solid white;
+}
+
+.asking::before {
+    background: #ff0769;
+}
+
+.dvf::before {
+    background: #FFD43B;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.72rem;
+    background: #0f172aa1;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.prix-affiche {
+    background: rgba(255, 7, 105, 0.4);
+    bottom: 32px;
+}
+
+.valeur-dvf {
+    background: rgba(255, 212, 59, 0.4);
+}

@@ -1,3 +1,5 @@
+import { CommuneAnalysis, CommuneContext } from './commune-analysis.model';
+
 export interface Analysis {
     id: string;
     userId: string;
@@ -8,6 +10,11 @@ export interface Analysis {
     title: string | null;
     city: string | null;
     codePostal: number | null;
+
+    // Analyse territoriale
+    communeAnalysis: CommuneAnalysis | null;
+    communeContext: CommuneContext | null;
+
     rooms: number | null;
     surface: number | null;
 
@@ -20,7 +27,7 @@ export interface Analysis {
     // Référence DVF
     dvfReferenceValue: number | null;
 
-    // Estimation finale Apprexia
+    // Estimation Apprexia
     estimatedValue: number | null;
     estimatedValueLow: number | null;
     estimatedValueHigh: number | null;
@@ -45,13 +52,18 @@ export interface Analysis {
     estimatedRentMonthly: number | null;
     estimatedRentLow: number | null;
     estimatedRentHigh: number | null;
-
     rentPerSquareMeter: number | null;
     rentConfidence: number | null;
 
     grossYield: number | null;
     yieldLevel: YieldLevel;
     yieldAnalysis: string | null;
+
+    // Localisation
+    location: LocationAnalysis | null;
+
+    // Amenities
+    amenities: AmenityResult | null;
 
     // Description
     description: string | null;
@@ -63,8 +75,102 @@ export interface Analysis {
     createdAt: string;
 }
 
-type YieldLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'UNKNOWN' | null;
+// =======================================================
+// LOCALISATION
+// =======================================================
 
-type Verdict = 'INVESTIR' | 'NEGOCIER' | 'EVITER' | 'ACHETER' | null;
+export interface LocationAnalysis {
+    score: number;
 
-type MarketPosition = 'SOUS_EVALUE' | 'PRIX_MARCHE' | 'LEGEREMENT_SURCOTE' | 'SURCOTE' | null;
+    property: PropertyLocation;
+
+    transport: TransportLocation;
+
+    shopping: ShoppingLocation;
+
+    education: EducationLocation;
+
+    badges: string[];
+
+    strengths: string[];
+
+    weaknesses: string[];
+}
+
+export interface PropertyLocation {
+    lat: number;
+    lon: number;
+}
+
+export interface NearbyPlace {
+    name: string;
+
+    distance: number;
+
+    walkingTime: number;
+
+    lat: number;
+
+    lon: number;
+}
+
+export interface TransportLocation {
+    metro: NearbyPlace | null;
+
+    tram: NearbyPlace | null;
+
+    bus: NearbyPlace | null;
+
+    trainStation: NearbyPlace | null;
+}
+
+export interface ShoppingLocation {
+    supermarket: NearbyPlace | null;
+
+    bakery: NearbyPlace | null;
+
+    shoppingCenter: NearbyPlace | null;
+}
+
+export interface EducationLocation {
+    kindergarten: NearbyPlace | null;
+
+    school: NearbyPlace | null;
+
+    highSchool: NearbyPlace | null;
+
+    university: NearbyPlace | null;
+
+    businessSchool: NearbyPlace | null;
+}
+
+// =======================================================
+
+export type YieldLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'UNKNOWN' | null;
+
+export type Verdict = 'INVESTIR' | 'NEGOCIER' | 'EVITER' | 'ACHETER' | null;
+
+export type MarketPosition =
+    | 'SOUS_EVALUE'
+    | 'PRIX_MARCHE'
+    | 'LEGEREMENT_SURCOTE'
+    | 'SURCOTE'
+    | null;
+
+// =======================================================
+// AMENITIES
+// =======================================================
+
+export interface AmenityResult {
+    score: number;
+
+    level: 'Premium' | 'Très bon' | 'Bon' | 'Correct' | 'Faible' | 'Non renseigné';
+
+    highlights: AmenityHighlight[];
+}
+
+export interface AmenityHighlight {
+    label: string;
+    icon: string;
+    points: number;
+}

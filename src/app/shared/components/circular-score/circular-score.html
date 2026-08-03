@@ -1,0 +1,118 @@
+<div
+    class="score-container"
+    [style.width.px]="size()"
+    [style.height.px]="size()"
+>
+
+    <svg
+        class="score-svg"
+        [attr.width]="size()"
+        [attr.height]="size()"
+        [attr.viewBox]="'0 0 ' + size() + ' ' + size()"
+    >
+
+        <!-- Dégradé Apprexia -->
+        <defs>
+
+            <linearGradient
+                [attr.id]="gradientId"
+                id="scoreGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+            >
+
+                <stop
+                    offset="0%"
+                    [attr.stop-color]="gradientColor().start"
+                />
+
+                <stop
+                    offset="100%"
+                    [attr.stop-color]="gradientColor().end"
+                />
+
+            </linearGradient>
+
+            <!-- Glow -->
+            <filter id="glow">
+
+                <feGaussianBlur
+                    stdDeviation="3"
+                    result="blur"
+                />
+
+                <feMerge>
+
+                    <feMergeNode in="blur" />
+
+                    <feMergeNode in="SourceGraphic" />
+
+                </feMerge>
+
+            </filter>
+
+        </defs>
+
+        <!-- Cercle de fond -->
+
+        <circle
+
+            class="track"
+
+            [attr.cx]="size()/2"
+
+            [attr.cy]="size()/2"
+
+            [attr.r]="radius()"
+
+            [attr.stroke-width]="strokeWidth()"
+
+        />
+
+        <!-- Cercle animé -->
+
+        <circle
+
+            class="progress"
+
+            [attr.cx]="size()/2"
+
+            [attr.cy]="size()/2"
+
+            [attr.r]="radius()"
+
+            [attr.stroke-width]="strokeWidth()"
+
+            [attr.stroke-dasharray]="circumference()"
+
+            [attr.stroke-dashoffset]="dashOffset()"
+
+            [attr.stroke]="'url(#' + gradientId + ')'"
+
+            filter="url(#glow)"
+
+        />
+
+    </svg>
+
+    <div class="content">
+
+        <div class="score">
+
+            {{ displayValue() }}
+
+            @if (showSuffix()) {
+                <span>{{ suffix() }}</span>
+            }
+
+            @if (showMax()) {
+                <span>/{{ max() }}</span>
+            }
+
+        </div>
+
+    </div>
+
+</div>

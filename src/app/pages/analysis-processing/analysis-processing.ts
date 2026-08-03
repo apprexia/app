@@ -54,7 +54,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         {
             title: 'Rapport & recommandation',
             description:
-                "Ouverture de l'annonce pour confirmation, Calcul du Score Apprexia™, estimation de valeur et verdict final : Investir, Négocier ou Éviter.",
+                'Ouverture de l\'annonce. Calcul du Score Apprexia™, estimation de valeur et verdict final : Investir, Négocier ou Éviter.',
             icon: 'bi-award',
         },
     ];
@@ -135,17 +135,13 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             return;
         }
 
+        this.runAnalysis(url);
+
         // Etapes 1 à 4 uniquement
         for (let index = 0; index < this.steps.length - 1; index++) {
             const timeout = setTimeout(
                 () => {
                     this.currentStep.set(index + 1);
-
-                    // Arrivé à l'étape 4,
-                    // on démarre l'analyse
-                    if (index === this.steps.length - 2) {
-                        this.runAnalysis(url);
-                    }
                 },
                 (index + 1) * 2000,
             );
@@ -170,7 +166,9 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
                         case AnalysisStatus.INSUFFICIENT_DATA:
                             this.router.navigate(['/analyze-failed', this.analysisId]);
                             break;
-
+                        case AnalysisStatus.UNSUPPORTED_PROPERTY_TYPE:
+                            this.router.navigate(['/analyze-unsupported', this.analysisId]);
+                            break;
                         case AnalysisStatus.SCRAPING:
                         case AnalysisStatus.SCRAPED:
                         case AnalysisStatus.AI_PROCESSING:
