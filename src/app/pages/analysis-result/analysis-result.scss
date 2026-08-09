@@ -608,8 +608,9 @@ button:disabled {
         }
 
         button {
-            width: initial;
             font-size: 23px;
+            width: 47px;
+            height: 47px;
 
             .text {
                 display: none;
