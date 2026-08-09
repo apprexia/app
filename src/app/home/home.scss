@@ -2,6 +2,10 @@
     will-change: transform;
 }
 
+.s-cover-meta {
+    gap: 10px;
+}
+
 .deck.menu-open {
     pointer-events: none;
     transform: scale(0.98);

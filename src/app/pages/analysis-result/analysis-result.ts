@@ -115,7 +115,8 @@ export class AnalysisResult implements OnInit {
             return;
         }
 
-        const L = await import('leaflet');
+        const leaflet = await import('leaflet');
+        const L = leaflet.default;
 
         // ======================================
         // ICÔNES
@@ -360,6 +361,10 @@ export class AnalysisResult implements OnInit {
         addNearbyMarker(location.education?.university, icons.school, 'Université');
 
         addNearbyMarker(location.education?.businessSchool, icons.school, 'École de commerce');
+    }
+
+    contactMe() {
+        alert('Cette fonctionnalité n\'est pas encore disponible');
     }
 
     downloadReport(id: string) {

@@ -23,13 +23,78 @@ export class Account implements OnInit {
     }
 
     getMe() {
-        this.userService.getMe().subscribe((user: UserProfile) => {
-            this.user.set(user);
+        this.userService.getMe().subscribe({
+            next: (user: UserProfile) => {
+                console.log(user);
+                this.user.set(user);
+            },
+
+            error: (error) => {
+                console.error('Erreur récupération profil', error);
+            },
         });
     }
 
     logout() {
         localStorage.removeItem('token');
+
         this.router.navigate(['/login']);
+    }
+
+    /**
+     * Total des verdicts
+     */
+    getTotalVerdicts(profile: UserProfile): number {
+        return (
+            (profile.stats.investir || 0) +
+            (profile.stats.favorable || 0) +
+            (profile.stats.negocier || 0) +
+            (profile.stats.eviter || 0)
+        );
+    }
+
+    /**
+     * Pourcentage d'un verdict
+     */
+    getVerdictPercentage(value: number): number {
+        const profile = this.user();
+
+        if (!profile) {
+            return 0;
+        }
+
+        const total = this.getTotalVerdicts(profile);
+
+        if (total === 0) {
+            return 0;
+        }
+
+        return Math.round((value / total) * 100);
+    }
+
+    /**
+     * Hauteur des barres
+     */
+    getBarHeight(value: number): number {
+        const profile = this.user();
+
+        if (!profile) {
+            return 0;
+        }
+
+        const values = [
+            profile.stats.investir || 0,
+            profile.stats.negocier || 0,
+            profile.stats.favorable || 0,
+            profile.stats.eviter || 0,
+        ];
+
+        const max = Math.max(...values);
+
+        if (max === 0) {
+            return 0;
+        }
+
+        return Math.max(15, (value / max) * 100);
     }
 }

@@ -148,7 +148,7 @@ export interface EducationLocation {
 
 export type YieldLevel = 'LOW' | 'MEDIUM' | 'HIGH' | 'UNKNOWN' | null;
 
-export type Verdict = 'INVESTIR' | 'NEGOCIER' | 'EVITER' | 'ACHETER' | null;
+export type Verdict = 'INVESTIR' | 'FAVORABLE' | 'NEGOCIER' | 'EVITER' | 'ACHETER' | null;
 
 export type MarketPosition =
     | 'SOUS_EVALUE'

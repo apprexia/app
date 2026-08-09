@@ -1,97 +1,238 @@
-<button class="sidebar-toggle" (click)="toggleSidebar()">
-    <i class="bi bi-list text-info"></i>
+<button
+    class="sidebar-toggle"
+    type="button"
+    (click)="toggleSidebar()"
+    aria-label="Ouvrir le menu"
+>
+    <i class="bi bi-list"></i>
 </button>
 
 @if (opened()) {
-    <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+    <div
+        class="sidebar-overlay"
+        (click)="closeSidebar()"
+    ></div>
 }
 
-<nav class="sidebar" [class.open]="opened()">
+<aside
+    class="sidebar"
+    [class.open]="opened()"
+    [class.collapsed]="collapsed()"
+>
 
-    <button class="sidebar-close" (click)="closeSidebar()">
+    <!-- =========================
+         BOUTON RÉDUCTION DESKTOP
+    ========================== -->
+
+    <button
+        class="sidebar-collapse"
+        type="button"
+        (click)="toggleCollapsed()"
+        [attr.aria-label]="collapsed() ? 'Agrandir la sidebar' : 'Réduire la sidebar'"
+    >
+        <i
+            class="bi"
+            [class.bi-chevron-left]="!collapsed()"
+            [class.bi-chevron-right]="collapsed()"
+        ></i>
+    </button>
+
+
+    <!-- =========================
+         HEADER / LOGO
+    ========================== -->
+
+    <div routerLink="/" class="sidebar__logo">
+        <img
+            class="sidebar-logo sidebar-logo--full"
+            src="logo.png"
+            alt="Apprexia"
+        >
+
+        <img
+            class="sidebar-logo sidebar-logo--compact"
+            src="logo2.png"
+            alt="Apprexia"
+        >
+    </div>
+
+
+    <!-- =========================
+         BOUTON FERMER MOBILE
+    ========================== -->
+
+    <button
+        class="sidebar-close"
+        type="button"
+        (click)="closeSidebar()"
+        aria-label="Fermer le menu"
+    >
         <i class="bi bi-x-lg"></i>
     </button>
 
-    <div routerLink="/" class="sidebar__logo">
-        <img src="logo.png" alt="Apprexia" width="150">
+
+    <!-- =========================
+         NAVIGATION SCROLLABLE
+    ========================== -->
+
+    <nav class="container-sidebar">
+
+        <!-- ANALYSE -->
+
+        <div class="sidebar__section">
+
+            <span class="sidebar__label">
+                Analyse
+            </span>
+
+            <a
+                routerLink="/analyze"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Nouvelle analyse"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-plus-circle"></i>
+                <span>Nouvelle analyse</span>
+            </a>
+
+            <a
+                routerLink="/analyze-list"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Mes analyses"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-clock-history"></i>
+                <span>Mes analyses</span>
+            </a>
+
+            <a
+                routerLink="/favorites"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Favoris"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-heart"></i>
+                <span>Favoris</span>
+            </a>
+
+        </div>
+
+
+        <div class="sidebar__divider"></div>
+
+
+        <!-- ESPACE CLIENT -->
+
+        <div class="sidebar__section">
+
+            <span class="sidebar__label">
+                Espace client
+            </span>
+
+            <a
+                routerLink="/account"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Mon compte"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-person"></i>
+                <span>Mon compte</span>
+            </a>
+
+            <a
+                routerLink="/credits"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Apprexia Store"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-shop-window"></i>
+                <span>Apprexia Store</span>
+            </a>
+
+        </div>
+
+
+        <div class="sidebar__divider"></div>
+
+
+        <!-- LÉGAL -->
+
+        <div class="sidebar__section">
+
+            <span class="sidebar__label">
+                Légal
+            </span>
+
+            <a
+                routerLink="/cgu"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="CGU"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-file-earmark-text"></i>
+                <span>CGU</span>
+            </a>
+
+            <a
+                routerLink="/cgv"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="CGV"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-file-earmark-text"></i>
+                <span>CGV</span>
+            </a>
+
+            <a
+                routerLink="/rgpd"
+                routerLinkActive="active"
+                class="sidebar__item"
+                title="Politique de confidentialité"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-file-earmark-lock"></i>
+                <span>Politique de confidentialité</span>
+            </a>
+
+            <a
+                routerLink="/"
+                class="sidebar__item"
+                title="À propos de nous"
+                (click)="closeSidebar()"
+            >
+                <i class="bi bi-info-circle"></i>
+                <span>À propos de nous</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         FOOTER FIXE
+    ========================== -->
+
+    <div class="sidebar__footer">
+
+        <div class="sidebar__divider"></div>
+
+        <a
+            class="sidebar__item sidebar__logout"
+            title="Déconnexion"
+            (click)="logout()"
+        >
+            <i class="bi bi-power"></i>
+            <span>Déconnexion</span>
+        </a>
+
     </div>
 
-    <div class="sidebar__section">
-
-        <span class="sidebar__label">Analyse</span>
-
-        <a routerLink="/analyze" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-plus-circle"></i>
-            <span>Nouvelle analyse</span>
-        </a>
-
-        <a routerLink="/analyze-list" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-clock-history"></i>
-            <span>Mes analyses</span>
-        </a>
-
-        <!--        <a routerLink="/compare" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">-->
-        <!--            <i class="bi bi-columns-gap"></i>-->
-        <!--            <span>Comparateur</span>-->
-        <!--        </a>-->
-
-        <a routerLink="/favorites" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-heart"></i>
-            <span>Favoris</span>
-        </a>
-
-    </div>
-
-    <div class="sidebar__divider"></div>
-
-    <div class="sidebar__section">
-
-        <span class="sidebar__label">Espace client</span>
-
-        <a routerLink="/account" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-person"></i>
-            <span>Mon compte</span>
-        </a>
-
-        <a routerLink="/credits" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-shop-window"></i>
-            <span>Apprexia store</span>
-        </a>
-
-    </div>
-
-    <div class="sidebar__divider"></div>
-
-    <div class="sidebar__section">
-        <span class="sidebar__label">Légal</span>
-
-        <a routerLink="/cgu" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-file-earmark-text"></i>
-            <span>CGU</span>
-        </a>
-
-        <a routerLink="/cgv" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-file-earmark-text"></i>
-            <span>CGV</span>
-        </a>
-
-        <a routerLink="/rgpd" routerLinkActive="active" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-file-earmark-text"></i>
-            <span>Politique de confidentialité</span>
-        </a>
-
-        <a routerLink="/" class="sidebar__item" (click)="closeSidebar()">
-            <i class="bi bi-info-circle"></i>
-            <span>A propos de nous</span>
-        </a>
-    </div>
-
-    <div class="sidebar__divider"></div>
-
-    <div class="sidebar__section">
-        <a class="sidebar__item" (click)="logout()">
-            <i class="bi bi-power text-apprexia"></i>
-            <span class="text-apprexia">Déconnexion</span>
-        </a>
-    </div>
-</nav>
+</aside>

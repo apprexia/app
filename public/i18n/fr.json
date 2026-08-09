@@ -8,12 +8,13 @@
             "subtitle": "Analysez le prix, la rentabilité et les risques d'un bien immobilier avant de prendre une décision.",
             "actions": {
                 "invest": "INVESTIR",
+                "opportunity": "FAVORABLE",
                 "negotiate": "NEGOCIER",
                 "avoid": "EVITER"
             },
             "ctaPrimary": "Essayez gratuitement",
             "ctaSecondary": "Se connecter",
-            "footer": "Immobilier · Investissement locatif · Premier achat"
+            "footer": "Investissement locatif · Premier achat"
         },
         "problem": {
             "section": "Problématique",
@@ -27,15 +28,19 @@
             "cards": {
                 "invest": {
                     "title": "INVESTIR",
-                    "text": "Prix cohérent avec le marché, rentabilité attractive et risque maîtrisé."
+                    "text": "Prix attractif, rentabilité solide et risque maîtrisé. Les indicateurs sont favorables à un investissement."
+                },
+                "opportunity": {
+                    "title": "FAVORABLE",
+                    "text": "Bien positionné par rapport au marché, avec un potentiel intéressant. Une opportunité à considérer selon votre stratégie."
                 },
                 "negotiate": {
                     "title": "NEGOCIER",
-                    "text": "Le potentiel est présent, mais le prix actuel limite la rentabilité attendue."
+                    "text": "Le bien présente un potentiel, mais son prix actuel limite la rentabilité attendue. Une négociation est recommandée."
                 },
                 "avoid": {
                     "title": "EVITER",
-                    "text": "Prix excessif, rendement insuffisant ou risques trop importants."
+                    "text": "Prix trop élevé, rentabilité insuffisante ou niveau de risque important. Les conditions actuelles sont défavorables."
                 }
             }
         },
@@ -53,11 +58,11 @@
             },
             "dashboard": {
                 "title": "Analyse du marché",
-                "metric": "Latence moyenne · dernière heure",
-                "average": "vs moyenne",
-                "errors": "Erreurs",
-                "throughput": "Débit",
-                "saturation": "Saturation"
+                "metric": "Évolution du marché · 5 ans",
+                "average": "sur 5 ans",
+                "errors": "Prix moyen/m²",
+                "throughput": "Évolution annuelle",
+                "saturation": "Tendance"
             }
         },
         "features": {

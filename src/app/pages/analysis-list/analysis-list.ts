@@ -1,7 +1,5 @@
 import {
-    ChangeDetectorRef,
     Component,
-    computed,
     ElementRef,
     inject,
     OnInit,
@@ -24,26 +22,21 @@ import { FavoriteService } from '../../core/services/favorite/favorite';
 })
 export class AnalysisList implements OnInit {
     @ViewChild('mainContent')
-    private mainContent!: ElementRef<HTMLElement>;
+    private mainContent!: ElementRef;
+
     private platformId = inject(PLATFORM_ID);
+
     currentPage = 1;
 
     totalPages = 1;
 
     limit = 9;
 
-    categories: string[] = ['TOUTES', 'INVESTIR', 'NEGOCIER', 'EVITER'];
+    categories: string[] = ['TOUTES', 'INVESTIR', 'FAVORABLE', 'NEGOCIER', 'EVITER'];
+
     readonly analyses = signal<Analysis[]>([]);
 
     readonly selectedCategory = signal('TOUTES');
-
-    readonly filteredAnalyses = computed(() => {
-        if (this.selectedCategory() === 'TOUTES') {
-            return this.analyses();
-        }
-
-        return this.analyses().filter((analysis) => analysis.verdict === this.selectedCategory());
-    });
 
     constructor(
         private analysisService: AnalysisService,
@@ -56,55 +49,101 @@ export class AnalysisList implements OnInit {
         this.loadFavorites();
     }
 
+    /**
+     * Charge les analyses correspondant
+     * à la catégorie sélectionnée et à la page courante.
+     */
     loadAnalyses() {
-        this.analysisService.findAll(this.currentPage, this.limit).subscribe({
+        const category = this.selectedCategory();
+
+        const verdict = category === 'TOUTES' ? undefined : category;
+
+        this.analysisService.findAll(this.currentPage, this.limit, verdict).subscribe({
             next: (response) => {
                 this.analyses.set(response.data);
+
                 this.totalPages = response.totalPages;
 
-                setTimeout(() => {
-                    if (!isPlatformBrowser(this.platformId)) {
-                        return;
-                    }
-
-                    this.mainContent?.nativeElement.scrollTo({
-                        top: 0,
-                        behavior: 'smooth',
-                    });
-                }, 500);
+                this.scrollToTop();
             },
 
-            error: console.error,
+            error: (error) => {
+                console.error('Erreur lors du chargement des analyses :', error);
+            },
         });
     }
 
+    /**
+     * Change de catégorie.
+     *
+     * Lorsqu'une catégorie est sélectionnée,
+     * on revient toujours à la première page.
+     */
     setCategory(category: string) {
         this.selectedCategory.set(category);
+
+        this.currentPage = 1;
+
+        this.loadAnalyses();
     }
 
+    /**
+     * Change de page.
+     */
     goToPage(page: number) {
         if (page < 1 || page > this.totalPages) {
             return;
         }
 
         this.currentPage = page;
+
         this.loadAnalyses();
     }
 
+    /**
+     * Remonte le contenu en haut après
+     * un changement de page ou de catégorie.
+     */
+    private scrollToTop() {
+        setTimeout(() => {
+            if (!isPlatformBrowser(this.platformId)) {
+                return;
+            }
+
+            this.mainContent?.nativeElement.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }, 100);
+    }
+
+    /**
+     * Charge les favoris.
+     */
     loadFavorites() {
         this.favoriteService.loadFavorites().subscribe();
     }
 
+    /**
+     * Ajoute ou retire un favori.
+     */
     toggleFavorite(id: string) {
         this.favoriteService.toggleFavorite(id).subscribe();
     }
 
+    /**
+     * Vérifie si une analyse est dans les favoris.
+     */
     isFavorite(id: string): boolean {
         return this.favoriteService.isFavorite(id);
     }
 
+    /**
+     * Déconnexion.
+     */
     logout() {
         localStorage.removeItem('token');
+
         this.router.navigate(['/login']);
     }
 }

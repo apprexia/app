@@ -94,12 +94,20 @@
 }
 
 @media (max-width: 640px) {
+    .ask-btn {
+        padding: 11px 15px;
+    }
     .inner {
         gap: 10px;
     }
     .s-cover-version {
         font-size: 7px;
     }
+
+    .s-cover h1 {
+        font-size: 43px;
+    }
+
     .s-cover-meta {
         img {
             width: 80px;

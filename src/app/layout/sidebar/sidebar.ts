@@ -8,7 +8,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     styleUrl: './sidebar.scss',
 })
 export class Sidebar {
+
     protected opened = signal(false);
+
+    // Desktop : sidebar réduite ou développée
+    protected collapsed = signal(false);
 
     constructor(private router: Router) {}
 
@@ -20,7 +24,11 @@ export class Sidebar {
         this.opened.set(false);
     }
 
-    logout() {
+    toggleCollapsed(): void {
+        this.collapsed.update((v) => !v);
+    }
+
+    logout(): void {
         localStorage.removeItem('token');
         this.router.navigate(['/login']);
     }

@@ -117,7 +117,7 @@ html, body {
 /* Fill viewport on desktop, allow grow on mobile */
 .slide-inner {
     min-height: 100%;
-    padding: 90px 6vmin 80px;
+    padding: 90px 6vmin 120px;
     display: flex;
     flex-direction: column;
     position: relative
@@ -631,7 +631,7 @@ html, body {
 
 .body-lg {
     font-family: var(--font-body);
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(15px, 1.7vw, 18px);
     line-height: 1.6;
     color: var(--ink-2);
     font-weight: 400
@@ -885,7 +885,7 @@ html, body {
 
 .problem-card .pc-body p {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.55;
     color: var(--ink-3)
 }
@@ -1176,7 +1176,7 @@ html, body {
 
 .s-features-head .sf-r {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 15px;
     color: var(--ink-2);
     max-width: 340px;
     line-height: 1.55
@@ -1245,7 +1245,7 @@ html, body {
 
 .feature p {
     font-family: var(--font-body);
-    font-size: 12.5px;
+    font-size: 13.5px;
     line-height: 1.55;
     color: var(--ink-3);
     flex: 1
@@ -1431,7 +1431,7 @@ html, body {
 
 .tl-card li {
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.45;
     color: var(--ink-2);
     padding-left: 16px;
@@ -1518,7 +1518,7 @@ html, body {
 
 .metric-lbl {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 14px;
     color: var(--ink-2);
     line-height: 1.45;
     margin-top: 14px
@@ -2645,4 +2645,32 @@ html, body {
 /* Supprime la séparation entre les deux boutons */
 .leaflet-bar a {
     border-bottom: none !important;
+}
+
+/* ================================
+   APPREXIA — Global Scrollbar
+   ================================ */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
 }

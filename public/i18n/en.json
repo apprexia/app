@@ -8,6 +8,7 @@
             "subtitle": "Analyze the price, profitability and risks of a property before making an investment decision.",
             "actions": {
                 "invest": "INVEST",
+                "opportunity": "FAVORABLE",
                 "negotiate": "NEGOTIATE",
                 "avoid": "AVOID"
             },
@@ -27,15 +28,19 @@
             "cards": {
                 "invest": {
                     "title": "INVEST",
-                    "text": "Market-aligned price, attractive profitability and controlled risk."
+                    "text": "Attractive price, strong returns and controlled risk. The indicators support moving forward with the investment."
+                },
+                "opportunity": {
+                    "title": "OPPORTUNITY",
+                    "text": "Well positioned against the market, with interesting potential. An opportunity worth considering depending on your investment strategy."
                 },
                 "negotiate": {
                     "title": "NEGOTIATE",
-                    "text": "The opportunity is interesting, but the current price limits expected returns."
+                    "text": "The property shows potential, but its current price limits the expected return. Negotiation is recommended."
                 },
                 "avoid": {
                     "title": "AVOID",
-                    "text": "Overpriced property, insufficient yield or excessive risks."
+                    "text": "Overpriced, insufficient returns or significant risk. Current conditions make the investment unfavorable."
                 }
             }
         },
@@ -53,11 +58,11 @@
             },
             "dashboard": {
                 "title": "Market analysis",
-                "metric": "Average latency · last hour",
-                "average": "vs average",
-                "errors": "Errors",
-                "throughput": "Throughput",
-                "saturation": "Saturation"
+                "metric": "5-Year Market Trend",
+                "average": "over 5 years",
+                "errors": "Average price/sq m",
+                "throughput": "Annual change",
+                "saturation": "Market trend"
             }
         },
         "features": {

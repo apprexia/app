@@ -1,247 +1,532 @@
 <div class="app-layout">
-
     <app-sidebar></app-sidebar>
 
     <main class="main-content">
 
-        <a class="logout text-info" (click)="logout()">
+        <!-- LOGOUT -->
+        <a class="logout text-apprexia" (click)="logout()">
             <i class="bi bi-power"></i>
         </a>
 
-        <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
+        <!-- VERSION -->
+        <div class="tm-credit">
             <span class="tm-dot"></span>
-            <span class="tm-label">Version 1.0</span>
-        </a>
+            <span class="tm-label">VERSION 1.0</span>
+        </div>
 
         @if (user(); as profile) {
 
-            <!-- HEADER PROFIL -->
-            <section class="slide exiting active">
-                <div class="slide-inner s-more">
-                    <div class="s-more-head">
-                        <div class="sm-l">
-                            <div class="profile-header">
-                                <img
-                                    class="profile-avatar"
-                                    [src]="profile.avatar || 'images/avatar.png'"
-                                    alt="avatar"
-                                >
-                                <div>
-                                    <h2 class="h-display">
-                                    <span class="grd">
-                                        Hello {{ profile.name }},
-                                    </span>
-                                    </h2>
+            <!-- ========================================= -->
+                <!-- HEADER -->
+                <!-- ========================================= -->
 
-                                    <p style="margin-top: 10px">
-                                        <i class="bi bi-envelope-at"></i> {{ profile.email }}
-                                    </p>
+            <section class="account-header">
 
-                                </div>
+                <div class="profile-header">
 
-                            </div>
+                    <div class="avatar-wrapper">
 
-                        </div>
+                        <img
+                            class="profile-avatar"
+                            [src]="profile.avatar || 'images/avatar.png'"
+                            alt="avatar"
+                        >
+
+                        <span class="avatar-ring"></span>
+
+                    </div>
+
+                    <div class="profile-info">
+
+                    <span class="welcome-label">
+                        Bonjour
+                    </span>
+
+                        <h1>
+                            Hello
+                            <span>{{ profile.name }}</span>,
+                        </h1>
+
+                        <p>
+                            <i class="bi bi-envelope-at"></i>
+                            {{ profile.email }}
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <div class="slide-inner s-features">
-                    <!-- STATS PRINCIPALES -->
-                    <div class="feature-grid">
-                        <!-- ANALYSES -->
-                        <div class="feature glass-card reveal">
+                <!-- PREMIUM CARD -->
 
-                            <div style="display:flex;align-items:center">
+<!--                <div class="premium-card">-->
 
-                                <div class="f-ic icon-secondary">
-                                    <i class="bi bi-search"></i>
-                                </div>
+<!--                    <div class="premium-icon">-->
+<!--                        <i class="bi bi-star-fill"></i>-->
+<!--                    </div>-->
 
-                                <h2 class="text-secondary title-card">
-                                    Analyses réalisées
-                                </h2>
+<!--                    <div>-->
+<!--                        <strong>Membre Premium</strong>-->
+<!--                        <span>Merci pour votre confiance !</span>-->
+<!--                    </div>-->
 
-                            </div>
+<!--                    <i class="bi bi-chevron-right"></i>-->
+
+<!--                </div>-->
+
+            </section>
 
 
-                            <div class="metric-num grd">
+            <!-- ========================================= -->
+                <!-- KPI -->
+                <!-- ========================================= -->
+
+            <section class="stats-grid">
+
+
+                <!-- ANALYSES -->
+
+                <div class="stat-card stat-blue">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+
+                        <div class="stat-title">
+                            Analyses réalisées
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <div>
+
+                            <div class="stat-number">
                                 {{ profile.stats.analyses }}
                             </div>
 
+                            <!-- DÉSACTIVÉ : évolution non disponible actuellement -->
+                            <!--
+                            <div class="stat-evolution positive">
+                                <i class="bi bi-arrow-up"></i>
+                                +18%
+                                <span>ce mois</span>
+                            </div>
+                            -->
+
                         </div>
 
 
-                        <!-- CREDITS -->
+                        <!-- DÉSACTIVÉ : données historiques non disponibles -->
+                        <!--
+                        <svg
+                            class="mini-chart"
+                            viewBox="0 0 130 70"
+                            preserveAspectRatio="none"
+                        >
+                            <polyline
+                                points="2,60 15,45 28,50 40,31 53,36 66,20 80,25 94,13 108,20 128,4"
+                            />
 
-                        <div class="feature glass-card reveal">
-
-
-                            <div style="display:flex;align-items:center">
-
-                                <div class="f-ic icon-info">
-                                    <i class="bi bi-wallet2"></i>
-                                </div>
-
-
-                                <h2 class="text-info title-card">
-                                    Crédits disponibles
-                                </h2>
-
-                            </div>
-
-
-                            <div class="metric-num grd">
-                                {{ profile.credits }}
-                            </div>
-
-                        </div>
-
+                            <circle cx="128" cy="4" r="4" />
+                        </svg>
+                        -->
 
                     </div>
-
-
-                    <div class="feature-grid">
-
-
-                        <!-- SCORE -->
-
-                        <div class="feature glass-card reveal">
-
-
-                            <div style="display:flex;align-items:center">
-
-                                <div class="f-ic icon-success">
-                                    <i class="bi bi-crosshair"></i>
-                                </div>
-
-
-                                <h2 class="text-success title-card">
-                                    Opportunités trouvées
-                                </h2>
-                            </div>
-                            <div class="metric-num grd">
-                                {{ profile.stats.opportunityRate }}
-                                <span class="unit"> %</span>
-                            </div>
-                        </div>
-
-
-                        <!-- FAVORIS -->
-
-
-                        <div class="feature glass-card reveal">
-
-
-                            <div style="display:flex;align-items:center">
-
-                                <div class="f-ic icon-danger">
-                                    <i class="bi bi-heart"></i>
-                                </div>
-
-
-                                <h2 class="text-danger title-card">
-                                    Favoris
-                                </h2>
-
-
-                            </div>
-
-
-                            <div class="metric-num grd">
-
-                                {{ profile.stats.favorites }}
-
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- VERDICTS -->
-
-
-                    <div class="feature glass-card reveal verdict-card">
-
-
-                        <div style="display:flex;align-items:center">
-
-                            <div class="f-ic icon-warning">
-                                <i class="bi bi-bar-chart"></i>
-                            </div>
-
-
-                            <h2 class="text-warning title-card">
-                                Répartition des opportunités
-                            </h2>
-
-
-                        </div>
-
-
-                        <div class="verdict-grid">
-
-
-                            <div>
-                            <span class="invest">
-                                INVESTIR
-                            </span>
-
-                                <strong>
-                                    {{ profile.stats.investir }}
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                            <span class="negotiate">
-                                NEGOCIER
-                            </span>
-
-
-                                <strong>
-                                    {{ profile.stats.negocier }}
-                                </strong>
-
-
-                            </div>
-
-
-                            <div>
-
-                            <span class="avoid">
-                                EVITER
-                            </span>
-
-
-                                <strong>
-                                    {{ profile.stats.eviter }}
-                                </strong>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
 
                 </div>
 
+
+                <!-- CREDITS -->
+
+                <div class="stat-card stat-purple">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                        <div class="stat-title">
+                            Crédits disponibles
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <div>
+
+                            <div class="stat-number">
+                                {{ profile.credits }}
+                            </div>
+
+                            <!-- DÉSACTIVÉ : historique des crédits non disponible -->
+                            <!--
+                            <div class="stat-evolution positive">
+                                <i class="bi bi-plus"></i>
+                                2
+                                <span>ajoutés</span>
+                            </div>
+                            -->
+
+                        </div>
+
+
+                        <!-- DÉSACTIVÉ : historique non disponible -->
+                        <!--
+                        <svg
+                            class="mini-chart"
+                            viewBox="0 0 130 70"
+                            preserveAspectRatio="none"
+                        >
+                            <polyline
+                                points="2,60 18,55 32,58 45,40 60,45 76,25 92,31 108,17 128,5"
+                            />
+
+                            <circle cx="128" cy="5" r="4" />
+                        </svg>
+                        -->
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPPORTUNITES -->
+
+                <div class="stat-card stat-green">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-crosshair"></i>
+                        </div>
+
+                        <div class="stat-title">
+                            Opportunités trouvées
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-content">
+                        <div>
+                            <div class="stat-number">
+                                {{ profile.stats.opportunityRate }}
+                                <span class="percentage">%</span>
+                            </div>
+
+                            <!-- DÉSACTIVÉ : évolution non disponible -->
+                            <!--
+                            <div class="stat-evolution positive">
+                                <i class="bi bi-arrow-up"></i>
+                                +6%
+                                <span>ce mois</span>
+                            </div>
+                            -->
+                        </div>
+
+
+                        <!-- DYNAMIQUE : basé sur opportunityRate -->
+                        <div
+                            class="mini-donut"
+                            [style.--progress]="profile.stats.opportunityRate + '%'"
+                        >
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- FAVORIS -->
+
+                <div class="stat-card stat-pink">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <div class="stat-title">
+                            Favoris
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-content">
+                        <div>
+                            <div class="stat-number">
+                                {{ profile.stats.favorites }}
+                            </div>
+
+                            @if (profile.stats.favorites === 0) {
+                                <div class="stat-subtitle">
+                                    Aucun favori
+                                </div>
+                            } @else {
+                                <div class="stat-subtitle">
+                                    {{ profile.stats.favorites }} favori(s)
+                                </div>
+                            }
+                        </div>
+
+                        <i class="bi bi-heart-fill favorite-watermark"></i>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================= -->
+                <!-- VERDICTS -->
+                <!-- ========================================= -->
+
+            <section class="dashboard-card verdict-dashboard">
+
+                <div class="dashboard-title">
+
+                    <div class="dashboard-title-left">
+
+                        <div class="dashboard-icon warning">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+
+                        <h2>
+                            Répartition des opportunités
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="verdict-content">
+
+
+                    <!-- DONUT -->
+
+                    <div class="big-donut-wrapper">
+
+                        <div
+                            class="big-donut"
+                            [style.--invest]="getVerdictPercentage(profile.stats.investir) + '%'"
+                            [style.--favorable]="getVerdictPercentage(profile.stats.favorable) + '%'"
+                            [style.--negotiate]="getVerdictPercentage(profile.stats.negocier) + '%'"
+                        >
+
+                            <div class="donut-center">
+
+                                <strong>
+                                    {{ getTotalVerdicts(profile) }}
+                                </strong>
+
+                                <span>
+                                opportunités
+                            </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEGEND -->
+
+                    <div class="verdict-list">
+
+
+                        <!-- INVESTIR -->
+                        <div class="verdict-row">
+                            <div class="verdict-label">
+                                <span class="legend-dot invest"></span>
+                                <span>
+                                INVESTIR
+                            </span>
+                            </div>
+                            <strong>
+                                {{ profile.stats.investir }}
+                            </strong>
+                            <small>
+                                {{ getVerdictPercentage(profile.stats.investir) }}%
+                            </small>
+                        </div>
+
+                        <!-- FAVORABLE -->
+                        <div class="verdict-row">
+                            <div class="verdict-label">
+                                <span class="legend-dot favorable"></span>
+                                <span>
+                                FAVORABLE
+                            </span>
+                            </div>
+                            <strong>
+                                {{ profile.stats.favorable }}
+                            </strong>
+                            <small>
+                                {{ getVerdictPercentage(profile.stats.favorable) }}%
+                            </small>
+                        </div>
+
+                        <!-- NEGOCIER -->
+                        <div class="verdict-row">
+                            <div class="verdict-label">
+                                <span class="legend-dot negotiate"></span>
+                                <span>
+                                NEGOCIER
+                            </span>
+                            </div>
+                            <strong>
+                                {{ profile.stats.negocier }}
+                            </strong>
+                            <small>
+                                {{ getVerdictPercentage(profile.stats.negocier) }}%
+                            </small>
+                        </div>
+
+
+                        <!-- EVITER -->
+                        <div class="verdict-row">
+                            <div class="verdict-label">
+                                <span class="legend-dot avoid"></span>
+                                <span>
+                                EVITER
+                            </span>
+                            </div>
+                            <strong>
+                                {{ profile.stats.eviter }}
+                            </strong>
+                            <small>
+                                {{ getVerdictPercentage(profile.stats.eviter) }}%
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- BAR CHART -->
+
+                    <div class="bar-chart">
+
+                        <div class="chart-heading">
+                            Évolution des verdicts
+                            <span>30 derniers jours</span>
+                        </div>
+
+                        <div class="bars">
+                            <div class="bar-item">
+                                <div class="bar-value">
+                                    {{ profile.stats.investir }}
+                                </div>
+                                <div
+                                    class="bar invest"
+                                    [style.height.%]="getBarHeight(profile.stats.investir)"
+                                ></div>
+                                <span>INVESTIR</span>
+                            </div>
+
+                            <div class="bar-item">
+                                <div class="bar-value">
+                                    {{ profile.stats.favorable }}
+                                </div>
+                                <div
+                                    class="bar favorable"
+                                    [style.height.%]="getBarHeight(profile.stats.favorable)"
+                                ></div>
+                                <span>FAVORABLE</span>
+                            </div>
+
+                            <div class="bar-item">
+                                <div class="bar-value">
+                                    {{ profile.stats.negocier }}
+                                </div>
+                                <div
+                                    class="bar negotiate"
+                                    [style.height.%]="getBarHeight(profile.stats.negocier)"
+                                ></div>
+                                <span>NEGOCIER</span>
+                            </div>
+
+
+                            <div class="bar-item">
+
+                                <div class="bar-value">
+                                    {{ profile.stats.eviter }}
+                                </div>
+
+                                <div
+                                    class="bar avoid"
+                                    [style.height.%]="getBarHeight(profile.stats.eviter)"
+                                ></div>
+
+                                <span>EVITER</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================= -->
+                <!-- ACTIVITE -->
+                <!-- ========================================= -->
+
+            <section class="dashboard-card activity-card">
+
+                <div class="dashboard-title">
+
+                    <div class="dashboard-title-left">
+
+                        <div class="dashboard-icon purple">
+                            <i class="bi bi-activity"></i>
+                        </div>
+
+                        <h2>
+                            Aperçu de votre activité
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-disabled">
+
+                    <div class="activity-disabled-icon">
+                        <i class="bi bi-bar-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Données d'activité bientôt disponibles
+                        </strong>
+
+                        <span>
+                L'historique de votre activité apparaîtra ici
+                après plusieurs analyses.
+            </span>
+
+                    </div>
+
+                </div>
 
             </section>
 
         }
-
 
     </main>
 

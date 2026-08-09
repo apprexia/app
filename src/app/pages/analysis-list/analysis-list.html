@@ -4,7 +4,7 @@
 
     <!-- CONTENU PRINCIPAL -->
     <main class="main-content" #mainContent>
-        <a class="logout text-info" (click)="logout()">
+        <a class="logout text-apprexia" (click)="logout()">
             <i class="bi bi-power"></i>
         </a>
         <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="more-grid">
 
-                    @for (analysis of filteredAnalyses(); track analysis.id) {
+                    @for (analysis of analyses(); track analysis.id) {
                         <a class="more-card glass-card"
                            [style.animation-delay.ms]="600 + ($index * 150)">
                             <button
@@ -65,20 +65,17 @@
                                     · {{ analysis.surface ? analysis.surface + 'm²' : 'N/A' }}
                                 </div>
 
-                                <div
-                                    class="eyebrow reveal"
-                                    [class.invest]="analysis.verdict === 'INVESTIR'"
-                                    [class.negotiate]="analysis.verdict === 'NEGOCIER'"
-                                    [class.avoid]="analysis.verdict === 'EVITER'"
-                                >
-                                    <span class="dt"></span>
-                                    {{ analysis.verdict }}
+                                <div class="eyebrow reveal" [class.invest]="analysis.verdict === 'INVESTIR'"
+                                     [class.opportunity]="analysis.verdict === 'FAVORABLE'"
+                                     [class.negotiate]="analysis.verdict === 'NEGOCIER'"
+                                     [class.avoid]="analysis.verdict === 'EVITER'"><span
+                                    class="dt"></span> {{ analysis.verdict }}
                                 </div>
 
                                 <span class="recommended-badge">
-            Apprexia Score™
-            <b>{{ analysis.score }}/100</b>
-        </span>
+                                    Apprexia Score™
+                                    <b>{{ analysis.score }}/100</b>
+                                </span>
 
                                 <div class="mc-title">
                                     {{ analysis.title }}

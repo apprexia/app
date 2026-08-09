@@ -4,7 +4,7 @@
 
     <!-- CONTENU PRINCIPAL -->
     <main class="main-content" #mainContent>
-        <a class="logout text-info" (click)="logout()">
+        <a class="logout text-apprexia" (click)="logout()">
             <i class="bi bi-power"></i>
         </a>
         <a class="tm-credit" href="" target="_blank" rel="nofollow noopener">
@@ -13,28 +13,27 @@
         </a>
 
         <section class="slide exiting active" data-section="More templates" data-sub="Mes opportunités">
-            @if (favorites().length > 0) {
-                <div class="slide-inner s-more">
-                    <div class="s-more-head">
-                        <div class="sm-l">
-                            <h2 class="h-display reveal">Mes <span class="grd">favoris</span>
-                            </h2>
+            <div class="slide-inner s-more">
+                <div class="s-more-head">
+                    <div class="sm-l">
+                        <h2 class="h-display reveal">Mes <span class="grd">favoris</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="categories">
+                    @for (category of categories; track category) {
+                        <div
+                            class="eyebrow reveal"
+                            [class.active]="selectedCategory() === category"
+                            (click)="setCategory(category)"
+                        >
+                            <span class="dt"></span>
+                            {{ category }}
                         </div>
-                    </div>
-                    <div class="categories">
-                        @for (category of categories; track category) {
-                            <div
-                                class="eyebrow reveal"
-                                [class.active]="selectedCategory() === category"
-                                (click)="setCategory(category)"
-                            >
-                                <span class="dt"></span>
-                                {{ category }}
-                            </div>
-                        }
-                    </div>
+                    }
+                </div>
+                @if (favorites().length > 0) {
                     <div class="more-grid">
-
                         @for (analysis of filteredAnalyses(); track analysis.id) {
                             <a class="more-card glass-card"
                                [style.animation-delay.ms]="600 + ($index * 150)">
@@ -124,9 +123,10 @@
                                     [disabled]="currentPage === totalPages"></button>
                         </div>
                     </div>
-                </div>
-            } @else {
-            }
+                } @else {
+                    <p>Aucun favori disponible</p>
+                }
+            </div>
         </section>
 
     </main>

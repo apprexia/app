@@ -10,6 +10,59 @@ import { ManualAnalysis } from '../../core/models/manual-analysis.model';
 import { UserService } from '../../core/services/user/user';
 import { ModalService } from '../../core/services/modal/modal';
 
+type PropertyType = 'Maison' | 'Appartement';
+
+interface PropertyFeature {
+    key: PropertyFeatureKey;
+    label: string;
+    types: PropertyType[];
+}
+
+interface PropertyFeatureGroup {
+    title: string;
+    features: PropertyFeature[];
+}
+
+type PropertyFeatureKey =
+    | 'duplex'
+    | 'triplex'
+    | 'loft'
+    | 'terrasse'
+    | 'balcon'
+    | 'loggia'
+    | 'jardin'
+    | 'patio'
+    | 'piscine'
+    | 'jacuzzi'
+    | 'spa'
+    | 'sauna'
+    | 'parking'
+    | 'garage'
+    | 'box'
+    | 'cave'
+    | 'grenier'
+    | 'ascenseur'
+    | 'gardien'
+    | 'digicode'
+    | 'interphone'
+    | 'visiophone'
+    | 'climatisation'
+    | 'cheminee'
+    | 'cuisineEquipee'
+    | 'dressing'
+    | 'buanderie'
+    | 'vueMer'
+    | 'vueMontagne'
+    | 'vuePanoramique'
+    | 'vueDegagee'
+    | 'dernierEtage'
+    | 'traversant'
+    | 'lumineux'
+    | 'calme'
+    | 'renove'
+    | 'standing'
+    | 'prestige';
+
 @Component({
     selector: 'app-modal-form-property',
     imports: [CommonModule, FormsModule],
@@ -96,8 +149,236 @@ export class ModalFormProperty {
             renove: false,
             standing: false,
             prestige: false,
-        }
+        },
     };
+
+    readonly propertyFeatureGroups: PropertyFeatureGroup[] = [
+        {
+            title: 'Type de bien',
+            features: [
+                {
+                    key: 'duplex',
+                    label: 'Duplex',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'triplex',
+                    label: 'Triplex',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'loft',
+                    label: 'Loft',
+                    types: ['Appartement'],
+                },
+            ],
+        },
+
+        {
+            title: 'Extérieurs',
+            features: [
+                {
+                    key: 'terrasse',
+                    label: 'Terrasse',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'balcon',
+                    label: 'Balcon',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'loggia',
+                    label: 'Loggia',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'jardin',
+                    label: 'Jardin',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'patio',
+                    label: 'Patio',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'piscine',
+                    label: 'Piscine',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'jacuzzi',
+                    label: 'Jacuzzi',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'spa',
+                    label: 'Spa',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'sauna',
+                    label: 'Sauna',
+                    types: ['Maison', 'Appartement'],
+                },
+            ],
+        },
+
+        {
+            title: 'Stationnement & dépendances',
+            features: [
+                {
+                    key: 'parking',
+                    label: 'Parking',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'garage',
+                    label: 'Garage',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'box',
+                    label: 'Box',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'cave',
+                    label: 'Cave',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'grenier',
+                    label: 'Grenier',
+                    types: ['Maison', 'Appartement'],
+                },
+            ],
+        },
+
+        {
+            title: 'Équipements',
+            features: [
+                {
+                    key: 'ascenseur',
+                    label: 'Ascenseur',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'gardien',
+                    label: 'Gardien',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'digicode',
+                    label: 'Digicode',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'interphone',
+                    label: 'Interphone',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'visiophone',
+                    label: 'Visiophone',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'climatisation',
+                    label: 'Climatisation',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'cheminee',
+                    label: 'Cheminée',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'cuisineEquipee',
+                    label: 'Cuisine équipée',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'dressing',
+                    label: 'Dressing',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'buanderie',
+                    label: 'Buanderie',
+                    types: ['Maison', 'Appartement'],
+                },
+            ],
+        },
+
+        {
+            title: 'Vue',
+            features: [
+                {
+                    key: 'vueMer',
+                    label: 'Vue mer',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'vueMontagne',
+                    label: 'Vue montagne',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'vuePanoramique',
+                    label: 'Vue panoramique',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'vueDegagee',
+                    label: 'Vue dégagée',
+                    types: ['Maison', 'Appartement'],
+                },
+            ],
+        },
+
+        {
+            title: 'Caractéristiques',
+            features: [
+                {
+                    key: 'dernierEtage',
+                    label: 'Dernier étage',
+                    types: ['Appartement'],
+                },
+                {
+                    key: 'traversant',
+                    label: 'Traversant',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'lumineux',
+                    label: 'Lumineux',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'calme',
+                    label: 'Calme',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'renove',
+                    label: 'Rénové',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'standing',
+                    label: 'Standing',
+                    types: ['Maison', 'Appartement'],
+                },
+                {
+                    key: 'prestige',
+                    label: 'Prestige',
+                    types: ['Maison', 'Appartement'],
+                },
+            ],
+        },
+    ];
 
     constructor() {
         const destroyRef = inject(DestroyRef);
@@ -151,6 +432,10 @@ export class ModalFormProperty {
         this.closed.emit();
     }
 
+    isFeatureVisible(feature: PropertyFeature): boolean {
+        return feature.types.includes(this.form.typeLocal as PropertyType);
+    }
+
     showError(message: string) {
         this.errorMessage.set(message);
 
@@ -174,7 +459,6 @@ export class ModalFormProperty {
     }
 
     submit() {
-
         console.log('FORM:', this.form);
 
         if (!this.validateForm()) {
@@ -183,10 +467,9 @@ export class ModalFormProperty {
 
         this.userService.getMe().subscribe({
             next: (user) => {
-
                 if (user.credits <= 0) {
                     this.showError(
-                        'Vous n\'avez plus de crédits disponibles. Veuillez recharger votre compte.'
+                        "Vous n'avez plus de crédits disponibles. Veuillez recharger votre compte.",
                     );
                     return;
                 }
@@ -201,10 +484,8 @@ export class ModalFormProperty {
             },
 
             error: () => {
-                this.showError(
-                    "Impossible de vérifier vos crédits actuellement."
-                );
-            }
+                this.showError('Impossible de vérifier vos crédits actuellement. Veuillez-vous connecter.');
+            },
         });
     }
 

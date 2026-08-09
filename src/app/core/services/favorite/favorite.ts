@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -8,7 +9,7 @@ import { tap } from 'rxjs';
 export class FavoriteService {
     private favorites = signal<string[]>([]);
 
-    private apiUrl = 'http://localhost:3000/favorites';
+    private apiUrl = `${environment.apiUrl}/favorites`;
 
     constructor(private http: HttpClient) {}
 

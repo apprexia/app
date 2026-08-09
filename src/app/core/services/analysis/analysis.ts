@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Analysis } from '../../models/analysis.model';
 import { PaginatedResponse } from '../../models/paginated-response.model';
 import { ManualAnalysis } from '../../models/manual-analysis.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +11,7 @@ import { ManualAnalysis } from '../../models/manual-analysis.model';
 export class AnalysisService {
     readonly manualAnalysis = signal<ManualAnalysis | null>(null);
     private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000';
+    private apiUrl = environment.apiUrl;
 
     create(url: string) {
         return this.http.post<Analysis>(`${this.apiUrl}/analyses`, {
@@ -29,10 +30,15 @@ export class AnalysisService {
         }>(`${this.apiUrl}/analyses/${id}/status`);
     }
 
-    findAll(page = 1, limit = 10) {
-        return this.http.get<PaginatedResponse<Analysis>>(
-            `${this.apiUrl}/analyses?page=${page}&limit=${limit}&status=COMPLETED`,
-        );
+    findAll(page = 1, limit = 10, verdict?: string) {
+        let url =
+            `${this.apiUrl}/analyses` + `?page=${page}` + `&limit=${limit}` + `&status=COMPLETED`;
+
+        if (verdict) {
+            url += `&verdict=${encodeURIComponent(verdict)}`;
+        }
+
+        return this.http.get<PaginatedResponse<Analysis>>(url);
     }
 
     findOne(id: string) {

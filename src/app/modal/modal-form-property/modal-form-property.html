@@ -60,9 +60,10 @@
                 <div style="margin: 0;" class="animate__animated animate__bounceInLeft">
                     <select class="type" [(ngModel)]="form.sourceSite">
                         <option value="" selected>Site de l'annonce</option>
-                        <option value="leboncoin">Le Bon Coin</option>
                         <option value="paruvendu">Paru Vendu</option>
                         <option value="pap">PAP</option>
+                        <option value="ladresse">L'adresse</option>
+                        <option value="logicimmo">Logic Immo</option>
                         <option value="seloger">Se Loger</option>
                         <option value="orpi">Orpi</option>
                         <option value="century21">Century 21</option>
@@ -78,9 +79,13 @@
 
                     <div class="d-flex">
                         <input type="number" class="etage" placeholder="Pièces" [(ngModel)]="form.pieces">
-                        <input type="number" class="etage" placeholder="Étage" [(ngModel)]="form.etage">
                         <input type="number" class="etage" placeholder="Surface" [(ngModel)]="form.surface">
-                        <input type="number" class="etage" placeholder="Terrain" [(ngModel)]="form.terrain">
+                        @if (form.typeLocal === 'Appartement') {
+                            <input type="number" class="etage" placeholder="Étage" [(ngModel)]="form.etage">
+                        }
+                        @if (form.typeLocal === 'Maison') {
+                            <input type="number" class="etage" placeholder="Terrain" [(ngModel)]="form.terrain">
+                        }
                     </div>
                 </div>
             }
@@ -110,34 +115,33 @@
                         <option>F</option>
                         <option>G</option>
                     </select>
+                    <div class="property-features">
 
+                        <div
+                            class="feature-group"
+                            *ngFor="let group of propertyFeatureGroups"
+                        >
 
-                    <div class="d-flex">
-                        <label class="container">
-                            Balcon
-                            <input type="checkbox" [(ngModel)]="form.propertyFeatures.balcon">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="container">
-                            Parking
-                            <input type="checkbox" [(ngModel)]="form.propertyFeatures.parking">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="container">
-                            Piscine
-                            <input type="checkbox" [(ngModel)]="form.propertyFeatures.piscine">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="container">
-                            Ascenseur
-                            <input type="checkbox" [(ngModel)]="form.propertyFeatures.ascenseur">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="container">
-                            Terrasse
-                            <input type="checkbox" [(ngModel)]="form.propertyFeatures.terrasse">
-                            <span class="checkmark"></span>
-                        </label>
+                            <div class="feature-group-title">
+                                {{ group.title }}
+                            </div>
+
+                            <div class="feature-list">
+                                <ng-container *ngFor="let feature of group.features">
+                                    <label
+                                        class="container"
+                                        *ngIf="isFeatureVisible(feature)"
+                                    >
+                                        {{ feature.label }}
+                                        <input
+                                            type="checkbox"
+                                            [(ngModel)]="form.propertyFeatures[feature.key]"
+                                        />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </ng-container>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }

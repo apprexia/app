@@ -48,7 +48,9 @@
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 80px 32px;
+    padding: 80px 32px 120px;
+    background: radial-gradient(circle at 70% 10%, rgba(102, 90, 255, 0.08), transparent 30% 30%
+    ), #080b16;
 
     .slide {
         position: initial;

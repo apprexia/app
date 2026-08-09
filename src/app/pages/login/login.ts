@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-login',
@@ -10,6 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class Login implements OnInit {
     private router = inject(Router);
+    private apiUrl = environment.apiUrl;
 
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -25,10 +27,10 @@ export class Login implements OnInit {
     }
 
     loginWithGoogle() {
-        window.location.href = 'http://localhost:3000/auth/google';
+        window.location.href = `${environment.apiUrl}/auth/google`;
     }
 
     loginWithX() {
-        window.location.href = 'http://localhost:3000/auth/x';
+        window.location.href = `${environment.apiUrl}/auth/x`;
     }
 }

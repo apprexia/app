@@ -22,5 +22,7 @@ export interface UserStats {
 
     negocier: number;
 
+    favorable: number;
+
     eviter: number;
 }

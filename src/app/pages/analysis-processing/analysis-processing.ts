@@ -154,7 +154,9 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         const poll = () => {
             this.analysisService.getStatus(this.analysisId).subscribe({
                 next: (response) => {
-                    console.log('STATUS:', response.status);
+                    if (response.status === AnalysisStatus.AI_PROCESSING) {
+                        console.log('STATUS:', response.status);
+                    }
 
                     switch (response.status) {
                         case AnalysisStatus.COMPLETED:
@@ -199,7 +201,6 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         this.analysisService.create(url).subscribe({
             next: (response) => {
                 this.analysisId = response.id;
-
                 this.startPolling();
             },
 
