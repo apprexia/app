@@ -45,7 +45,7 @@ $clr-blue: #5a81ff;
     display: flex;
     flex-direction: column;
     z-index: 1102;
-    overflow: hidden;
+    //overflow: hidden;
 
     &:hover {
         opacity: 1;
@@ -343,5 +343,20 @@ input[type="checkbox"] {
 @media (max-width: 500px) {
     .feature-list {
         grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        h1 {
+            font-size: 25px;
+        }
+    }
+
+    .card-body {
+        padding: 0 15px;
+    }
+
+    .error-message {
+        width: 100%;
+        position: initial;
     }
 }
