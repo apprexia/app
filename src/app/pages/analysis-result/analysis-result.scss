@@ -584,21 +584,33 @@ button:disabled {
         margin: 12px 0;
     }
 
+    .card-map {
+        min-height: 600px;
+        padding: 15px;
+    }
+
     .btn-download-pdf {
         justify-content: center;
         margin-bottom: 10px;
+
         .contact-me {
             width: initial;
             font-size: 20px;
             margin: 0 20px 0 0;
+
+            i {
+                margin-right: 10px;
+            }
+
             span {
-                display: none;
+                font-size: 15px;
             }
         }
 
         button {
             width: initial;
             font-size: 23px;
+
             .text {
                 display: none;
             }

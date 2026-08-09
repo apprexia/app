@@ -1,12 +1,14 @@
-<button
-    class="sidebar-toggle"
-    type="button"
-    (click)="toggleSidebar()"
-    aria-label="Ouvrir le menu"
->
-    <i class="bi bi-list"></i>
-</button>
-
+<div class="nav-mobile">
+    <button
+        class="sidebar-toggle"
+        type="button"
+        (click)="toggleSidebar()"
+        aria-label="Ouvrir le menu"
+    >
+        <i class="bi bi-list"></i>
+    </button>
+    <img class="logo-mobile" src="logo2.png" alt="">
+</div>
 @if (opened()) {
     <div
         class="sidebar-overlay"
