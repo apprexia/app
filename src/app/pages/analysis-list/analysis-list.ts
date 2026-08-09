@@ -13,10 +13,11 @@ import { AnalysisService } from '../../core/services/analysis/analysis';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { Analysis } from '../../core/models/analysis.model';
 import { FavoriteService } from '../../core/services/favorite/favorite';
+import { NoContent } from '../../shared/components/no-content/no-content';
 
 @Component({
     selector: 'app-analysis-list',
-    imports: [Sidebar, RouterLink, CurrencyPipe],
+    imports: [Sidebar, RouterLink, CurrencyPipe, NoContent],
     templateUrl: './analysis-list.html',
     styleUrl: './analysis-list.scss',
 })

@@ -1,0 +1,40 @@
+<div class="no-content">
+    <div class="no-content-icon">
+        <div class="no-content-icon-glow"></div>
+
+        <i class="bi" [class]="icon()"></i>
+    </div>
+
+    <div class="no-content-content">
+
+    <span class="no-content-label">
+        <span class="no-content-dot"></span>
+        {{ label() }}
+    </span>
+
+        <h3>
+            {{ title() }}
+
+            @if (highlight()) {
+                <span class="grd">
+                {{ highlight() }}
+            </span>
+            }
+        </h3>
+
+        <p>
+            {{ description() }}
+        </p>
+
+        @if (showAction() && actionLabel() && actionRoute()) {
+            <a
+                class="no-content-action"
+                [routerLink]="actionRoute()"
+            >
+                <span>{{ actionLabel() }}</span>
+                <span class="arrow">&rarr;</span>
+            </a>
+        }
+
+    </div>
+</div>

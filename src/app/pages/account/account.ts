@@ -18,6 +18,12 @@ export class Account implements OnInit {
         private router: Router,
     ) {}
 
+    get welcomeLabel(): string {
+        const hour = new Date().getHours();
+
+        return hour >= 18 ? 'Bonsoir' : 'Bonjour';
+    }
+
     ngOnInit() {
         this.getMe();
     }

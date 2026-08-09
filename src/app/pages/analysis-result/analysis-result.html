@@ -18,11 +18,22 @@
                 <div class="slide-inner s-features">
                     @if (a) {
                         <div class="btn-download-pdf">
-                            <a (click)="contactMe()" class="contact-me">Je souhaite être contacté </a>
-                            <button (click)="downloadReport(a!.id)">
-                                <i class="bi bi-download"></i> Télécharger le rapport
+                            <a (click)="contactMe()" class="contact-me">
+                                <i class="bi bi-telephone-inbound"></i>
+                                <span>Je souhaite être contacté</span>
+                            </a>
+                            <button
+                                (click)="downloadReport(a!.id)"
+                                [disabled]="isDownloading()"
+                            >
+                                @if (!isDownloading()) {
+                                    <i class="bi bi-download"></i>
+                                    <span class="text">Télécharger le rapport</span>
+                                }
+
                                 @if (isDownloading()) {
                                     <span class="loader"></span>
+                                    <span class="text">Génération du rapport...</span>
                                 }
                             </button>
                         </div>

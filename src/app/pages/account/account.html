@@ -39,18 +39,16 @@
                     <div class="profile-info">
 
                     <span class="welcome-label">
-                        Bonjour
+                        {{ welcomeLabel }}
                     </span>
 
                         <h1>
-                            Hello
                             <span>{{ profile.name }}</span>,
                         </h1>
-
-                        <p>
-                            <i class="bi bi-envelope-at"></i>
+                        <div class="eyebrow" style="margin-top: 15px;">
+                            <span class="dt"></span>
                             {{ profile.email }}
-                        </p>
+                        </div>
 
                     </div>
 
@@ -59,20 +57,20 @@
 
                 <!-- PREMIUM CARD -->
 
-<!--                <div class="premium-card">-->
+                <!--                <div class="premium-card">-->
 
-<!--                    <div class="premium-icon">-->
-<!--                        <i class="bi bi-star-fill"></i>-->
-<!--                    </div>-->
+                <!--                    <div class="premium-icon">-->
+                <!--                        <i class="bi bi-star-fill"></i>-->
+                <!--                    </div>-->
 
-<!--                    <div>-->
-<!--                        <strong>Membre Premium</strong>-->
-<!--                        <span>Merci pour votre confiance !</span>-->
-<!--                    </div>-->
+                <!--                    <div>-->
+                <!--                        <strong>Membre Premium</strong>-->
+                <!--                        <span>Merci pour votre confiance !</span>-->
+                <!--                    </div>-->
 
-<!--                    <i class="bi bi-chevron-right"></i>-->
+                <!--                    <i class="bi bi-chevron-right"></i>-->
 
-<!--                </div>-->
+                <!--                </div>-->
 
             </section>
 
@@ -311,33 +309,25 @@
 
 
                 <div class="verdict-content">
-
-
                     <!-- DONUT -->
-
                     <div class="big-donut-wrapper">
-
                         <div
                             class="big-donut"
                             [style.--invest]="getVerdictPercentage(profile.stats.investir) + '%'"
                             [style.--favorable]="getVerdictPercentage(profile.stats.favorable) + '%'"
                             [style.--negotiate]="getVerdictPercentage(profile.stats.negocier) + '%'"
+                            [style.--avoid]="getVerdictPercentage(profile.stats.eviter) + '%'"
                         >
-
                             <div class="donut-center">
-
                                 <strong>
                                     {{ getTotalVerdicts(profile) }}
                                 </strong>
 
                                 <span>
-                                opportunités
-                            </span>
-
+                                    opportunités
+                                </span>
                             </div>
-
                         </div>
-
                     </div>
 
 

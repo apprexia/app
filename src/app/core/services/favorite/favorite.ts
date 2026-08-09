@@ -21,8 +21,14 @@ export class FavoriteService {
         );
     }
 
-    getFavoriteAnalyses(page: number, limit: number) {
-        return this.http.get<any>(`${this.apiUrl}/with-analyses?page=${page}&limit=${limit}`);
+    getFavoriteAnalyses(page: number, limit: number, verdict?: string) {
+        let url = `${this.apiUrl}/with-analyses` + `?page=${page}` + `&limit=${limit}`;
+
+        if (verdict) {
+            url += `&verdict=${encodeURIComponent(verdict)}`;
+        }
+
+        return this.http.get<any>(url);
     }
 
     toggleFavorite(id: string) {

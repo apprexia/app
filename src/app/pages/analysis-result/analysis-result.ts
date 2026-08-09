@@ -364,11 +364,12 @@ export class AnalysisResult implements OnInit {
     }
 
     contactMe() {
-        alert('Cette fonctionnalité n\'est pas encore disponible');
+        alert("Cette fonctionnalité n'est pas encore disponible");
     }
 
     downloadReport(id: string) {
         this.isDownloading.set(true);
+
         this.analysisService
             .downloadReport(id)
             .pipe(finalize(() => this.isDownloading.set(false)))
@@ -378,7 +379,6 @@ export class AnalysisResult implements OnInit {
                 const link = document.createElement('a');
 
                 link.href = url;
-
                 link.download = 'rapport-apprexia.pdf';
 
                 link.click();

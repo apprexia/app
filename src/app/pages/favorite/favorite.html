@@ -20,21 +20,21 @@
                         </h2>
                     </div>
                 </div>
-                <div class="categories">
-                    @for (category of categories; track category) {
-                        <div
-                            class="eyebrow reveal"
-                            [class.active]="selectedCategory() === category"
-                            (click)="setCategory(category)"
-                        >
-                            <span class="dt"></span>
-                            {{ category }}
-                        </div>
-                    }
-                </div>
                 @if (favorites().length > 0) {
+                    <div class="categories">
+                        @for (category of categories; track category) {
+                            <div
+                                class="eyebrow reveal"
+                                [class.active]="selectedCategory() === category"
+                                (click)="setCategory(category)"
+                            >
+                                <span class="dt"></span>
+                                {{ category }}
+                            </div>
+                        }
+                    </div>
                     <div class="more-grid">
-                        @for (analysis of filteredAnalyses(); track analysis.id) {
+                        @for (analysis of favorites(); track analysis.id) {
                             <a class="more-card glass-card"
                                [style.animation-delay.ms]="600 + ($index * 150)">
                                 <button
@@ -68,6 +68,7 @@
                                     <div
                                         class="eyebrow reveal"
                                         [class.invest]="analysis.verdict === 'INVESTIR'"
+                                        [class.favorable]="analysis.verdict === 'FAVORABLE'"
                                         [class.negotiate]="analysis.verdict === 'NEGOCIER'"
                                         [class.avoid]="analysis.verdict === 'EVITER'"
                                     >
@@ -124,7 +125,9 @@
                         </div>
                     </div>
                 } @else {
-                    <p>Aucun favori disponible</p>
+                    <app-no-content icon="bi-heart" label="FAVORIS" title="Aucun bien" highlight="enregistré"
+                                    description="Vous n'avez encore ajouté aucun bien à vos favoris. Enregistrez les annonces qui vous intéressent pour les retrouver rapidement ici."
+                                    actionLabel="Explorer mes analyses" actionRoute="/analyze-list" />
                 }
             </div>
         </section>
