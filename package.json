@@ -1,46 +1,42 @@
 {
-    "name": "apprexia",
-    "version": "0.0.0",
-    "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test",
-        "serve:ssr:apprexia": "node dist/apprexia/server/server.mjs",
-        "deploy:front": "scp -i ~/.ssh/id_ed25519_apprexia_vps -r dist/apprexia/browser/* ubuntu@164.132.243.10:/tmp/apprexia/"
-    },
-    "private": true,
-    "packageManager": "npm@11.13.0",
-    "dependencies": {
-        "@angular/common": "^22.0.0",
-        "@angular/compiler": "^22.0.0",
-        "@angular/core": "^22.0.0",
-        "@angular/forms": "^22.0.0",
-        "@angular/platform-browser": "^22.0.0",
-        "@angular/platform-server": "^22.0.0",
-        "@angular/router": "^22.0.0",
-        "@angular/ssr": "^22.0.0",
-        "@jsverse/transloco": "^8.4.0",
-        "animate.css": "^4.1.1",
-        "apexcharts": "^5.16.0",
-        "bootstrap-icons": "^1.13.1",
-        "express": "^5.1.0",
-        "leaflet": "^1.9.4",
-        "ng-apexcharts": "^2.4.0",
-        "rxjs": "~7.8.0",
-        "tslib": "^2.3.0"
-    },
-    "devDependencies": {
-        "@angular/build": "^22.0.0",
-        "@angular/cli": "^22.0.0",
-        "@angular/compiler-cli": "^22.0.0",
-        "@types/express": "^5.0.1",
-        "@types/leaflet": "^1.9.21",
-        "@types/node": "^20.17.19",
-        "jsdom": "^28.0.0",
-        "prettier": "^3.8.1",
-        "typescript": "~6.0.2",
-        "vitest": "^4.0.8"
-    }
+        "name": "apprexia",
+        "version": "0.0.0",
+        "scripts": {
+                "ng": "ng",
+                "start": "ng serve",
+                "build": "ng build",
+                "watch": "ng build --watch --configuration development",
+                "test": "ng test",
+                "deploy:front": "scp -i ~/.ssh/id_ed25519_apprexia_vps -r dist/apprexia/browser/* ubuntu@164.132.243.10:/tmp/apprexia/"
+        },
+        "private": true,
+        "packageManager": "npm@11.13.0",
+        "dependencies": {
+                "@angular/common": "^22.0.0",
+                "@angular/compiler": "^22.0.0",
+                "@angular/core": "^22.0.0",
+                "@angular/forms": "^22.0.0",
+                "@angular/platform-browser": "^22.0.0",
+                "@angular/router": "^22.0.0",
+                "@angular/service-worker": "^22.0.1",
+                "@jsverse/transloco": "^8.4.0",
+                "animate.css": "^4.1.1",
+                "apexcharts": "^5.16.0",
+                "bootstrap-icons": "^1.13.1",
+                "leaflet": "^1.9.4",
+                "ng-apexcharts": "^2.4.0",
+                "rxjs": "~7.8.0",
+                "tslib": "^2.3.0"
+        },
+        "devDependencies": {
+                "@angular/build": "^22.0.0",
+                "@angular/cli": "^22.0.0",
+                "@angular/compiler-cli": "^22.0.0",
+                "@types/leaflet": "^1.9.21",
+                "@types/node": "^20.17.19",
+                "jsdom": "^28.0.0",
+                "prettier": "^3.8.1",
+                "typescript": "~6.0.2",
+                "vitest": "^4.0.8"
+        }
 }

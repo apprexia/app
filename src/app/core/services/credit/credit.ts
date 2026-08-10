@@ -11,7 +11,6 @@ export class CreditService {
     constructor(private http: HttpClient) {}
 
     createCheckout(packageId: string) {
-        console.log(packageId);
         return this.http.post<{
             checkoutUrl: string;
         }>(`${this.apiUrl}/credits/checkout`, {

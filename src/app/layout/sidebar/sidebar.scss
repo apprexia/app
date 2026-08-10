@@ -189,19 +189,12 @@
 
     &:hover {
         background: rgba(132, 0, 122, .07);
-
         color: var(--pink);
     }
 
     &.active {
-        background: linear-gradient(
-                135deg,
-                rgba(132, 0, 122, .12),
-                rgba(234, 2, 164, .12)
-        );
-
-        color: var(--pink);
-
+        background: linear-gradient(135deg, rgba(132, 0, 122, 0.12), rgb(234 2 164 / 48%));
+        color: rgb(236 72 153);
         font-weight: 600;
     }
 }

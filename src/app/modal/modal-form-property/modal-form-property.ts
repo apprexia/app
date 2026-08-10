@@ -459,8 +459,6 @@ export class ModalFormProperty {
     }
 
     submit() {
-        console.log('FORM:', this.form);
-
         if (!this.validateForm()) {
             return;
         }

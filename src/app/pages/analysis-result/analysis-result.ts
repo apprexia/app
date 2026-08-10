@@ -12,12 +12,21 @@ import { HttpClient } from '@angular/common/http';
 import { finalize } from 'rxjs';
 import { CircularScore } from '../../shared/components/circular-score/circular-score';
 import { PriceGauge } from '../../shared/components/price-gauge/price-gauge';
+import { TitleInfoTooltip } from '../../shared/components/title-info-tooltip/title-info-tooltip';
 
 @Component({
     selector: 'app-analysis-result',
     templateUrl: './analysis-result.html',
     styleUrl: './analysis-result.scss',
-    imports: [Sidebar, ModalError, CircularScore, PriceGauge, DecimalPipe, CurrencyPipe],
+    imports: [
+        Sidebar,
+        ModalError,
+        CircularScore,
+        PriceGauge,
+        DecimalPipe,
+        CurrencyPipe,
+        TitleInfoTooltip,
+    ],
 })
 export class AnalysisResult implements OnInit {
     @Input() isOpen = false;

@@ -1,0 +1,70 @@
+.info-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.info-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.info-icon {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: help;
+    transition: color 0.2s ease;
+}
+
+.info-wrapper:hover .info-icon {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.info-tooltip {
+    position: absolute;
+    z-index: 1000;
+
+    bottom: calc(100% + 10px);
+    left: 50%;
+
+    width: 250px;
+    padding: 12px 14px;
+
+    transform: translateX(-50%) translateY(5px);
+
+    background: rgba(20, 20, 25, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.info-tooltip strong {
+    display: block;
+    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+.info-wrapper:hover .info-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}

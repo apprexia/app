@@ -66,7 +66,6 @@ export class CreditsStore {
     buy(packageId: string) {
         this.creditService.createCheckout(packageId).subscribe({
             next: (response) => {
-                console.log(response);
                 window.location.href = response.checkoutUrl;
             },
         });

@@ -154,7 +154,12 @@
                                     {{ a.estimatedValueHigh | number:'1.0-0' }}
                                     <span class="unit">€</span>
                                 </div>
-                                <h5 class="text-secondary"> VALEUR DE REFERENCE DVF</h5>
+                                <app-title-info-tooltip
+                                    class="text-secondary"
+                                    label="VALEUR DE RÉFÉRENCE DVF"
+                                    text="La valeur de référence DVF correspond à une estimation basée sur les prix de ventes immobilières réellement enregistrées dans le secteur."
+                                    formula="Prix de vente observés ÷ surface"
+                                />
                                 <div class="metric-num grd">
                                     {{ a.dvfReferenceValue | number:'1.0-0' }}
                                     <span class="unit">€</span>
@@ -225,7 +230,12 @@
                                     </div>
                                 </div>
                                 <!-- Rendement principal -->
-                                <h5 class="text-danger">RENDEMENT BRUT</h5>
+                                <app-title-info-tooltip
+                                    class="text-danger"
+                                    label="RENDEMENT BRUT"
+                                    text="Le rendement brut estime la rentabilité locative du bien avant les charges, impôts et frais."
+                                    formula="Loyers annuels ÷ prix d'achat × 100"
+                                />
                                 <div class="metric-num grd">
                                     {{ a.grossYield ?? '-' }}
                                     @if (a.grossYield) {
@@ -262,14 +272,24 @@
 
 
                                 @if (a.rentPerSquareMeter) {
-                                    <h5 class="text-danger">PRIX LOCATIF</h5>
+                                    <app-title-info-tooltip
+                                        class="text-danger"
+                                        label="PRIX LOCATIF"
+                                        text="Le prix locatif correspond au loyer mensuel estimé par mètre carré pour un bien similaire dans le secteur."
+                                        formula="Loyer mensuel estimé ÷ surface"
+                                    />
                                     <div class="metric-num grd estimated-value">
                                         {{ a.rentPerSquareMeter.toFixed(2) }}
                                         <span class="unit">€/m²</span>
                                     </div>
                                 }
                                 @if (a.rentConfidence) {
-                                    <h5 class="text-danger">FIABILITE DE L'ESTIMATION</h5>
+                                    <app-title-info-tooltip
+                                        class="text-danger"
+                                        label="FIABILITÉ DE L'ESTIMATION"
+                                        text="Cet indicateur mesure le niveau de confiance accordé à l'estimation en fonction de la quantité et de la qualité des données disponibles."
+                                        formula="Données disponibles + qualité des comparables + cohérence des résultats"
+                                    />
                                     <div style="display: flex; justify-content: center; margin-top: 15px">
                                         <app-circular-score [value]="a.rentConfidence * 100" [showMax]="false"
                                                             [showSuffix]="true" suffix="%" label="Fiabilité">

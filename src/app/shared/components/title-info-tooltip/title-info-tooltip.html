@@ -1,0 +1,14 @@
+<h5 class="info-title" [class]="class()">
+    {{ label() }}
+    <span class="info-wrapper">
+        <i class="bi bi-info-circle info-icon"></i>
+
+        <span class="info-tooltip">
+            {{ text() }}
+
+            @if (formula()) {
+                <strong>{{ formula() }}</strong>
+            }
+        </span>
+    </span>
+</h5>

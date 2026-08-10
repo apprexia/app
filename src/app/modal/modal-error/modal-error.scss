@@ -69,3 +69,11 @@ $clr-red: #fe6c9b;
         }
     }
 }
+
+@media (max-width: 500px) {
+    .red {
+        .icon {
+            width: 4rem;
+        }
+    }
+}

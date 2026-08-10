@@ -18,10 +18,10 @@
     --glass-blur: blur(40px);
     --indigo: #6366f1;
     --indigo-soft: #a5b4fc;
-    --pink: #ec4899;
+    --pink: rgba(236, 72, 153, 1);
     --pink-soft: #f9a8d4;
     --cyan: #22d3ee;
-    --green: #4ade80;
+    --green: #4fde4a;
     --amber: #fbbf24;
     --grad-a: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #ec4899 100%);
     --grad-b: linear-gradient(135deg, #6366f1, #ec4899);
@@ -2195,7 +2195,9 @@ html, body {
         position: static;
         transform: none;
         margin-top: 24px;
-        display: block
+        display: block;
+        white-space: wrap;
+        line-height: 13px;
     }
     .brand {
         top: 18px;

@@ -119,14 +119,41 @@
 
 .invest {
     color: var(--green);
+    border-color: #68b16b;
+    background: rgb(76 175 80 / 14%);
+}
+
+.favorable {
+    color: #7ad527;
+    border-color: #9de061;
+    background: rgb(147 232 34 / 14%);
+
+    .dt {
+        background: #7ad527;
+        box-shadow: 0 0 10px #7ad527;
+    }
 }
 
 .negotiate {
-    color: var(--amber);
+    color: #fbbf24;
+    background: #fbbf241c;
+    border-color: #ffc83c;
+
+    .dt {
+        background: #fbbf24;
+        box-shadow: 0 0 10px #fbbf24;
+    }
 }
 
 .avoid {
     color: red;
+    border-color: #c24141;
+    background: #ff00001f;
+
+    .dt {
+        background: red;
+        box-shadow: 0 0 10px red;
+    }
 }
 
 .recommended-badge {

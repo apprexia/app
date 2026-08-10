@@ -31,7 +31,6 @@ export class Account implements OnInit {
     getMe() {
         this.userService.getMe().subscribe({
             next: (user: UserProfile) => {
-                console.log(user);
                 this.user.set(user);
             },
 
