@@ -59,22 +59,27 @@ export class AnalysisResult implements OnInit {
             {
                 label: 'Accessibilité',
                 score: breakdown.accessibility,
+                info: 'Évalue la facilité d’accès à la commune et sa proximité avec les principaux axes routiers, transports et pôles d’activité.',
             },
             {
                 label: 'Immobilier',
                 score: breakdown.realEstate,
+                info: 'Évalue l’attractivité du marché immobilier local, notamment les prix, la demande et la dynamique du marché.',
             },
             {
                 label: 'Environnement',
                 score: breakdown.environment,
+                info: 'Évalue la qualité du cadre de vie, notamment l’environnement, les espaces verts, les nuisances et les équipements à proximité.',
             },
             {
                 label: 'Démographie',
                 score: breakdown.demographics,
+                info: 'Évalue la dynamique démographique de la commune et les caractéristiques de sa population.',
             },
             {
                 label: 'Fiscalité',
                 score: breakdown.taxation,
+                info: 'Évalue le niveau de fiscalité locale et son impact potentiel sur l’attractivité de la commune.',
             },
         ];
     }

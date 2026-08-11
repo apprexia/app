@@ -213,7 +213,8 @@ button:disabled {
 
 .map-grid {
     display: grid;
-    grid-template-columns: 25% 25% 1fr;
+    grid-template-columns: 1fr;
+    min-height: 550px;
     gap: 20px;
     align-items: stretch;
 }
@@ -472,6 +473,144 @@ button:disabled {
 
 .score-header strong {
     font-size: 14px;
+}
+
+.score-label {
+    display: flex;
+
+    span {
+        margin-right: 10px;
+    }
+}
+
+.energy-table {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.energy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.energy-label {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.energy-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.energy-description {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.energy-badge {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.dpe-a {
+    background: #009639;
+    color: white;
+}
+
+.dpe-b {
+    background: #52b947;
+    color: white;
+}
+
+.dpe-c {
+    background: #b7d334;
+    color: white;
+}
+
+.dpe-d {
+    background: #ffd500;
+    color: #222;
+}
+
+.dpe-e {
+    background: #f5a623;
+    color: white;
+}
+
+.dpe-f {
+    background: #e85d2a;
+    color: white;
+}
+
+.dpe-g {
+    background: #d71920;
+    color: white;
+}
+
+.ges-a {
+    background: #00a99d;
+    color: white;
+}
+
+.ges-b {
+    background: #00a6c7;
+    color: white;
+}
+
+.ges-c {
+    background: #008dcc;
+    color: white;
+}
+
+.ges-d {
+    background: #0074b8;
+    color: white;
+}
+
+.ges-e {
+    background: #005b9a;
+    color: white;
+}
+
+.ges-f {
+    background: #004477;
+    color: white;
+}
+
+.ges-g {
+    background: #002f5f;
+    color: white;
+}
+
+.energy-comment {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.energy-comment i {
+    margin-top: 2px;
+    opacity: 0.7;
 }
 
 

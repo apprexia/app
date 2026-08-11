@@ -1,5 +1,22 @@
 import { CommuneAnalysis, CommuneContext } from './commune-analysis.model';
 
+export interface AnalysisEngine {
+    score: number;
+    verdict: Verdict;
+    confidence: number;
+    marketPosition: MarketPosition;
+
+    breakdown: {
+        opportunity: number;
+        risk: number;
+        yield: number;
+        energy: number;
+        amenities: number;
+        confidence: number;
+        liquidity: number;
+    };
+}
+
 export interface Analysis {
     id: string;
     userId: string;
@@ -17,6 +34,9 @@ export interface Analysis {
 
     rooms: number | null;
     surface: number | null;
+
+    dpe: string | null;
+    ges: string | null;
 
     score: number | null;
     scoreExplanation: string | null;
@@ -64,6 +84,9 @@ export interface Analysis {
 
     // Amenities
     amenities: AmenityResult | null;
+
+    // Moteur Apprexia
+    engine: AnalysisEngine | null;
 
     // Description
     description: string | null;

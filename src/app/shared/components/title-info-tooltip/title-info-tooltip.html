@@ -1,9 +1,19 @@
 <h5 class="info-title" [class]="class()">
-    {{ label() }}
-    <span class="info-wrapper">
+
+    @if (label()) {
+        <span>{{ label() }}</span>
+    }
+
+    <span
+        class="info-wrapper"
+        (click)="toggleTooltip($event)"
+    >
         <i class="bi bi-info-circle info-icon"></i>
 
-        <span class="info-tooltip">
+        <span
+            class="info-tooltip"
+            [class.visible]="isVisible()"
+        >
             {{ text() }}
 
             @if (formula()) {
@@ -11,4 +21,5 @@
             }
         </span>
     </span>
+
 </h5>

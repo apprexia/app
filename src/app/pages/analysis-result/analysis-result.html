@@ -420,8 +420,102 @@
 
                         </div>
                     </div>
-                    <!-- MAP -->
-                    <div class="map-grid">
+                    <div class="feature-grid-bottom">
+                        <div class="feature glass-card reveal">
+
+                            <div style="display:flex;align-items:center">
+                                <div class="f-ic icon-success">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+
+                                <h2 class="text-success" style="margin-left:10px">
+                                    Performance énergétique
+                                </h2>
+                            </div>
+
+                            <div class="energy-table">
+
+                                <div class="energy-row">
+
+                                    <div class="energy-label">
+                                        <span class="energy-title">DPE</span>
+                                        <span class="energy-description">
+                    Consommation énergétique
+                </span>
+                                    </div>
+
+                                    <div class="energy-badge"
+                                         [class.dpe-a]="a.dpe === 'A'"
+                                         [class.dpe-b]="a.dpe === 'B'"
+                                         [class.dpe-c]="a.dpe === 'C'"
+                                         [class.dpe-d]="a.dpe === 'D'"
+                                         [class.dpe-e]="a.dpe === 'E'"
+                                         [class.dpe-f]="a.dpe === 'F'"
+                                         [class.dpe-g]="a.dpe === 'G'">
+                                        {{ a.dpe || 'N/A' }}
+                                    </div>
+
+                                </div>
+
+                                <div class="energy-row">
+
+                                    <div class="energy-label">
+                                        <span class="energy-title">GES</span>
+                                        <span class="energy-description">
+                    Émissions de gaz à effet de serre
+                </span>
+                                    </div>
+
+                                    <div class="energy-badge"
+                                         [class.ges-a]="a.ges === 'A'"
+                                         [class.ges-b]="a.ges === 'B'"
+                                         [class.ges-c]="a.ges === 'C'"
+                                         [class.ges-d]="a.ges === 'D'"
+                                         [class.ges-e]="a.ges === 'E'"
+                                         [class.ges-f]="a.ges === 'F'"
+                                         [class.ges-g]="a.ges === 'G'">
+                                        {{ a.ges || 'N/A' }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="energy-comment">
+                                <i class="bi bi-info-circle"></i>
+
+                                @if (a.dpe === 'A' || a.dpe === 'B') {
+                                    <span>
+                                        Excellente performance énergétique, avec une consommation maîtrisée.
+                                    </span>
+                                } @else if (a.dpe === 'C') {
+                                    <span>
+                                        Bonne performance énergétique. Le bien présente une consommation
+                                        raisonnable et ne constitue pas un point de vigilance majeur.
+                                    </span>
+                                } @else if (a.dpe === 'D') {
+                                    <span>
+                                        Performance énergétique moyenne. Des améliorations peuvent être
+                                        envisagées pour réduire les consommations.
+                                    </span>
+                                } @else if (a.dpe === 'E') {
+                                    <span>
+                                        Performance énergétique faible. Des travaux d'amélioration peuvent
+                                        être à prévoir à moyen terme.
+                                    </span>
+                                } @else if (a.dpe === 'F' || a.dpe === 'G') {
+                                    <span>
+                                        Performance énergétique faible à très faible. Le bien peut nécessiter
+                                        des travaux importants de rénovation énergétique.
+                                    </span>
+                                } @else {
+                                    <span>
+                                        Informations énergétiques indisponibles pour ce bien.
+                                    </span>
+                                }
+                            </div>
+
+                        </div>
                         <!-- A PROXIMITE -->
                         <div class="feature glass-card reveal">
 
@@ -562,7 +656,15 @@
                                         @for (item of communeBreakdown; track item.label) {
                                             <div class="score-bar-item">
                                                 <div class="score-header">
-                                                    <span>{{ item.label }}</span>
+
+                                                    <div class="score-label">
+                                                        <span>{{ item.label }}</span>
+
+                                                        <app-title-info-tooltip
+                                                            [text]="item.info"
+                                                        />
+                                                    </div>
+
                                                     <strong>{{ item.score }}/20</strong>
                                                 </div>
 
@@ -634,6 +736,9 @@
                                 }
                             </div>
                         </div>
+                    </div>
+                    <!-- MAP -->
+                    <div class="map-grid">
                         <div class="feature glass-card reveal card-map">
                             @if (!errorMessage()) {
                                 <div id="analysis-map"></div>
@@ -652,6 +757,7 @@
                                 </div>
                             }
                         </div>
+
                     </div>
                 </div>
             </section>
