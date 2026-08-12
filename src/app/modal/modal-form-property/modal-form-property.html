@@ -105,16 +105,28 @@
                         <option value="à_rafraîchir">À rafraîchir</option>
                         <option value="à_rénover">À rénover</option>
                     </select>
-                    <select class="dpe" [(ngModel)]="form.dpe">
-                        <option value="">DPE</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                        <option>D</option>
-                        <option>E</option>
-                        <option>F</option>
-                        <option>G</option>
-                    </select>
+                    <div class="d-flex">
+                        <select class="dpe" [(ngModel)]="form.dpe">
+                            <option value="">DPE</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>G</option>
+                        </select>
+                        <select class="ges" [(ngModel)]="form.ges">
+                            <option value="">GES</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>G</option>
+                        </select>
+                    </div>
                     <div class="property-features">
 
                         <div

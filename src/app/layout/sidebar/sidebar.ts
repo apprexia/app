@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,13 +9,20 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-
+    private platformId = inject(PLATFORM_ID);
     protected opened = signal(false);
-
     // Desktop : sidebar réduite ou développée
     protected collapsed = signal(false);
 
     constructor(private router: Router) {}
+
+    isAuthenticated(): boolean {
+        if (!isPlatformBrowser(this.platformId)) {
+            return false;
+        }
+
+        return !!localStorage.getItem('token');
+    }
 
     toggleSidebar(): void {
         this.opened.update((v) => !v);

@@ -102,22 +102,32 @@
                 routerLink="/analyze-list"
                 routerLinkActive="active"
                 class="sidebar__item"
+                [class.sidebar__item--locked]="!isAuthenticated()"
                 title="Mes analyses"
                 (click)="closeSidebar()"
             >
                 <i class="bi bi-clock-history"></i>
                 <span>Mes analyses</span>
+
+                @if (!isAuthenticated()) {
+                    <i class="bi bi-lock sidebar__lock"></i>
+                }
             </a>
 
             <a
                 routerLink="/favorites"
                 routerLinkActive="active"
                 class="sidebar__item"
+                [class.sidebar__item--locked]="!isAuthenticated()"
                 title="Favoris"
                 (click)="closeSidebar()"
             >
                 <i class="bi bi-heart"></i>
                 <span>Favoris</span>
+
+                @if (!isAuthenticated()) {
+                    <i class="bi bi-lock sidebar__lock"></i>
+                }
             </a>
 
         </div>
@@ -138,22 +148,32 @@
                 routerLink="/account"
                 routerLinkActive="active"
                 class="sidebar__item"
+                [class.sidebar__item--locked]="!isAuthenticated()"
                 title="Mon compte"
                 (click)="closeSidebar()"
             >
                 <i class="bi bi-person"></i>
                 <span>Mon compte</span>
+
+                @if (!isAuthenticated()) {
+                    <i class="bi bi-lock sidebar__lock"></i>
+                }
             </a>
 
             <a
                 routerLink="/credits"
                 routerLinkActive="active"
                 class="sidebar__item"
+                [class.sidebar__item--locked]="!isAuthenticated()"
                 title="Apprexia Store"
                 (click)="closeSidebar()"
             >
                 <i class="bi bi-shop-window"></i>
                 <span>Apprexia Store</span>
+
+                @if (!isAuthenticated()) {
+                    <i class="bi bi-lock sidebar__lock"></i>
+                }
             </a>
 
         </div>
@@ -229,10 +249,14 @@
         <a
             class="sidebar__item sidebar__logout"
             title="Déconnexion"
+            [class.sidebar__item--locked]="!isAuthenticated()"
             (click)="logout()"
         >
             <i class="bi bi-power"></i>
             <span>Déconnexion</span>
+            @if (!isAuthenticated()) {
+                <i class="bi bi-lock sidebar__lock"></i>
+            }
         </a>
 
     </div>

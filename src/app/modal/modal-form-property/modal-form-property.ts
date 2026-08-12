@@ -101,6 +101,7 @@ export class ModalFormProperty {
         etage: null as number | null,
 
         dpe: '',
+        ges: '',
         sourceSite: '',
 
         propertyFeatures: {
@@ -538,6 +539,7 @@ export class ModalFormProperty {
             etat: this.form.etat,
 
             dpe: this.form.dpe,
+            ges: this.form.ges,
 
             propertyFeatures: this.form.propertyFeatures,
 

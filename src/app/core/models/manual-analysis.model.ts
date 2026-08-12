@@ -25,6 +25,8 @@ export interface ManualAnalysis {
 
     dpe: string;
 
+    ges: string;
+
     sourceSite: string;
 
     propertyFeatures: PropertyFeatures;
