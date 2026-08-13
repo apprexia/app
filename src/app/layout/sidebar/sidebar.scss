@@ -145,7 +145,7 @@
 ========================================================= */
 
 .sidebar__item {
-    min-height: 46px;
+    min-height: 35px;
 
     display: flex;
     align-items: center;
@@ -308,7 +308,7 @@
     .sidebar__item {
         justify-content: center;
         gap: 0;
-        padding: 11px;
+        padding: 7px 11px;
     }
 
     .sidebar__item span {
