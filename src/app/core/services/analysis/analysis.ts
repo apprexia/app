@@ -4,6 +4,7 @@ import { Analysis } from '../../models/analysis.model';
 import { PaginatedResponse } from '../../models/paginated-response.model';
 import { ManualAnalysis } from '../../models/manual-analysis.model';
 import { environment } from '../../../../environments/environment';
+import { LinkPreviewMetadata } from '../../models/link-preview-metadata';
 
 @Injectable({
     providedIn: 'root',
@@ -13,10 +14,31 @@ export class AnalysisService {
     private http = inject(HttpClient);
     private apiUrl = environment.apiUrl;
 
-    create(url: string) {
+    create(url: string, device: 'mobile' | 'desktop', linkPreview?: LinkPreviewMetadata) {
         return this.http.post<Analysis>(`${this.apiUrl}/analyses`, {
             url,
+            device,
+            linkPreview,
         });
+    }
+
+    getLinkPreview(url: string) {
+        return this.http.get<LinkPreviewMetadata>('https://api.linkpreview.net', {
+            params: {
+                key: environment.linkPreviewApiKey,
+                q: url,
+            },
+        });
+    }
+
+    isLeboncoinUrl(url: string): boolean {
+        try {
+            const hostname = new URL(url).hostname.toLowerCase();
+
+            return hostname === 'leboncoin.fr' || hostname.endsWith('.leboncoin.fr');
+        } catch {
+            return false;
+        }
     }
 
     createManual(data: ManualAnalysis) {

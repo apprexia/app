@@ -5,12 +5,15 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { AnalysisService } from '../../core/services/analysis/analysis';
 import { AnalysisStatus } from '../../core/enums/analysis-status.enum';
+import { LinkPreviewMetadata } from '../../core/models/link-preview-metadata';
 
 interface Step {
     title: string;
     description: string;
     icon: string;
 }
+
+type AnalysisDevice = 'mobile' | 'desktop';
 
 @Component({
     selector: 'app-analysis-processing',
@@ -54,7 +57,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         {
             title: 'Rapport & recommandation',
             description:
-                'Ouverture de l\'annonce. Calcul du Score Apprexia™, estimation de valeur et verdict final : Investir, Négocier ou Éviter.',
+                'Lecture de l\'annonce… Score Apprexia™, estimation de valeur et positionnement marché. Veuillez patienter, votre verdict final sera disponible dans quelques secondes.',
             icon: 'bi-award',
         },
     ];
@@ -135,9 +138,13 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             return;
         }
 
-        this.runAnalysis(url);
+        const device = this.getDeviceType();
 
-        // Etapes 1 à 4 uniquement
+        console.log('📱 ANALYSIS DEVICE:', device);
+
+        this.runAnalysis(url, device);
+
+        // Étapes 1 à 4 uniquement
         for (let index = 0; index < this.steps.length - 1; index++) {
             const timeout = setTimeout(
                 () => {
@@ -197,14 +204,49 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         poll();
     }
 
-    private runAnalysis(url: string): void {
-        this.analysisService.create(url).subscribe({
+    private runAnalysis(url: string, device: 'mobile' | 'desktop'): void {
+        if (this.analysisService.isLeboncoinUrl(url)) {
+            this.analysisService.getLinkPreview(url).subscribe({
+                next: (preview) => {
+                    this.createAnalysis(url, device, preview);
+                },
+
+                error: (error) => {
+                    console.warn('⚠️ LinkPreview échoué → analyse classique', error);
+
+                    this.createAnalysis(url, device);
+                },
+            });
+
+            return;
+        }
+
+        // Autres sites
+        this.createAnalysis(url, device);
+    }
+
+    private createAnalysis(
+        url: string,
+        device: 'mobile' | 'desktop',
+        linkPreview?: LinkPreviewMetadata,
+    ): void {
+
+        this.analysisService.create(
+            url,
+            device,
+            linkPreview,
+        ).subscribe({
             next: (response) => {
                 this.analysisId = response.id;
                 this.startPolling();
             },
 
-            error: console.error,
+            error: (error) => {
+                console.error(
+                    'Erreur création analyse:',
+                    error,
+                );
+            },
         });
     }
 
@@ -241,5 +283,18 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         }
 
         return `Etape ${index + 1} · En attente`;
+    }
+
+    private getDeviceType(): AnalysisDevice {
+        if (!isPlatformBrowser(this.platformId)) {
+            return 'desktop';
+        }
+
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        const isMobile =
+            /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
+
+        return isMobile ? 'mobile' : 'desktop';
     }
 }
