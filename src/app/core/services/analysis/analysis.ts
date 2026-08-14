@@ -13,9 +13,10 @@ export class AnalysisService {
     private http = inject(HttpClient);
     private apiUrl = environment.apiUrl;
 
-    create(url: string) {
+    create(url: string, device: 'mobile' | 'desktop') {
         return this.http.post<Analysis>(`${this.apiUrl}/analyses`, {
             url,
+            device,
         });
     }
 

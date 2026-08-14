@@ -12,6 +12,8 @@ interface Step {
     icon: string;
 }
 
+type AnalysisDevice = 'mobile' | 'desktop';
+
 @Component({
     selector: 'app-analysis-processing',
     imports: [RouterLink],
@@ -135,7 +137,11 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             return;
         }
 
-        this.runAnalysis(url);
+        const device = this.getDeviceType();
+
+        console.log('📱 ANALYSIS DEVICE:', device);
+
+        this.runAnalysis(url, device);
 
         // Etapes 1 à 4 uniquement
         for (let index = 0; index < this.steps.length - 1; index++) {
@@ -197,8 +203,8 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         poll();
     }
 
-    private runAnalysis(url: string): void {
-        this.analysisService.create(url).subscribe({
+    private runAnalysis(url: string, device: 'mobile' | 'desktop'): void {
+        this.analysisService.create(url, device).subscribe({
             next: (response) => {
                 this.analysisId = response.id;
                 this.startPolling();
@@ -241,5 +247,18 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         }
 
         return `Etape ${index + 1} · En attente`;
+    }
+
+    private getDeviceType(): AnalysisDevice {
+        if (!isPlatformBrowser(this.platformId)) {
+            return 'desktop';
+        }
+
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        const isMobile =
+            /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
+
+        return isMobile ? 'mobile' : 'desktop';
     }
 }
