@@ -2,6 +2,12 @@
     will-change: transform;
 }
 
+.nav {
+    top: 33px;
+    right: 81px;
+    z-index: 1000;
+}
+
 .s-cover-meta {
     gap: 10px;
 }
@@ -23,4 +29,28 @@
     margin-top: auto;
     cursor: pointer;
     font-weight: 500
+}
+
+@media (max-width: 1400px) {
+    .nav {
+        top: 14px !important;
+        right: 78px;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 960px) {
+    .nav {
+        top: 68px !important;
+        right: 35px;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav {
+        top: 80px !important;
+        right: 35px;
+        gap: 5px;
+    }
 }

@@ -1,40 +1,54 @@
-    import { Component, inject } from '@angular/core';
-    import { Router, RouterLink } from '@angular/router';
-    import { FormsModule } from '@angular/forms';
-    import { ModalError } from '../../modal/modal-error/modal-error';
-    import { ModalFormProperty } from '../../modal/modal-form-property/modal-form-property';
-    import { ModalService } from '../../core/services/modal/modal';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ModalError } from '../../modal/modal-error/modal-error';
+import { ModalFormProperty } from '../../modal/modal-form-property/modal-form-property';
+import { ModalService } from '../../core/services/modal/modal';
+import { Header } from '../../layout/header/header';
 
-    @Component({
-        selector: 'app-analyzis-input',
-        imports: [RouterLink, FormsModule, ModalError, ModalFormProperty],
-        templateUrl: './analyzis-input.html',
-        styleUrl: './analyzis-input.scss',
-    })
-    export class AnalyzisInput {
-        modalService = inject(ModalService);
-        url = '';
-        loading = false;
-        isOpenForm = false;
-        isOpen = this.modalService.isOpen;
-        titleError = this.modalService.title;
-        messageError = this.modalService.message;
+@Component({
+    selector: 'app-analyzis-input',
+    imports: [FormsModule, ModalError, ModalFormProperty, Header],
+    templateUrl: './analyzis-input.html',
+    styleUrl: './analyzis-input.scss',
+})
+export class AnalyzisInput {
+    modalService = inject(ModalService);
 
-        constructor(private router: Router) {}
+    url = '';
+    loading = false;
+    isOpenForm = false;
 
-        openModalForm() {
-            this.isOpenForm = true;
-        }
+    isOpen = this.modalService.isOpen;
+    titleError = this.modalService.title;
+    messageError = this.modalService.message;
 
-        submit() {
-            if (!this.url.trim()) {
-                return;
-            }
+    // IMPORTANT
+    isScrolled = signal(false);
 
-            this.router.navigate(['/analyze-processing'], {
-                state: {
-                    url: this.url,
-                },
-            });
-        }
+    constructor(private router: Router) {}
+
+    onSlideScroll(event: Event): void {
+        const element = event.target as HTMLElement;
+
+        this.isScrolled.set(element.scrollTop > 50);
+
+        console.log(this.isScrolled());
     }
+
+    openModalForm() {
+        this.isOpenForm = true;
+    }
+
+    submit() {
+        if (!this.url.trim()) {
+            return;
+        }
+
+        this.router.navigate(['/analyze-processing'], {
+            state: {
+                url: this.url,
+            },
+        });
+    }
+}

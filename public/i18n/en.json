@@ -2,7 +2,7 @@
     "home": {
         "hero": {
             "section": "Home",
-            "powered": "Powered by OpenAI",
+            "powered": "AI-Powered Real Estate Decision Engine",
             "titleLine1": "Before buying,",
             "titleLine2": "know its true value",
             "subtitle": "Analyze the price, profitability and risks of a property before making an investment decision.",
@@ -264,7 +264,7 @@
         },
         "footer": {
             "brand": "APPREXIA",
-            "powered": "Powered by OpenAI"
+            "powered": "AI-Powered Real Estate Decision Engine"
         },
         "menu": {
             "previous": "Previous",

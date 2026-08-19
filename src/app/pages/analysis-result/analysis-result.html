@@ -148,12 +148,28 @@
                                     {{ a.askingPrice | number:'1.0-0' }}
                                     <span class="unit">€</span>
                                 </div>
+                                @if (a.askingPrice && a.surface) {
+                                    <h5 class="text-secondary"> PRIX AFFICHE AU M²</h5>
+                                    <div class="metric-num grd price-per-m2">
+                                        {{ (a.askingPrice / a.surface) | number:'1.0-0' }}
+                                        <span class="unit">€/m²</span>
+                                    </div>
+                                }
                                 <h5 class="text-secondary"> VALEUR DE MARCHÉ ESTIMÉE </h5>
                                 <div class="metric-num grd estimated-value">
-                                    {{ a.estimatedValueLow }} -
+                                    {{ a.estimatedValueLow | number:'1.0-0' }} -
                                     {{ a.estimatedValueHigh | number:'1.0-0' }}
                                     <span class="unit">€</span>
                                 </div>
+                                @if (a.estimatedValueLow && a.estimatedValueHigh && a.surface) {
+                                    <h5 class="text-secondary"> PRIX ESTIME AU M² </h5>
+                                    <div class="metric-num grd price-per-m2">
+                                        {{ (a.estimatedValueLow / a.surface) | number:'1.0-0' }}
+                                        -
+                                        {{ (a.estimatedValueHigh / a.surface) | number:'1.0-0' }}
+                                        <span class="unit">€/m²</span>
+                                    </div>
+                                }
                                 <app-title-info-tooltip
                                     class="text-secondary"
                                     label="VALEUR DE RÉFÉRENCE DVF"
@@ -164,6 +180,13 @@
                                     {{ a.dvfReferenceValue | number:'1.0-0' }}
                                     <span class="unit">€</span>
                                 </div>
+                                @if (a.dvfReferenceValue && a.surface) {
+                                    <h5 class="text-secondary"> PRIX DVF AU M² </h5>
+                                    <div class="metric-num grd price-per-m2">
+                                        {{ (a.dvfReferenceValue / a.surface) | number:'1.0-0' }}
+                                        <span class="unit">€/m²</span>
+                                    </div>
+                                }
 
                                 @if (a.askingPrice !== null &&
                                 a.estimatedValueLow !== null &&
@@ -256,7 +279,7 @@
                                 @if (a.estimatedRentLow && a.estimatedRentHigh) {
                                     <h5 class="text-danger">PLAGE DE LOYER ESTIMÉE</h5>
                                     <div class="metric-num grd estimated-value">
-                                        {{ a.estimatedRentLow }}
+                                        {{ a.estimatedRentLow | number:'1.0-0' }}
                                         - {{ a.estimatedRentHigh | number:'1.0-0' }}
                                         <span class="unit">€</span>
                                     </div>
@@ -534,7 +557,8 @@
                                 @if (a.location) {
                                     <!-- SCORE -->
                                     @if (a.location.score) {
-                                        <div class="mt-3" style="display: flex; justify-content: center; margin-bottom: .4rem">
+                                        <div class="mt-3"
+                                             style="display: flex; justify-content: center; margin-bottom: .4rem">
                                             <app-circular-score [value]="a.location.score!" variant="brand">
                                             </app-circular-score>
                                         </div>
@@ -642,7 +666,7 @@
                                             POPULATION
                                         </h5>
                                         <div class="metric-num grd estimated-value">
-                                            {{ a.communeContext?.population }}
+                                            {{ a.communeContext?.population  | number:'1.0-0' }}
                                             <span class="unit">hab.</span>
                                         </div>
                                     }

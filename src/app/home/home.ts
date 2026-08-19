@@ -6,24 +6,27 @@ import {
     QueryList,
     inject,
     PLATFORM_ID,
+    signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../core/services/language/language';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { LanguageSwitcher } from '../shared/components/language-switcher/language-switcher';
+import { Header } from '../layout/header/header';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.html',
     styleUrl: './home.scss',
-    imports: [RouterLink, TranslocoPipe, LanguageSwitcher],
+    imports: [RouterLink, TranslocoPipe, LanguageSwitcher, Header],
 })
 export class Home implements AfterViewInit {
     private platformId = inject(PLATFORM_ID);
 
     @ViewChildren('slideRef')
     slides!: QueryList<ElementRef<HTMLElement>>;
+    isScrolled = signal(false);
 
     sections = [
         {
@@ -72,6 +75,14 @@ export class Home implements AfterViewInit {
         // active first slide
         const first = this.slides.first?.nativeElement;
         first?.classList.add('active');
+    }
+
+    onSlideScroll(event: Event): void {
+        const element = event.target as HTMLElement;
+
+        this.isScrolled.set(element.scrollTop > 50);
+
+        console.log(this.isScrolled());
     }
 
     go(target: number): void {

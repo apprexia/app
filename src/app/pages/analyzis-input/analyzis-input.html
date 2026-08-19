@@ -1,8 +1,4 @@
-<a class="brand">
-    <img src="logo.png" alt="" width="160" routerLink="/">
-    <button routerLink="/account" class="account"><i class="bi bi-person"></i></button>
-</a>
-
+<app-header [isScrolled]="isScrolled()"></app-header>
 <div class="section-tag">
     <span class="pip"></span>
     <span>Analysis</span>
@@ -12,14 +8,15 @@
     <span class="tm-dot"></span><span class="tm-label">Version 1.0</span>
 </a>
 
-<div class="deck">
-    <section class="slide existing active" #slideRef data-section="Analysis">
+<div class="deck"
+>
+    <section class="slide existing active" #slideRef data-section="Analysis" (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-cover">
             <div class="s-cover-inner">
                 <div class="s-cover-glow"></div>
 
                 <div class="eyebrow reveal">
-                    <span class="dt"></span>Powered by OpenAI <i class="bi bi-openai"></i>
+                    <span class="dt"></span>AI-Powered Real Estate Decision Engine
                 </div>
 
                 <h1 class="h-display">

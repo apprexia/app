@@ -123,6 +123,10 @@
     }
 }
 
+.price-per-m2 {
+    font-size: clamp(36px, 2.5vw, 60px);
+}
+
 button {
     display: inline-flex;
     align-items: center;

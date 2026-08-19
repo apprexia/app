@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit, OnDestroy, PLATFORM_ID, computed, signal } from '@angular/core';
+import { Component, computed, Inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AnalysisService } from '../../core/services/analysis/analysis';
 import { AnalysisStatus } from '../../core/enums/analysis-status.enum';
+import { Header } from '../../layout/header/header';
 
 interface Step {
     title: string;
@@ -16,7 +17,7 @@ type AnalysisDevice = 'mobile' | 'desktop';
 
 @Component({
     selector: 'app-analysis-processing',
-    imports: [RouterLink],
+    imports: [Header],
     templateUrl: './analysis-processing.html',
     styleUrl: './analysis-processing.scss',
 })
@@ -27,6 +28,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
     private analysisId = '';
     private analysisCompleted = false;
     readonly currentStep = signal(0);
+    isScrolled = signal(false);
 
     readonly steps: Step[] = [
         {
@@ -99,6 +101,14 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.timeoutIds.forEach(clearTimeout);
+    }
+
+    onSlideScroll(event: Event): void {
+        const element = event.target as HTMLElement;
+
+        this.isScrolled.set(element.scrollTop > 50);
+
+        console.log(this.isScrolled());
     }
 
     private startProcessingManual(): void {

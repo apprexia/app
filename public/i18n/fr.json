@@ -2,7 +2,7 @@
     "home": {
         "hero": {
             "section": "Accueil",
-            "powered": "Powered by OpenAI",
+            "powered": "Moteur intelligent de décision immobilière",
             "titleLine1": "Avant d'acheter,",
             "titleLine2": "connaissez sa vraie valeur",
             "subtitle": "Analysez le prix, la rentabilité et les risques d'un bien immobilier avant de prendre une décision.",
@@ -219,7 +219,7 @@
         },
         "footer": {
             "brand": "APPREXIA",
-            "powered": "Propulsé par OpenAI"
+            "powered": "Moteur intelligent de décision immobilière"
         },
         "menu": {
             "previous": "Précédent",

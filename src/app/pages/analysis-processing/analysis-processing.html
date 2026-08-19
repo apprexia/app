@@ -1,7 +1,4 @@
-<a class="brand">
-    <img src="logo.png" alt="" width="160" routerLink="/">
-    <button class="account" routerLink="/account"><i class="bi bi-person"></i></button>
-</a>
+<app-header [isScrolled]="isScrolled()"></app-header>
 
 <div class="section-tag">
     <span class="pip"></span>
@@ -13,7 +10,7 @@
 </a>
 
 <div class="deck">
-    <section class="slide existing active" #slideRef data-section="Analysis">
+    <section class="slide existing active" #slideRef data-section="Analysis" (scroll)="onSlideScroll($event)">
         <div class="stp-04">
             <div class="stp-04__wrap">
                 <div class="stp-04__header">

@@ -1,6 +1,4 @@
-<div class="brand" routerLink="/">
-    <img src="logo.png" alt="" width="160">
-</div>
+<app-header [isScrolled]="isScrolled()"></app-header>
 <div class="section-tag">
     <span class="pip"></span>
     <span>{{ currentSection }}</span>
@@ -11,7 +9,7 @@
 
 <div class="deck" [class.menu-open]="menuOpen">
 
-    <section class="slide existing active" #slideRef [attr.data-section]="'home.hero.section' | transloco">
+    <section class="slide existing active" #slideRef [attr.data-section]="'home.hero.section' | transloco"  (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-cover">
             <div class="s-cover-inner">
                 <div class="s-cover-glow"></div>
@@ -69,7 +67,7 @@
             </div>
         </div>
     </section>
-    <section class="slide" #slideRef [attr.data-section]="'home.problem.section' | transloco">
+    <section class="slide" #slideRef [attr.data-section]="'home.problem.section' | transloco"  (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-problem">
             <div class="s-problem-grid">
                 <div class="s-problem-left">
@@ -159,7 +157,7 @@
             </div>
         </div>
     </section>
-    <section class="slide" #slideRef [attr.data-section]="'home.analysis.menu' | transloco">
+    <section class="slide" #slideRef [attr.data-section]="'home.analysis.menu' | transloco"  (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-product">
             <div class="s-product-grid">
                 <div class="s-product-left">
@@ -331,7 +329,7 @@
 
         </div>
     </section>
-    <section class="slide" #slideRef [attr.data-section]="'home.features.menu' | transloco">
+    <section class="slide" #slideRef [attr.data-section]="'home.features.menu' | transloco"  (scroll)="onSlideScroll($event)">
 
         <div class="slide-inner s-features">
 
@@ -486,7 +484,7 @@
         </div>
 
     </section>
-    <section class="slide" #slideRef [attr.data-section]="('home.tech.menu' | transloco)">
+    <section class="slide" #slideRef [attr.data-section]="('home.tech.menu' | transloco)"  (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-roadmap">
 
             <div class="s-roadmap-head">
@@ -608,7 +606,7 @@
 
         </div>
     </section>
-    <section class="slide" #slideRef [attr.data-section]="('home.features.menu' | transloco)">
+    <section class="slide" #slideRef [attr.data-section]="('home.features.menu' | transloco)"  (scroll)="onSlideScroll($event)">
         <div class="slide-inner s-metrics">
 
             <div class="s-metrics-head">
@@ -741,7 +739,7 @@
 
         </div>
     </section>
-    <section class="slide" #slideRef [attr.data-section]="'home.pricing.menu' | transloco">
+    <section class="slide" #slideRef [attr.data-section]="'home.pricing.menu' | transloco"  (scroll)="onSlideScroll($event)">
 
         <div class="slide-inner s-compare">
 
@@ -1073,7 +1071,7 @@
 
     <div class="menu-footer">
         <span>APPREXIA</span>
-        <span>Powered by OpenAI <i class="bi bi-openai"></i></span>
+        <span>Moteur intelligent de décision immobilière</span>
     </div>
 </div>
 
