@@ -30,10 +30,7 @@ export class AnalyzisInput {
 
     onSlideScroll(event: Event): void {
         const element = event.target as HTMLElement;
-
         this.isScrolled.set(element.scrollTop > 50);
-
-        console.log(this.isScrolled());
     }
 
     openModalForm() {

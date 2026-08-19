@@ -81,8 +81,6 @@ export class Home implements AfterViewInit {
         const element = event.target as HTMLElement;
 
         this.isScrolled.set(element.scrollTop > 50);
-
-        console.log(this.isScrolled());
     }
 
     go(target: number): void {
@@ -144,15 +142,5 @@ export class Home implements AfterViewInit {
 
     get totalDisplay(): string {
         return String(this.sections.length).padStart(2, '0');
-    }
-
-    changeToFrench() {
-        console.log('fr');
-        this.languageService.setLanguage('fr');
-    }
-
-    changeToEnglish() {
-        console.log('en');
-        this.languageService.setLanguage('en');
     }
 }

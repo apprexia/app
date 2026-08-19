@@ -105,10 +105,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
 
     onSlideScroll(event: Event): void {
         const element = event.target as HTMLElement;
-
         this.isScrolled.set(element.scrollTop > 50);
-
-        console.log(this.isScrolled());
     }
 
     private startProcessingManual(): void {
@@ -146,11 +143,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
             this.router.navigate(['/']);
             return;
         }
-
         const device = this.getDeviceType();
-
-        console.log('📱 ANALYSIS DEVICE:', device);
-
         this.runAnalysis(url, device);
 
         // Etapes 1 à 4 uniquement
