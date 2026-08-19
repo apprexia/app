@@ -1,0 +1,324 @@
+@if (isOpen() && preview()) {
+
+    <div
+        class="preview-overlay"
+        role="presentation"
+        (click)="onBackdropClick($event)"
+    >
+
+        <div
+            class="preview-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="preview-title"
+        >
+
+            <!-- CLOSE -->
+
+            <button
+                type="button"
+                class="close-btn"
+                aria-label="Fermer"
+                (click)="close()"
+            >
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+
+            <!-- HEADER -->
+
+            <div class="modal-header">
+
+                <div class="header-icon">
+                    <i class="bi bi-stars text-warning"></i>
+                </div>
+
+                <div>
+
+                    <div class="eyebrow">
+                        Vérification de l'annonce
+                    </div>
+
+                    <h2 id="preview-title">
+                        Confirmez votre annonce
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- INTRO -->
+
+            <p class="intro">
+                Nous avons récupéré les informations disponibles sur cette
+                annonce. Vérifiez qu'elles correspondent bien au bien que
+                vous souhaitez analyser.
+            </p>
+
+
+            <!-- PROPERTY CARD -->
+
+            <div class="property-card">
+
+                <!-- IMAGE -->
+
+                <div class="property-image">
+
+                    @if (preview()?.image) {
+
+                        <img
+                            [src]="preview()?.image"
+                            alt="Photo du bien"
+                            loading="lazy"
+                        />
+
+                    } @else {
+
+                        <div class="image-placeholder">
+                            <i class="bi bi-house"></i>
+                        </div>
+
+                    }
+
+
+                    <!-- PLATFORM -->
+
+                    <div
+                        class="platform-badge"
+                        [class]="getPlatformClass()"
+                    >
+
+                        <span class="platform-dot"></span>
+
+                        {{ getPlatformLabel() }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="property-content">
+
+                    <h3>
+                        {{ preview()?.title || 'Annonce immobilière' }}
+                    </h3>
+
+
+                    <!-- DESCRIPTION -->
+
+                    @if (preview()?.description) {
+
+                        <p class="property-description">
+                            {{ preview()?.description }}
+                        </p>
+
+                    }
+
+                    <!-- LOCATION -->
+
+                    @if (
+                        preview()?.city ||
+                        preview()?.postalCode
+                        ) {
+
+                        <div class="property-location">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                            <span>
+
+                                {{ preview()?.city }}
+
+                                @if (preview()?.postalCode) {
+
+                                    <span class="postal-code">
+                                        {{ preview()?.postalCode }}
+                                    </span>
+
+                                }
+
+                            </span>
+
+                        </div>
+
+                    }
+
+
+                    <!-- URL -->
+
+                    <div class="source-url">
+
+                        <i class="bi bi-link-45deg"></i>
+
+                        <span [title]="preview()?.url">
+                            {{ preview()?.url }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- DONNÉES INCOMPLÈTES -->
+            <!-- ================================================= -->
+
+            @if (hasIncompleteContent()) {
+
+                <div
+                    class="analysis-warning"
+                    [class.critical]="hasCriticalContentMissing()"
+                >
+
+                    <div class="warning-icon">
+
+                        <i
+                            class="bi"
+                            [class.bi-exclamation-triangle]="
+                                !hasCriticalContentMissing()
+                            "
+                            [class.bi-exclamation-octagon]="
+                                hasCriticalContentMissing()
+                            "
+                        ></i>
+
+                    </div>
+
+
+                    <div class="warning-content">
+
+                        <strong>
+                            {{ getWarningTitle() }}
+                        </strong>
+
+                        <p>
+                            {{ getWarningMessage() }}
+                        </p>
+
+
+                        <div class="manual-recommendation">
+
+                            <i class="bi bi-magic"></i>
+
+                            <span>
+                                Pour garantir la réussite de votre analyse,
+                                nous vous recommandons d'utiliser
+                                <strong>l'analyse manuelle.</strong>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+
+            <!-- ================================================= -->
+            <!-- DONNÉES COMPLÈTES -->
+            <!-- ================================================= -->
+
+            @if (!hasIncompleteContent()) {
+
+                <div class="confirmation-box">
+
+                    <div class="confirmation-icon">
+
+                        <i class="bi bi-check2-circle text-success"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Prêt pour l'analyse
+                        </strong>
+
+                        <p>
+                            Les informations nécessaires ont été récupérées.
+                            Apprexia peut maintenant analyser cette annonce.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            }
+
+
+            <!-- ================================================= -->
+            <!-- ACTIONS -->
+            <!-- ================================================= -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    (click)="close()"
+                >
+                    Annuler
+                </button>
+
+
+                <!-- DONNÉES INCOMPLÈTES -->
+
+                @if (hasIncompleteContent()) {
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        (click)="goToManualAnalysis()"
+                    >
+                        <span>
+                            Analyse manuelle ✦
+                        </span>
+
+                    </button>
+
+                }
+
+
+                <!-- DONNÉES COMPLÈTES -->
+
+                @if (!hasIncompleteContent()) {
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        (click)="confirm()"
+                    >
+
+                        <span>
+                            Confirmer et analyser ✦
+                        </span>
+                    </button>
+
+                }
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="modal-footer">
+
+                <i class="bi bi-shield-check text-success"></i>
+
+                <span>
+                    Analyse générée par Apprexia
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}

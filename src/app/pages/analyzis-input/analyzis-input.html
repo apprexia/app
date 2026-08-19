@@ -33,17 +33,17 @@
                     <div class="glow-border"></div>
                     <div class="inner">
                         <span class="sparkle">✦</span>
-                        <input class="placeholder" [(ngModel)]="url" placeholder="Collez l'url de l'annonce" />
+                        <input class="placeholder" [(ngModel)]="url" (paste)="onUrlPaste($event)" placeholder="Collez l'url de l'annonce" />
                         <button (click)="submit()"
                                 class="ask-btn"
-                                [disabled]="loading">{{ loading ? 'Analyse...' : 'Analyser ✦' }}
+                                [disabled]="loading()">{{ loading() ? 'Analyse...' : 'Analyser ✦' }}
                         </button>
                     </div>
                 </div>
                 ou
                 <button (click)="openModalForm()"
                         class="ask-btn"
-                        [disabled]="loading">{{ loading ? 'Analyse...' : 'Analyse manuelle' }} <i
+                        [disabled]="loading()">{{ loading() ? 'Analyse...' : 'Analyse manuelle' }} <i
                     class="bi bi-arrow-right"></i>
                 </button>
                 <div class="s-cover-meta reveal">
@@ -72,3 +72,11 @@
     <app-modal-form-property [isOpen]="isOpenForm"
                              (closed)="isOpenForm = false"></app-modal-form-property>
 }
+
+<app-modal-preview-property
+    [isOpen]="isPreviewModalOpen()"
+    [preview]="preview()"
+    (closed)="isPreviewModalOpen.set(false)"
+    (confirmed)="confirmAnalysis($event)"
+    (manualAnalysis)="openManualAnalysis()">
+</app-modal-preview-property>
