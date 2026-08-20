@@ -6,7 +6,6 @@ import { ModalFormProperty } from '../../modal/modal-form-property/modal-form-pr
 import { ModalService } from '../../core/services/modal/modal';
 import { Header } from '../../layout/header/header';
 import { MetadataService } from '../../core/services/metadata/metadata';
-import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-analyzis-input',
@@ -78,16 +77,8 @@ export class AnalyzisInput {
             return;
         }
 
-        console.log('URL détectée :', extractedUrl);
-
         // On met l'URL propre dans l'input
         this.url = extractedUrl;
-
-        // Mobile uniquement :
-        // on récupère les métadonnées immédiatement.
-        if (this.isMobile()) {
-            this.loadPreview();
-        }
     }
 
     // ─────────────────────────────────────────────
@@ -124,70 +115,8 @@ export class AnalyzisInput {
     }
 
     // ─────────────────────────────────────────────
-    // PREVIEW / METADATA
-    // ─────────────────────────────────────────────
-
-    loadPreview(): void {
-        const url = this.extractUrl(this.url);
-
-        if (!url || this.loading()) {
-            return;
-        }
-
-        this.url = url;
-
-        this.loading.set(true);
-
-        this.metadataService
-            .getPreview(url)
-            .pipe(
-                finalize(() => {
-                    this.loading.set(false);
-                }),
-            )
-            .subscribe({
-                next: (preview) => {
-                    console.log('Preview reçue :', preview);
-
-                    // On ne montre plus de modal preview.
-                    //
-                    // La récupération sert uniquement
-                    // à préparer les données avant analyse.
-
-                    this.startAnalysis(url, preview);
-                },
-
-                error: (error) => {
-                    console.error('Erreur récupération preview :', error);
-
-                    this.modalService.open(
-                        'Impossible de récupérer l’annonce',
-                        'Nous ne pouvons pas récupérer automatiquement les informations de cette annonce.',
-                    );
-                },
-            });
-    }
-
-    // ─────────────────────────────────────────────
-    // ANALYSE
-    // ─────────────────────────────────────────────
-
-    private startAnalysis(url: string, preview?: unknown): void {
-        this.router.navigate(['/analyze-processing'], {
-            state: {
-                url,
-                preview,
-            },
-        });
-    }
-
-    // ─────────────────────────────────────────────
     // ANALYSE MANUELLE
     // ─────────────────────────────────────────────
-
-    openManualAnalysis(): void {
-        this.isOpenForm = true;
-    }
 
     openModalForm(): void {
         this.isOpenForm = true;
@@ -215,21 +144,10 @@ export class AnalyzisInput {
 
         this.url = extractedUrl;
 
-        // Desktop :
-        // comportement historique → analyse directement.
-
-        if (!this.isMobile()) {
-            this.router.navigate(['/analyze-processing'], {
-                state: {
-                    url: extractedUrl,
-                },
-            });
-
-            return;
-        }
-
-        // Mobile :
-        // récupération des métadonnées avant l'analyse.
-        this.loadPreview();
+        this.router.navigate(['/analyze-processing'], {
+            state: {
+                url: extractedUrl,
+            },
+        });
     }
 }

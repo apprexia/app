@@ -1,6 +1,14 @@
 @import "animate.css";
 @import "leaflet/dist/leaflet.css";
 
+@media (max-width: 768px) {
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
+}
+
 :root {
     --ee: cubic-bezier(0.19, 1, 0.22, 1);
     --eq: cubic-bezier(0.77, 0, 0.175, 1);
