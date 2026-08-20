@@ -7,14 +7,10 @@ import { ModalService } from '../../core/services/modal/modal';
 import { Header } from '../../layout/header/header';
 import { MetadataService } from '../../core/services/metadata/metadata';
 import { finalize } from 'rxjs';
-import {
-    ModalPreviewProperty,
-    PropertyPreview,
-} from '../../shared/components/modal-preview-property/modal-preview-property';
 
 @Component({
     selector: 'app-analyzis-input',
-    imports: [FormsModule, ModalError, ModalFormProperty, ModalPreviewProperty, Header],
+    imports: [FormsModule, ModalError, ModalFormProperty, Header],
     templateUrl: './analyzis-input.html',
     styleUrl: './analyzis-input.scss',
 })
@@ -22,6 +18,7 @@ export class AnalyzisInput {
     modalService = inject(ModalService);
 
     url = '';
+
     isOpenForm = false;
 
     isOpen = this.modalService.isOpen;
@@ -30,10 +27,8 @@ export class AnalyzisInput {
 
     isScrolled = signal(false);
     isMobile = signal(false);
-
-    preview = signal<PropertyPreview | null>(null);
-    isPreviewModalOpen = signal(false);
     loading = signal(false);
+
     private mobileMediaQuery = window.matchMedia('(max-width: 768px)');
 
     constructor(
@@ -45,14 +40,27 @@ export class AnalyzisInput {
         this.mobileMediaQuery.addEventListener('change', this.updateMobileState.bind(this));
     }
 
+    // ─────────────────────────────────────────────
+    // MOBILE
+    // ─────────────────────────────────────────────
+
     private updateMobileState(): void {
         this.isMobile.set(this.mobileMediaQuery.matches);
     }
 
+    // ─────────────────────────────────────────────
+    // SCROLL
+    // ─────────────────────────────────────────────
+
     onSlideScroll(event: Event): void {
         const element = event.target as HTMLElement;
+
         this.isScrolled.set(element.scrollTop > 50);
     }
+
+    // ─────────────────────────────────────────────
+    // COLLAGE URL
+    // ─────────────────────────────────────────────
 
     onUrlPaste(event: ClipboardEvent): void {
         const pastedText = event.clipboardData?.getData('text');
@@ -61,28 +69,72 @@ export class AnalyzisInput {
             return;
         }
 
-        const value = pastedText.trim();
+        // Recherche une URL dans le texte collé
+        const extractedUrl = this.extractUrl(pastedText);
 
-        this.url = value;
+        if (!extractedUrl) {
+            console.log('Aucune URL détectée dans le texte collé');
 
-        // On invalide toujours l'ancienne preview
-        this.preview.set(null);
+            return;
+        }
 
-        // Mobile uniquement
+        console.log('URL détectée :', extractedUrl);
+
+        // On met l'URL propre dans l'input
+        this.url = extractedUrl;
+
+        // Mobile uniquement :
+        // on récupère les métadonnées immédiatement.
         if (this.isMobile()) {
             this.loadPreview();
         }
     }
 
-    /**
-     * Récupération des métadonnées de l'annonce
-     */
+    // ─────────────────────────────────────────────
+    // EXTRACTION URL
+    // ─────────────────────────────────────────────
+
+    private extractUrl(text: string): string | null {
+        if (!text) {
+            return null;
+        }
+
+        const match = text.match(/https?:\/\/[^\s<>"']+/i);
+
+        if (!match) {
+            return null;
+        }
+
+        let url = match[0].trim();
+
+        // Nettoyage des caractères parasites
+        url = url.replace(/[),.;!?]+$/, '');
+
+        try {
+            const parsedUrl = new URL(url);
+
+            if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+                return null;
+            }
+
+            return parsedUrl.toString();
+        } catch {
+            return null;
+        }
+    }
+
+    // ─────────────────────────────────────────────
+    // PREVIEW / METADATA
+    // ─────────────────────────────────────────────
+
     loadPreview(): void {
-        const url = this.url.trim();
+        const url = this.extractUrl(this.url);
 
         if (!url || this.loading()) {
             return;
         }
+
+        this.url = url;
 
         this.loading.set(true);
 
@@ -94,17 +146,15 @@ export class AnalyzisInput {
                 }),
             )
             .subscribe({
-                next: (preview: PropertyPreview) => {
+                next: (preview) => {
                     console.log('Preview reçue :', preview);
 
-                    // Vérifie que l'utilisateur n'a pas changé
-                    // l'URL pendant la requête
-                    if (this.url.trim() !== url) {
-                        return;
-                    }
+                    // On ne montre plus de modal preview.
+                    //
+                    // La récupération sert uniquement
+                    // à préparer les données avant analyse.
 
-                    this.preview.set(preview);
-                    this.isPreviewModalOpen.set(true);
+                    this.startAnalysis(url, preview);
                 },
 
                 error: (error) => {
@@ -118,11 +168,24 @@ export class AnalyzisInput {
             });
     }
 
-    openManualAnalysis(): void {
-        // Ferme la modal de preview
-        this.isPreviewModalOpen.set(false);
+    // ─────────────────────────────────────────────
+    // ANALYSE
+    // ─────────────────────────────────────────────
 
-        // Ouvre le formulaire d'analyse manuelle
+    private startAnalysis(url: string, preview?: unknown): void {
+        this.router.navigate(['/analyze-processing'], {
+            state: {
+                url,
+                preview,
+            },
+        });
+    }
+
+    // ─────────────────────────────────────────────
+    // ANALYSE MANUELLE
+    // ─────────────────────────────────────────────
+
+    openManualAnalysis(): void {
         this.isOpenForm = true;
     }
 
@@ -130,40 +193,43 @@ export class AnalyzisInput {
         this.isOpenForm = true;
     }
 
-    /**
-     * Bouton "Analyser"
-     *
-     * IMPORTANT :
-     * ce bouton peut également déclencher la preview
-     * si l'utilisateur tape/copie l'URL puis clique dessus.
-     */
+    // ─────────────────────────────────────────────
+    // BOUTON ANALYSER
+    // ─────────────────────────────────────────────
+
     submit(): void {
         if (!this.url.trim() || this.loading()) {
             return;
         }
 
-        // Si on n'a pas encore de preview,
-        // on la récupère d'abord.
-        if (!this.preview()) {
-            this.loadPreview();
+        const extractedUrl = this.extractUrl(this.url);
+
+        if (!extractedUrl) {
+            this.modalService.open(
+                'URL invalide',
+                'Veuillez coller une URL valide correspondant à une annonce immobilière.',
+            );
+
             return;
         }
 
-        // Sinon, on ouvre directement la modal de confirmation
-        this.isPreviewModalOpen.set(true);
-    }
+        this.url = extractedUrl;
 
-    /**
-     * L'utilisateur confirme l'annonce
-     */
-    confirmAnalysis(preview: PropertyPreview): void {
-        this.isPreviewModalOpen.set(false);
+        // Desktop :
+        // comportement historique → analyse directement.
 
-        this.router.navigate(['/analyze-processing'], {
-            state: {
-                url: preview.url,
-                preview: preview,
-            },
-        });
+        if (!this.isMobile()) {
+            this.router.navigate(['/analyze-processing'], {
+                state: {
+                    url: extractedUrl,
+                },
+            });
+
+            return;
+        }
+
+        // Mobile :
+        // récupération des métadonnées avant l'analyse.
+        this.loadPreview();
     }
 }

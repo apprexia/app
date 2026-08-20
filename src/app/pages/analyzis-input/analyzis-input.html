@@ -33,7 +33,8 @@
                     <div class="glow-border"></div>
                     <div class="inner">
                         <span class="sparkle">✦</span>
-                        <input class="placeholder" [(ngModel)]="url" (paste)="onUrlPaste($event)" placeholder="Collez l'url de l'annonce" />
+                        <input class="placeholder" [(ngModel)]="url" (paste)="onUrlPaste($event)"
+                               placeholder="Collez l'url de l'annonce" />
                         <button (click)="submit()"
                                 class="ask-btn"
                                 [disabled]="loading()">{{ loading() ? 'Analyse...' : 'Analyser ✦' }}
@@ -42,17 +43,17 @@
                 </div>
                 ou
                 <button (click)="openModalForm()"
-                        class="ask-btn"
+                        class="ask-btn-manual"
                         [disabled]="loading()">{{ loading() ? 'Analyse...' : 'Analyse manuelle' }} <i
                     class="bi bi-arrow-right"></i>
                 </button>
                 <div class="s-cover-meta reveal">
-                    <img src="images/logos/orpi.svg" width="50" alt="">
-                    <img src="images/logos/century21.svg" width="120" alt="">
-                    <img src="images/logos/logicimmo.png" width="70" alt="">
-                    <img src="images/logos/seloger.png" width="100" alt="">
-                    <img src="images/logos/pap.png" width="70" alt="">
-                    <img src="images/logos/paruvendu.png" width="70" alt="">
+                    <img src="images/logos/orpi.png" width="120" alt="">
+                    <img src="images/logos/paruvendu.png" width="120" alt="">
+                    <img src="images/logos/logicimmo.png" width="120" alt="">
+                    <img src="images/logos/seloger.png" width="120" alt="">
+                    <img src="images/logos/pap.png" width="120" alt="">
+                    <img src="images/logos/figaroimmo.png" width="120" alt="">
                 </div>
 
                 <div class="s-cover-version">
@@ -72,11 +73,3 @@
     <app-modal-form-property [isOpen]="isOpenForm"
                              (closed)="isOpenForm = false"></app-modal-form-property>
 }
-
-<app-modal-preview-property
-    [isOpen]="isPreviewModalOpen()"
-    [preview]="preview()"
-    (closed)="isPreviewModalOpen.set(false)"
-    (confirmed)="confirmAnalysis($event)"
-    (manualAnalysis)="openManualAnalysis()">
-</app-modal-preview-property>

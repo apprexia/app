@@ -65,7 +65,7 @@
     }
 }
 
-.ask-btn {
+.ask-btn, .ask-btn-manual {
     display: flex;
     align-items: center;
     padding: 11px 24px;
@@ -94,7 +94,7 @@
 
 @media (max-width: 640px) {
     .ask-btn {
-        display: none;
+        padding: 11px 15px;
     }
     .inner {
         gap: 10px;
@@ -109,7 +109,7 @@
 
     .s-cover-meta {
         img {
-            width: 80px;
+            width: 105px;
         }
     }
 
