@@ -417,9 +417,8 @@
 
 .modal-close {
     position: absolute;
-    top: 26%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 10px;
+    right: 10px;
 
     z-index: 10;
 
@@ -459,12 +458,6 @@
 
     &:active {
         transform: scale(0.9);
-    }
-}
-
-@media (max-width: 480px) {
-    .modal-close {
-        top: 28%;
     }
 }
 

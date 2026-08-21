@@ -28,7 +28,6 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
     private isManual = false;
     private analysisId = '';
     private analysisCompleted = false;
-    readonly currentStep = signal(0);
     isScrolled = signal(false);
 
     readonly steps: Step[] = [
@@ -66,7 +65,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
 
     readonly isAnalysisCompleted = computed(() => this.currentStep() >= this.steps.length);
     readonly miniGameClosed = signal(false);
-
+    readonly currentStep = signal(0);
     readonly showMiniGame = computed(() =>
         this.currentStep() === 4 && !this.miniGameClosed()
     );
