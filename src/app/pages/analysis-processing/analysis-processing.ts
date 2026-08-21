@@ -68,7 +68,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
     readonly miniGameClosed = signal(false);
 
     readonly showMiniGame = computed(() =>
-        this.currentStep() === 5 && !this.miniGameClosed()
+        this.currentStep() === 4 && !this.miniGameClosed()
     );
 
     constructor(
@@ -193,7 +193,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
                         case AnalysisStatus.SCRAPING:
                         case AnalysisStatus.SCRAPED:
                         case AnalysisStatus.AI_PROCESSING:
-                            this.currentStep.set(5);
+                            this.currentStep.set(4);
                             // on continue à attendre
                             setTimeout(poll, 1000);
                             break;
