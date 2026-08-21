@@ -1,0 +1,184 @@
+<div class="mini-game">
+
+    <div class="game-header">
+
+        <div class="game-title">
+
+            <div class="game-icon">
+                <img
+                    src="images/mini-game/cle.png"
+                    alt=""
+                    width="40"
+                >
+            </div>
+
+            <div>
+                <strong>
+                    Trouvez la clé de votre maison
+                </strong>
+
+                <span>
+                    @if (isMemorizing()) {
+                        🧠 Mémorisez sa position...
+                    } @else if (isMixing()) {
+                        <i class="bi bi-shuffle"></i> Mélange des cartes...
+                    } @else if (isWon()) {
+                        🎉 Trouvée !
+                    } @else {
+                        Retrouvez la clé <i class="bi bi-key-fill text-warning"></i>
+                    }
+                </span>
+            </div>
+
+        </div>
+
+        <div class="score">
+            <span>Score</span>
+            <strong>{{ score() }}</strong>
+        </div>
+
+    </div>
+
+
+    <div class="cards-container">
+
+        @for (card of cards(); track card.id; let i = $index) {
+
+            <button
+                type="button"
+                class="game-card"
+                [style.--card-position]="card.position"
+                [class.is-mixing]="isMixing()"
+                [class.is-revealed]="card.revealed"
+                [class.is-winning]="
+                    card.revealed &&
+                    card.value === 'house'
+                "
+                [class.is-wrong]="
+                    card.revealed &&
+                    card.selected &&
+                    card.value === 'empty'
+                "
+                [disabled]="
+                    isMemorizing() ||
+                    isMixing() ||
+                    isWon() ||
+                    isRevealing()
+                "
+                (click)="selectCard(i)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-face card-back">
+
+                        <div class="card-pattern">
+
+                            <span>✦</span>
+
+                            <img
+                                src="logo2.png"
+                                alt=""
+                                width="30"
+                            >
+
+                            <span>✦</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-face card-front">
+
+                        @if (card.value === 'house') {
+
+                            <div class="house">
+
+                                <img
+                                    src="images/mini-game/cle.png"
+                                    alt="Clé"
+                                    width="50"
+                                >
+
+                            </div>
+
+                        } @else {
+
+                            <div class="empty">
+
+                                <img
+                                    src="images/mini-game/maison.png"
+                                    alt="Maison"
+                                    width="50"
+                                >
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                </div>
+
+            </button>
+
+        }
+
+    </div>
+
+
+    <div class="game-message">
+
+        @if (isMemorizing()) {
+
+            <span>
+                🧠 Mémorisez bien la position de la clé...
+            </span>
+
+        } @else if (isMixing()) {
+
+            <span>
+                <i class="bi bi-shuffle"></i> Les cartes se mélangent...
+            </span>
+
+        } @else if (isWon()) {
+
+            <div class="win-message">
+
+                <div class="win-title">
+                    🎉 Bravo !
+                </div>
+
+                <div class="win-score">
+                    +100 points
+                </div>
+
+                <button
+                    type="button"
+                    class="replay-button"
+                    (click)="replay()"
+                >
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Rejouer
+                </button>
+
+            </div>
+
+        } @else if (isRevealing()) {
+
+            <span>
+                ❌ Ce n'était pas la bonne carte...
+            </span>
+
+        } @else {
+
+            <span>
+                À vous de jouer 👆
+            </span>
+
+        }
+
+    </div>
+
+</div>

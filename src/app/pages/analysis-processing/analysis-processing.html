@@ -60,3 +60,22 @@
         </div>
     </section>
 </div>
+
+@if (showMiniGame()) {
+    <div class="mini-game-modal-backdrop">
+        <button
+            type="button"
+            class="modal-close"
+            aria-label="Fermer"
+            (click)="closeMiniGame()"
+        >
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="mini-game-modal">
+            <app-analysis-mini-game
+                [active]="showMiniGame()">
+            </app-analysis-mini-game>
+        </div>
+    </div>
+}
+

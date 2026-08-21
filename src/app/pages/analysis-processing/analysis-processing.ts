@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnalysisService } from '../../core/services/analysis/analysis';
 import { AnalysisStatus } from '../../core/enums/analysis-status.enum';
 import { Header } from '../../layout/header/header';
+import { AnalysisMiniGame } from '../../shared/components/analysis-mini-game/analysis-mini-game';
 
 interface Step {
     title: string;
@@ -17,7 +18,7 @@ type AnalysisDevice = 'mobile' | 'desktop';
 
 @Component({
     selector: 'app-analysis-processing',
-    imports: [Header],
+    imports: [Header, AnalysisMiniGame],
     templateUrl: './analysis-processing.html',
     styleUrl: './analysis-processing.scss',
 })
@@ -58,12 +59,17 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
         {
             title: 'Rapport & recommandation',
             description:
-                "Lecture de l'annonce… Score Apprexia™, estimation de valeur et positionnement marché. Veuillez patienter, votre verdict final sera disponible dans quelques secondes.",
+                'Score Apprexia™, estimation de valeur et positionnement marché. Veuillez patienter, votre verdict final sera disponible dans ~30–40 secondes.',
             icon: 'bi-award',
         },
     ];
 
     readonly isAnalysisCompleted = computed(() => this.currentStep() >= this.steps.length);
+    readonly miniGameClosed = signal(false);
+
+    readonly showMiniGame = computed(() =>
+        this.currentStep() === 5 && !this.miniGameClosed()
+    );
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
@@ -101,6 +107,10 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.timeoutIds.forEach(clearTimeout);
+    }
+
+    closeMiniGame(): void {
+        this.miniGameClosed.set(true);
     }
 
     onSlideScroll(event: Event): void {
@@ -183,6 +193,7 @@ export class AnalysisProcessing implements OnInit, OnDestroy {
                         case AnalysisStatus.SCRAPING:
                         case AnalysisStatus.SCRAPED:
                         case AnalysisStatus.AI_PROCESSING:
+                            this.currentStep.set(5);
                             // on continue à attendre
                             setTimeout(poll, 1000);
                             break;

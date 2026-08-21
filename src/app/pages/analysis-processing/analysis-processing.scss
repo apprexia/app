@@ -364,3 +364,162 @@
     }
 }
 
+.mini-game-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(10, 15, 25, 0.45);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    animation: basketBackdropIn 0.3s ease-out;
+}
+
+.mini-game-modal {
+    position: relative;
+
+    width: min(520px, 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    border-radius: 28px;
+
+    background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.07)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    overflow: hidden;
+
+    animation: basketModalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.15);
+
+    color: inherit;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: background 0.2s ease,
+    transform 0.15s ease,
+    border-color 0.2s ease;
+
+    i {
+        font-size: 13px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-close {
+        top: 28%;
+    }
+}
+
+/* Reflet glass */
+.mini-game-modal::before {
+    content: '';
+
+    position: absolute;
+    top: -50%;
+    left: -20%;
+
+    width: 140%;
+    height: 100%;
+
+    background: linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.16),
+            transparent 40%
+    );
+
+    pointer-events: none;
+}
+
+/* Lueur discrète */
+.mini-game-modal::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+@keyframes miniGameModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes miniGameBackdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
