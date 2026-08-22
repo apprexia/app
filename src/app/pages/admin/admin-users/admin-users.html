@@ -1,0 +1,283 @@
+<div class="admin-users">
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <section class="users-header">
+
+        <div class="header-content">
+
+            <span class="welcome-label">
+                Administration
+            </span>
+
+            <h1>
+                <span>Utilisateurs</span>
+            </h1>
+
+            <div class="eyebrow">
+                <span class="dt"></span>
+                Gestion des comptes utilisateurs Apprexia
+            </div>
+
+        </div>
+
+        <div class="header-icon">
+            <i class="bi bi-people"></i>
+        </div>
+
+    </section>
+
+
+    @if (loading()) {
+
+        <!-- ========================================= -->
+            <!-- LOADING -->
+            <!-- ========================================= -->
+
+        <section class="users-card">
+
+            <div class="table-header">
+                <div class="skeleton skeleton-search"></div>
+            </div>
+
+            <div class="users-table">
+
+                @for (item of [1, 2, 3, 4, 5]; track item) {
+
+                    <div class="user-row skeleton-row">
+
+                        <div class="skeleton skeleton-avatar"></div>
+
+                        <div class="skeleton skeleton-user"></div>
+
+                        <div class="skeleton skeleton-small"></div>
+
+                        <div class="skeleton skeleton-small"></div>
+
+                        <div class="skeleton skeleton-small"></div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </section>
+
+    } @else {
+
+        <!-- ========================================= -->
+            <!-- TOOLBAR -->
+            <!-- ========================================= -->
+
+        <section class="users-card">
+
+            <div class="users-toolbar">
+
+                <div class="users-count">
+
+                    <div class="toolbar-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            {{ filteredUsers().length }}
+                        </strong>
+
+                        <span>
+                            utilisateurs
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="search-wrapper">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Rechercher un utilisateur..."
+                        [value]="search()"
+                        (input)="search.set($any($event.target).value)"
+                    >
+
+                </div>
+
+            </div>
+
+
+            @if (users().length === 0) {
+
+                <!-- ========================================= -->
+                    <!-- EMPTY -->
+                    <!-- ========================================= -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <strong>
+                        Aucun utilisateur
+                    </strong>
+
+                    <span>
+                        Aucun compte utilisateur n'est actuellement enregistré.
+                    </span>
+
+                </div>
+
+            } @else {
+
+                <!-- ========================================= -->
+                    <!-- TABLE -->
+                    <!-- ========================================= -->
+
+                <div class="users-table">
+
+                    <!-- HEADER -->
+
+                    <div class="user-row user-row-header">
+
+                        <div>
+                            Utilisateur
+                        </div>
+
+                        <div>
+                            Rôle
+                        </div>
+
+                        <div>
+                            Analyses
+                        </div>
+
+                        <div>
+                            Crédits
+                        </div>
+
+                        <div>
+                            Inscription
+                        </div>
+
+                    </div>
+
+
+                    <!-- USERS -->
+
+                    @for (user of filteredUsers(); track user.id) {
+
+                        <div class="user-row" (click)="openUser(user.id)">
+
+                            <!-- USER -->
+
+                            <div class="user-cell user-identity">
+
+                                <div class="user-avatar">
+
+                                    @if (user.name) {
+                                        {{ user.name.charAt(0).toUpperCase() }}
+                                    } @else {
+                                        <i class="bi bi-person"></i>
+                                    }
+
+                                </div>
+
+                                <div class="user-info">
+
+                                    <strong>
+                                        {{ user.name || 'Utilisateur' }}
+                                    </strong>
+
+                                    <span>
+                                        {{ user.email }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ROLE -->
+
+                            <div class="user-cell">
+
+                                @if (user.role === 'ADMIN') {
+
+                                    <span class="role-badge admin">
+                                        <i class="bi bi-shield-check"></i>
+                                        ADMIN
+                                    </span>
+
+                                } @else {
+
+                                    <span class="role-badge user">
+                                        <i class="bi bi-person"></i>
+                                        USER
+                                    </span>
+
+                                }
+
+                            </div>
+
+
+                            <!-- ANALYSES -->
+
+                            <div class="user-cell">
+
+                                <div class="metric">
+
+                                    <i class="bi bi-bar-chart"></i>
+
+                                    <strong>
+                                        {{ user._count.analyses }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CREDITS -->
+
+                            <div class="user-cell">
+
+                                <div class="credits">
+
+                                    <i class="bi bi-wallet2"></i>
+
+                                    <strong>
+                                        {{ user.credits }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- DATE -->
+
+                            <div class="user-cell user-date">
+
+                                {{ user.createdAt | date:'dd/MM/yyyy' }}
+
+                            </div>
+
+                        </div>
+
+                    }
+
+                </div>
+
+            }
+
+        </section>
+
+    }
+
+</div>

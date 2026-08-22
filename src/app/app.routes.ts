@@ -18,7 +18,14 @@ import { Rgpd } from './pages/rgpd/rgpd';
 import { Cgu } from './pages/cgu/cgu';
 import { AnalysisFailed } from './pages/analysis-failed/analysis-failed';
 import { creditGuard } from './core/guards/credit/credit-guard';
+import { adminGuard } from './core/guards/admin/admin-guard';
 import { AnalysisUnsupported } from './pages/analysis-unsupported/analysis-unsupported';
+import { AdminUsers } from './pages/admin/admin-users/admin-users';
+import { AdminAnalyses } from './pages/admin/admin-analyses/admin-analyses';
+import { AdminCredits } from './pages/admin/admin-credits/admin-credits';
+import { AdminLayout } from './pages/admin/admin-layout/admin-layout';
+import { AdminDashboard } from './pages/admin/admin-dashboard/admin-dashboard';
+import { AdminUserDetail } from './pages/admin/admin-user-detail/admin-user-detail';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -43,4 +50,31 @@ export const routes: Routes = [
     { path: 'cgu', component: Cgu },
     { path: 'terms', component: Terms },
     { path: 'rgpd', component: Rgpd },
+    {
+        path: 'admin',
+        component: AdminLayout,
+        canActivate: [adminGuard],
+        children: [
+            {
+                path: '',
+                component: AdminDashboard,
+            },
+            {
+                path: 'users',
+                component: AdminUsers,
+            },
+            {
+                path: 'users/:id',
+                component: AdminUserDetail,
+            },
+            {
+                path: 'analyses',
+                component: AdminAnalyses,
+            },
+            {
+                path: 'credits',
+                component: AdminCredits,
+            },
+        ],
+    },
 ];

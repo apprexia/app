@@ -1,0 +1,518 @@
+<div class="admin-dashboard">
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <section class="dashboard-header">
+
+        <div class="header-content">
+
+            <span class="welcome-label">
+                Administration
+            </span>
+
+            <h1>
+                <span>Tableau de bord</span>
+            </h1>
+
+            <div class="eyebrow">
+                <span class="dt"></span>
+                Vue d'ensemble de votre plateforme Apprexia
+            </div>
+
+        </div>
+
+        <div class="header-icon">
+            <i class="bi bi-speedometer2"></i>
+        </div>
+
+    </section>
+
+
+    @if (loading()) {
+
+        <!-- ========================================= -->
+            <!-- LOADING -->
+            <!-- ========================================= -->
+
+        <section class="stats-grid">
+
+            @for (item of [1, 2, 3, 4]; track item) {
+
+                <div class="stat-card skeleton-card">
+
+                    <div class="skeleton skeleton-icon"></div>
+
+                    <div class="skeleton skeleton-title"></div>
+
+                    <div class="skeleton skeleton-number"></div>
+
+                </div>
+
+            }
+
+        </section>
+
+    } @else if (dashboard(); as data) {
+
+        <!-- ========================================= -->
+            <!-- KPI -->
+            <!-- ========================================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- UTILISATEURS -->
+
+            <div class="stat-card stat-blue">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Utilisateurs
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+                        <div class="stat-number">
+                            {{ data.users.total }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            utilisateurs inscrits
+                        </div>
+                    </div>
+
+                    <i class="bi bi-people-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYSES -->
+
+            <div class="stat-card stat-purple">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Analyses
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.analyses.total }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses réalisées
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-bar-chart-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMINÉES -->
+
+            <div class="stat-card stat-green">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check2-circle"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Analyses terminées
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.analyses.completed }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses complétées
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="mini-donut"
+                        [style.--progress]="
+                            data.analyses.total > 0
+                                ? (data.analyses.completed / data.analyses.total * 100) + '%'
+                                : '0%'
+                        "
+                    >
+                        <div></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ERREURS -->
+
+            <div class="stat-card stat-pink">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Analyses échouées
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.analyses.failed }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses en erreur
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-exclamation-circle-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- ANALYSES -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon warning">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Activité des analyses
+                        </h2>
+
+                        <span class="dashboard-description">
+                            État actuel du moteur d'analyse Apprexia
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-overview">
+
+                <!-- TOTAL -->
+
+                <div class="analysis-main">
+
+                    <span class="analysis-label">
+                        Total des analyses
+                    </span>
+
+                    <strong>
+                        {{ data.analyses.total }}
+                    </strong>
+
+                    <span class="analysis-caption">
+                        analyses enregistrées
+                    </span>
+
+                </div>
+
+
+                <!-- COMPLETED -->
+
+                <div class="analysis-stat">
+
+                    <div class="analysis-stat-icon completed">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            {{ data.analyses.completed }}
+                        </strong>
+
+                        <span>
+                            Terminées
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FAILED -->
+
+                <div class="analysis-stat">
+
+                    <div class="analysis-stat-icon failed">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            {{ data.analyses.failed }}
+                        </strong>
+
+                        <span>
+                            Échouées
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- CREDITS -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon purple">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Crédits
+                        </h2>
+
+                        <span class="dashboard-description">
+                            Vue globale des crédits utilisateurs
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="credits-overview">
+
+                <div class="credits-main">
+
+                    <span>
+                        Crédits disponibles
+                    </span>
+
+                    <strong>
+                        {{ data.credits.total }}
+                    </strong>
+
+                </div>
+
+
+                <div class="credits-info">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    <span>
+                        Consultez les transactions et l'historique
+                        depuis la section dédiée.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- QUICK ACCESS -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon pink">
+                        <i class="bi bi-lightning"></i>
+                    </div>
+
+                    <h2>
+                        Accès rapide
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <a
+                    routerLink="/admin/users"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon blue">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Utilisateurs
+                        </strong>
+
+                        <span>
+                            Gérer les comptes
+                        </span>
+
+                    </div>
+
+                    <i class="bi bi-chevron-right"></i>
+
+                </a>
+
+
+                <a
+                    routerLink="/admin/analyses"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon purple">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Analyses
+                        </strong>
+
+                        <span>
+                            Consulter les analyses
+                        </span>
+
+                    </div>
+
+                    <i class="bi bi-chevron-right"></i>
+
+                </a>
+
+
+                <a
+                    routerLink="/admin/credits"
+                    class="quick-action"
+                >
+
+                    <div class="quick-action-icon green">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Crédits & transactions
+                        </strong>
+
+                        <span>
+                            Gérer les crédits
+                        </span>
+
+                    </div>
+
+                    <i class="bi bi-chevron-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    } @else {
+
+        <!-- ========================================= -->
+            <!-- EMPTY / ERROR -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card empty-state">
+
+            <div class="empty-icon">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+
+            <strong>
+                Impossible de charger le dashboard
+            </strong>
+
+            <span>
+                Une erreur est survenue lors de la récupération
+                des données administrateur.
+            </span>
+
+        </section>
+
+    }
+
+</div>

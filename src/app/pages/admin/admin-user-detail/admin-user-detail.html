@@ -1,0 +1,815 @@
+<div class="admin-user-detail">
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <section class="user-detail-header">
+
+        <div class="header-content">
+
+            <a
+                routerLink="/admin/users"
+                class="back-link"
+            >
+                <i class="bi bi-arrow-left"></i>
+                Retour aux utilisateurs
+            </a>
+
+            @if (user(); as data) {
+
+                <div class="user-header-main">
+
+                    <div class="user-avatar large">
+
+                        {{
+                            (data.user.name || data.user.email || '?')
+                                .charAt(0)
+                                .toUpperCase()
+                        }}
+
+                    </div>
+
+                    <div>
+
+                        <span class="welcome-label">
+                            Administration
+                        </span>
+
+                        <h1>
+                            <span>
+                                {{ data.user.name || 'Utilisateur' }}
+                            </span>
+                        </h1>
+
+                        <div class="user-email">
+
+                            <i class="bi bi-envelope"></i>
+
+                            {{ data.user.email }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            } @else {
+
+                <div class="header-skeleton">
+
+                    <div class="skeleton skeleton-avatar-large"></div>
+
+                    <div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-subtitle"></div>
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+        <div class="header-icon">
+            <i class="bi bi-person"></i>
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- LOADING -->
+    <!-- ========================================= -->
+
+    @if (loading()) {
+
+        <section class="stats-grid">
+
+            @for (item of [1, 2, 3, 4]; track item) {
+
+                <div class="stat-card skeleton-card">
+
+                    <div class="skeleton skeleton-icon"></div>
+                    <div class="skeleton skeleton-stat-title"></div>
+                    <div class="skeleton skeleton-number"></div>
+
+                </div>
+
+            }
+
+        </section>
+
+
+        <section class="dashboard-card">
+
+            <div class="loading-lines">
+
+                @for (item of [1, 2, 3, 4, 5]; track item) {
+
+                    <div class="skeleton skeleton-line"></div>
+
+                }
+
+            </div>
+
+        </section>
+
+    }
+
+
+    <!-- ========================================= -->
+    <!-- USER -->
+    <!-- ========================================= -->
+
+    @else if (user(); as data) {
+
+        <!-- ========================================= -->
+            <!-- KPI -->
+            <!-- ========================================= -->
+
+        <section class="stats-grid">
+
+            <!-- CREDITS -->
+
+            <div class="stat-card stat-green">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-credit-card"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Crédits
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.user.credits }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            crédits disponibles
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-wallet-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYSES -->
+
+            <div class="stat-card stat-purple">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Analyses
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.statistics.analyses }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses réalisées
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-search stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMINÉES -->
+
+            <div class="stat-card stat-blue">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-check2-circle"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Terminées
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.statistics.completed }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses complétées
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-check-circle-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- ÉCHECS -->
+
+            <div class="stat-card stat-pink">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+
+                    <div class="stat-title">
+                        Échecs
+                    </div>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <div>
+
+                        <div class="stat-number">
+                            {{ data.statistics.failed }}
+                        </div>
+
+                        <div class="stat-subtitle">
+                            analyses en erreur
+                        </div>
+
+                    </div>
+
+                    <i class="bi bi-x-circle-fill stat-watermark"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- INFORMATIONS COMPTE -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon blue">
+                        <i class="bi bi-person-vcard"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Informations du compte
+                        </h2>
+
+                        <span class="dashboard-description">
+                            Informations générales de l'utilisateur
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-grid">
+
+                <!-- NOM -->
+
+                <div class="account-item">
+
+                    <span class="account-label">
+                        Nom
+                    </span>
+
+                    <strong>
+                        {{ data.user.name || 'Non renseigné' }}
+                    </strong>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="account-item">
+
+                    <span class="account-label">
+                        Adresse email
+                    </span>
+
+                    <strong>
+                        {{ data.user.email }}
+                    </strong>
+
+                </div>
+
+
+                <!-- ROLE -->
+
+                <div class="account-item">
+
+                    <span class="account-label">
+                        Rôle
+                    </span>
+
+                    <span
+                        class="role-badge"
+                        [class.admin]="data.user.role === 'ADMIN'"
+                        [class.user]="data.user.role !== 'ADMIN'"
+                    >
+
+                        <i
+                            class="bi"
+                            [class.bi-shield-fill-check]="data.user.role === 'ADMIN'"
+                            [class.bi-person]="data.user.role !== 'ADMIN'"
+                        ></i>
+
+                        {{ data.user.role }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- INSCRIPTION -->
+
+                <div class="account-item">
+
+                    <span class="account-label">
+                        Inscription
+                    </span>
+
+                    <strong>
+                        {{ data.user.createdAt | date:'dd/MM/yyyy HH:mm' }}
+                    </strong>
+
+                </div>
+
+
+                <!-- ID -->
+
+                <div class="account-item account-id">
+
+                    <span class="account-label">
+                        Identifiant
+                    </span>
+
+                    <span>
+                        {{ data.user.id }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- HISTORIQUE ANALYSES -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon warning">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Historique des analyses
+                        </h2>
+
+                        <span class="dashboard-description">
+                            Analyses réalisées par cet utilisateur
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            @if (data.recentAnalyses.length > 0) {
+
+                <div class="user-analyses">
+
+                    @for (analysis of data.recentAnalyses;
+                        track analysis.id) {
+
+                        <div class="analysis-row">
+
+                            <!-- BIEN -->
+
+                            <div class="analysis-main">
+
+                                <div class="analysis-icon">
+
+                                    @if (analysis.sourceSite) {
+
+                                        <span>
+                                            {{ analysis.sourceSite.charAt(0).toUpperCase() }}
+                                        </span>
+
+                                    } @else {
+
+                                        <i class="bi bi-building"></i>
+
+                                    }
+
+                                </div>
+
+
+                                <div class="analysis-info">
+
+                                    <strong>
+                                        {{
+                                            analysis.title ||
+                                            analysis.typeLocal ||
+                                            'Bien immobilier'
+                                        }}
+                                    </strong>
+
+                                    <span>
+
+                                        {{ analysis.city || 'Localisation inconnue' }}
+
+                                        @if (analysis.codePostal) {
+                                            · {{ analysis.codePostal }}
+                                        }
+
+                                        @if (analysis.surface) {
+                                            · {{ analysis.surface }} m²
+                                        }
+
+                                        @if (analysis.askingPrice) {
+                                            · {{ analysis.askingPrice | number:'1.0-0' }} €
+                                        }
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- SCORE -->
+
+                            <div class="analysis-score">
+
+                                @if (analysis.score !== null) {
+
+                                    <strong>
+                                        {{ analysis.score }}
+                                    </strong>
+
+                                    <span>
+                                        score
+                                    </span>
+
+                                } @else {
+
+                                    <span>—</span>
+
+                                }
+
+                            </div>
+
+
+                            <!-- VERDICT -->
+
+                            <div>
+
+                                @if (analysis.verdict) {
+
+                                    <span
+                                        class="verdict-badge"
+                                        [class.invest]="analysis.verdict === 'INVESTIR'"
+                                        [class.favorable]="analysis.verdict === 'FAVORABLE'"
+                                        [class.negotiate]="analysis.verdict === 'NEGOCIER'"
+                                        [class.avoid]="analysis.verdict === 'EVITER'"
+                                        [class.error]="analysis.verdict === 'ERREUR'"
+                                    >
+
+                                        {{ analysis.verdict }}
+
+                                    </span>
+
+                                } @else {
+
+                                    <span class="verdict-badge pending">
+                                        —
+                                    </span>
+
+                                }
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <div>
+
+                                <span
+                                    class="status-badge"
+                                    [class.completed]="analysis.status === 'COMPLETED'"
+                                    [class.failed]="analysis.status === 'FAILED'"
+                                    [class.pending]="analysis.status === 'PENDING'"
+                                    [class.processing]="analysis.status === 'PROCESSING'"
+                                >
+
+                                    @switch (analysis.status) {
+
+                                        @case ('COMPLETED') {
+
+                                            <i class="bi bi-check2"></i>
+                                            Terminée
+
+                                        }
+                                        @case ('FAILED') {
+
+                                            <i class="bi bi-x"></i>
+                                            Échec
+
+                                        }
+                                        @case ('PROCESSING') {
+
+                                            <i class="bi bi-arrow-repeat"></i>
+                                            En cours
+
+                                        }
+                                        @case ('PENDING') {
+
+                                            <i class="bi bi-clock"></i>
+                                            En attente
+
+                                        }
+                                        @default {
+
+                                            {{ analysis.status }}
+
+                                        }
+
+                                    }
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- DATE -->
+
+                            <div class="analysis-date">
+
+                                {{ analysis.createdAt | date:'dd/MM/yyyy' }}
+
+                                <span>
+                                    {{ analysis.createdAt | date:'HH:mm' }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    }
+
+                </div>
+
+            } @else {
+
+                <div class="empty-state small">
+
+                    <div class="empty-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <strong>
+                        Aucune analyse
+                    </strong>
+
+                    <span>
+                        Cet utilisateur n'a encore réalisé aucune analyse.
+                    </span>
+
+                </div>
+
+            }
+
+        </section>
+
+
+        <!-- ========================================= -->
+            <!-- TRANSACTIONS CRÉDITS -->
+            <!-- ========================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="dashboard-title">
+
+                <div class="dashboard-title-left">
+
+                    <div class="dashboard-icon purple">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Historique des crédits
+                        </h2>
+
+                        <span class="dashboard-description">
+                            Transactions de crédits du compte
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            @if (data.creditTransactions.length > 0) {
+
+                <div class="credit-transactions">
+
+                    @for (transaction of data.creditTransactions;
+                        track transaction.id) {
+
+                        <div class="credit-row">
+
+                            <!-- ICON -->
+
+                            <div
+                                class="credit-icon"
+                                [class.positive]="transaction.amount > 0"
+                                [class.negative]="transaction.amount < 0"
+                            >
+
+                                @if (transaction.amount > 0) {
+
+                                    <i class="bi bi-plus-lg"></i>
+
+                                } @else {
+
+                                    <i class="bi bi-dash-lg"></i>
+
+                                }
+
+                            </div>
+
+
+                            <!-- INFO -->
+
+                            <div class="credit-info">
+
+                                <strong>
+                                    {{
+                                        transaction.description ||
+                                        transaction.type
+                                    }}
+                                </strong>
+
+                                <span>
+                                    {{ transaction.type }}
+                                </span>
+
+                            </div>
+
+
+                            <!-- AMOUNT -->
+
+                            <strong
+                                class="credit-amount"
+                                [class.positive]="transaction.amount > 0"
+                                [class.negative]="transaction.amount < 0"
+                            >
+
+                                {{
+                                    transaction.amount > 0 ? '+' : ''
+                                }}{{ transaction.amount }}
+
+                            </strong>
+
+
+                            <!-- DATE -->
+
+                            <div class="credit-date">
+
+                                {{ transaction.createdAt | date:'dd/MM/yyyy' }}
+
+                                <span>
+                                    {{ transaction.createdAt | date:'HH:mm' }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    }
+
+                </div>
+
+            } @else {
+
+                <div class="empty-state small">
+
+                    <div class="empty-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <strong>
+                        Aucune transaction
+                    </strong>
+
+                    <span>
+                        Aucun mouvement de crédit pour cet utilisateur.
+                    </span>
+
+                </div>
+
+            }
+
+        </section>
+
+    }
+
+
+    <!-- ========================================= -->
+    <!-- ERROR -->
+    <!-- ========================================= -->
+
+    @else {
+
+        <section class="dashboard-card empty-state">
+
+            <div class="empty-icon">
+                <i class="bi bi-person-x"></i>
+            </div>
+
+            <strong>
+                Utilisateur introuvable
+            </strong>
+
+            <span>
+                Impossible de récupérer les informations de cet utilisateur.
+            </span>
+
+            <a
+                routerLink="/admin/users"
+                class="back-button"
+            >
+                <i class="bi bi-arrow-left"></i>
+                Retour aux utilisateurs
+            </a>
+
+        </section>
+
+    }
+
+</div>

@@ -1,0 +1,207 @@
+<div class="admin-layout">
+
+    <!-- MOBILE HEADER -->
+
+    <div class="admin-mobile-header">
+
+        <button
+            type="button"
+            class="admin-menu-button"
+            (click)="toggleSidebar()"
+            aria-label="Ouvrir le menu"
+        >
+            <i class="bi bi-list"></i>
+        </button>
+
+        <img
+            src="logo2.png"
+            alt="Apprexia"
+            class="admin-mobile-logo"
+        >
+
+    </div>
+
+
+    <!-- OVERLAY MOBILE -->
+
+    @if (opened()) {
+        <div
+            class="admin-sidebar-overlay"
+            (click)="closeSidebar()"
+        ></div>
+    }
+
+
+    <!-- SIDEBAR -->
+
+    <aside
+        class="admin-sidebar"
+        [class.open]="opened()"
+        [class.collapsed]="collapsed()"
+    >
+
+        <!-- LOGO -->
+
+        <div class="admin-sidebar__logo">
+
+            <img
+                class="admin-sidebar-logo admin-sidebar-logo--full"
+                src="logo.png"
+                alt="Apprexia"
+            >
+
+            <img
+                class="admin-sidebar-logo admin-sidebar-logo--compact"
+                src="logo2.png"
+                alt="Apprexia"
+            >
+
+        </div>
+
+
+        <!-- COLLAPSE DESKTOP -->
+
+        <button
+            type="button"
+            class="admin-sidebar-collapse"
+            (click)="toggleCollapsed()"
+            [attr.aria-label]="
+                collapsed()
+                    ? 'Agrandir la sidebar'
+                    : 'Réduire la sidebar'
+            "
+        >
+            <i
+                class="bi"
+                [class.bi-chevron-left]="!collapsed()"
+                [class.bi-chevron-right]="collapsed()"
+            ></i>
+        </button>
+
+
+        <!-- CLOSE MOBILE -->
+
+        <button
+            type="button"
+            class="admin-sidebar-close"
+            (click)="closeSidebar()"
+            aria-label="Fermer le menu"
+        >
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="admin-navigation">
+
+            <div class="admin-section">
+
+                <span class="admin-section-label">
+                    Administration
+                </span>
+
+
+                <a
+                    routerLink="/admin"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="admin-nav-item"
+                    title="Tableau de bord"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Tableau de bord</span>
+                </a>
+
+
+                <a
+                    routerLink="/admin/users"
+                    routerLinkActive="active"
+                    class="admin-nav-item"
+                    title="Utilisateurs"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-people"></i>
+                    <span>Utilisateurs</span>
+                </a>
+
+
+                <a
+                    routerLink="/admin/analyses"
+                    routerLinkActive="active"
+                    class="admin-nav-item"
+                    title="Analyses"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Analyses</span>
+                </a>
+
+
+                <a
+                    routerLink="/admin/credits"
+                    routerLinkActive="active"
+                    class="admin-nav-item"
+                    title="Crédits & transactions"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-credit-card"></i>
+                    <span>Crédits & transactions</span>
+                </a>
+
+            </div>
+
+
+            <div class="admin-divider"></div>
+
+
+            <!-- RETOUR APPLICATION -->
+
+            <div class="admin-section">
+
+                <a
+                    routerLink="/"
+                    class="admin-nav-item"
+                    title="Retour à Apprexia"
+                    (click)="backToApp()"
+                >
+                    <i class="bi bi-arrow-left"></i>
+                    <span>Retour à Apprexia</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <!-- FOOTER -->
+
+        <div class="admin-sidebar__footer">
+
+            <div class="admin-divider"></div>
+
+            <button
+                type="button"
+                class="admin-nav-item admin-logout"
+                title="Déconnexion"
+                (click)="logout()"
+            >
+                <i class="bi bi-power"></i>
+                <span>Déconnexion</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTENT -->
+
+    <main class="admin-content">
+
+        <router-outlet></router-outlet>
+
+    </main>
+
+</div>

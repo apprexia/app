@@ -1,0 +1,585 @@
+    <div class="admin-credits">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="credits-header">
+
+            <div class="header-content">
+
+                <span class="welcome-label">
+                    Administration
+                </span>
+
+                <h1>
+                    Gestion des
+                    <span>crédits</span>
+                </h1>
+
+                <div class="eyebrow">
+
+                    <span class="dt"></span>
+
+                    Suivi des crédits et transactions
+
+                </div>
+
+            </div>
+
+
+            <div class="header-icon">
+
+                <i class="fa-solid fa-coins"></i>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        @if (overview(); as data) {
+
+            <section class="credits-stats">
+
+
+                <div class="credit-stat-card blue">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Crédits disponibles
+                        </span>
+
+                        <strong>
+                            {{ data.stats.totalCredits }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="credit-stat-card purple">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Crédits achetés
+                        </span>
+
+                        <strong>
+                            {{ data.stats.totalPurchased }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="credit-stat-card green">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Crédits consommés
+                        </span>
+
+                        <strong>
+                            {{ data.stats.totalUsed }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="credit-stat-card pink">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Utilisateurs
+                        </span>
+
+                        <strong>
+                            {{ data.stats.totalUsers }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        }
+
+
+        <!-- =====================================================
+             USERS
+        ====================================================== -->
+
+        <section class="credits-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Crédits utilisateurs
+                    </h2>
+
+                    <span>
+                        Consultez et gérez les crédits disponibles
+                    </span>
+
+                </div>
+
+
+                <div class="search-wrapper">
+
+                    <i class="fa-solid fa-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Rechercher un utilisateur..."
+                        [ngModel]="search()"
+                        (ngModelChange)="search.set($event)"
+                    />
+
+                </div>
+
+            </div>
+
+
+            @if (loading()) {
+
+                <div class="loading-state">
+
+                    Chargement des utilisateurs...
+
+                </div>
+
+            } @else {
+
+                <div class="users-table">
+
+                    <div class="user-row user-row-header">
+
+                        <span>Utilisateur</span>
+
+                        <span>Analyses</span>
+
+                        <span>Transactions</span>
+
+                        <span>Crédits</span>
+
+                        <span>Action</span>
+
+                    </div>
+
+
+                    @for (user of filteredUsers();
+                        track user.id) {
+
+                        <div class="user-row">
+
+                            <div class="user-identity">
+
+                                <div class="user-avatar">
+
+                                    {{
+                                        getInitials(
+                                            user.name,
+                                            user.email
+                                        )
+                                    }}
+
+                                </div>
+
+
+                                <div class="user-info">
+
+                                    <strong>
+                                        {{ user.name || 'Utilisateur' }}
+                                    </strong>
+
+                                    <span>
+                                        {{ user.email }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="metric">
+
+                                {{ user._count.analyses }}
+
+                            </span>
+
+
+                            <span class="metric">
+
+                                {{ user._count.transactions }}
+
+                            </span>
+
+
+                            <strong class="credits-value">
+
+                                {{ user.credits }}
+
+                            </strong>
+
+
+                            <button
+                                class="credit-action"
+                                type="button"
+                                (click)="openCreditModal(user)"
+                            >
+
+                                <i class="fa-solid fa-sliders"></i>
+
+                                Gérer
+
+                            </button>
+
+                        </div>
+
+                    }
+
+                </div>
+
+            }
+
+        </section>
+
+
+        <!-- =====================================================
+             TRANSACTIONS
+        ====================================================== -->
+
+        <section class="credits-card transactions-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Transactions
+                    </h2>
+
+                    <span>
+                        Historique des mouvements de crédits
+                    </span>
+
+                </div>
+
+
+                <div class="search-wrapper">
+
+                    <i class="fa-solid fa-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Rechercher..."
+                        [ngModel]="transactionSearch()"
+                        (ngModelChange)="transactionSearch.set($event)"
+                        (keyup.enter)="onTransactionSearch()"
+                    />
+
+                </div>
+
+            </div>
+
+
+            @if (transactionsLoading()) {
+
+                <div class="loading-state">
+
+                    Chargement des transactions...
+
+                </div>
+
+            } @else {
+
+                <div class="transactions-table">
+
+                    <div class="transaction-row transaction-header">
+
+                        <span>Utilisateur</span>
+
+                        <span>Type</span>
+
+                        <span>Description</span>
+
+                        <span>Montant</span>
+
+                        <span>Date</span>
+
+                    </div>
+
+
+                    @for (transaction of transactions();
+                        track transaction.id) {
+
+                        <div class="transaction-row">
+
+                            <div class="transaction-user">
+
+                                <div class="user-avatar small">
+
+                                    {{
+                                        getInitials(
+                                            transaction.user.name,
+                                            transaction.user.email
+                                        )
+                                    }}
+
+                                </div>
+
+                                <span>
+                                    {{ transaction.user.email }}
+                                </span>
+
+                            </div>
+
+
+                            <span
+                                class="transaction-type"
+                                [class.admin]="transaction.type === 'ADMIN'"
+                            >
+
+                                {{
+                                    getTransactionLabel(
+                                        transaction.type
+                                    )
+                                }}
+
+                            </span>
+
+
+                            <span class="transaction-description">
+
+                                {{ transaction.description || '—' }}
+
+                            </span>
+
+
+                            <strong
+                                class="transaction-amount"
+                                [class]="getTransactionClass(
+                                    transaction.amount
+                                )"
+                            >
+
+                                {{
+                                    transaction.amount > 0
+                                        ? '+'
+                                        : ''
+                                }}
+
+                                {{ transaction.amount }}
+
+                            </strong>
+
+
+                            <span class="transaction-date">
+
+                                {{
+                                    transaction.createdAt
+                                        | date:'dd/MM/yyyy HH:mm'
+                                }}
+
+                            </span>
+
+                        </div>
+
+                    }
+
+                </div>
+
+
+                <div class="pagination">
+
+                    <button
+                        type="button"
+                        [disabled]="transactionPage() === 1"
+                        (click)="previousTransactionPage()"
+                    >
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+
+                    <span>
+
+                        Page {{ transactionPage() }}
+                        /
+                        {{ transactionTotalPages() }}
+
+                    </span>
+
+
+                    <button
+                        type="button"
+                        [disabled]="
+                            transactionPage()
+                            === transactionTotalPages()
+                        "
+                        (click)="nextTransactionPage()"
+                    >
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+                </div>
+
+            }
+
+        </section>
+
+
+        <!-- =====================================================
+             MODAL
+        ====================================================== -->
+
+        @if (showCreditModal() && selectedUser(); as user) {
+
+            <div
+                class="credit-modal-backdrop"
+                (click)="closeCreditModal()"
+            >
+
+                <div
+                    class="credit-modal"
+                    (click)="$event.stopPropagation()"
+                >
+
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2>
+                                Gérer les crédits
+                            </h2>
+
+                            <span>
+                                {{ user.email }}
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            (click)="closeCreditModal()"
+                        >
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="current-credits">
+
+                        <span>
+                            Crédits actuels
+                        </span>
+
+                        <strong>
+                            {{ user.credits }}
+                        </strong>
+
+                    </div>
+
+
+                    <label>
+
+                        Montant
+
+                        <input
+                            type="number"
+                            [ngModel]="creditAmount()"
+                            (ngModelChange)="creditAmount.set($event)"
+                        />
+
+                    </label>
+
+
+                    <small>
+                        Utilisez une valeur positive pour ajouter
+                        des crédits et une valeur négative pour
+                        en retirer.
+                    </small>
+
+
+                    <label>
+
+                        Description
+
+                        <input
+                            type="text"
+                            placeholder="Ex : Geste commercial"
+                            [ngModel]="creditDescription()"
+                            (ngModelChange)="creditDescription.set($event)"
+                        />
+
+                    </label>
+
+
+                    <div class="modal-actions">
+
+                        <button
+                            type="button"
+                            class="cancel"
+                            (click)="closeCreditModal()"
+                        >
+                            Annuler
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="confirm"
+                            (click)="submitCreditUpdate()"
+                        >
+                            Valider
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>

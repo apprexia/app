@@ -1,0 +1,633 @@
+<div class="admin-analyses">
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <section class="analyses-header">
+
+        <div class="header-content">
+
+            <span class="welcome-label">
+                Administration
+            </span>
+
+            <h1>
+                <span>Analyses</span>
+            </h1>
+
+            <div class="eyebrow">
+
+                <span class="dt"></span>
+
+                Consultez et surveillez les analyses Apprexia
+
+            </div>
+
+        </div>
+
+
+        <div class="header-icon">
+
+            <i class="bi bi-bar-chart-line"></i>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- CARD -->
+    <!-- ========================================= -->
+
+    <section class="analyses-card">
+
+
+        <!-- ========================================= -->
+        <!-- TOOLBAR -->
+        <!-- ========================================= -->
+
+        <div class="analyses-toolbar">
+
+
+            <div class="analyses-count">
+
+                <div class="toolbar-icon">
+
+                    <i class="bi bi-bar-chart"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        {{ total() }}
+                    </strong>
+
+                    <span>
+                        analyses enregistrées
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-wrapper">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    type="search"
+                    placeholder="Rechercher une analyse..."
+                    [value]="search()"
+                    (input)="
+                        onSearch(
+                            $any($event.target).value
+                        )
+                    "
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- TABLE -->
+        <!-- ========================================= -->
+
+        <div class="analyses-table">
+
+
+            <!-- ========================================= -->
+            <!-- LOADING -->
+            <!-- ========================================= -->
+
+            @if (loading()) {
+
+                @for (item of [1, 2, 3, 4, 5];
+                    track item) {
+
+                    <div class="analysis-row skeleton-row">
+
+
+                        <div class="analysis-skeleton-identity">
+
+                            <div class="skeleton skeleton-avatar"></div>
+
+                            <div>
+
+                                <div class="skeleton skeleton-user"></div>
+
+                                <div class="skeleton skeleton-small"></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="skeleton skeleton-small"></div>
+
+                        <div class="skeleton skeleton-property"></div>
+
+                        <div class="skeleton skeleton-badge"></div>
+
+                        <div class="skeleton skeleton-badge"></div>
+
+                        <div class="skeleton skeleton-date"></div>
+
+                    </div>
+
+                }
+
+
+            } @else if (filteredAnalyses().length > 0) {
+
+
+                <!-- ========================================= -->
+                    <!-- HEADER TABLE -->
+                    <!-- ========================================= -->
+
+                <div class="analysis-row analysis-row-header">
+
+                    <div>
+                        Utilisateur
+                    </div>
+
+                    <div>
+                        Source
+                    </div>
+
+                    <div>
+                        Bien
+                    </div>
+
+                    <div>
+                        Verdict
+                    </div>
+
+                    <div>
+                        Statut
+                    </div>
+
+                    <div>
+                        Date
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                    <!-- ANALYSES -->
+                    <!-- ========================================= -->
+
+                @for (analysis of filteredAnalyses();
+                    track analysis.id) {
+
+                    <div class="analysis-row analysis-row-clickable"
+                         (click)="openAnalysis(analysis.id)">
+
+
+                        <!-- UTILISATEUR -->
+
+                        <div class="user-identity">
+
+                            <div class="user-avatar">
+
+                                {{
+                                    (
+                                        analysis.user.name ||
+                                        analysis.user.email
+                                    )
+                                        .charAt(0)
+                                        .toUpperCase()
+                                }}
+
+                            </div>
+
+
+                            <div class="user-info">
+
+                                <strong>
+
+                                    {{
+                                        analysis.user.name ||
+                                        'Utilisateur'
+                                    }}
+
+                                </strong>
+
+                                <span>
+
+                                    {{ analysis.user.email }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SOURCE -->
+
+                        <div class="analysis-source">
+
+                            @if (getSourceLogo(
+                                analysis.sourceSite
+                            );
+                                as logo) {
+
+                                <img
+                                    [src]="logo"
+                                    [alt]="
+                                        analysis.sourceSite ||
+                                        'Source'
+                                    "
+                                >
+
+                            } @else {
+
+                                <span class="source-unknown">
+
+                                    {{
+                                        analysis.sourceSite ||
+                                        '—'
+                                    }}
+
+                                </span>
+
+                            }
+
+                        </div>
+
+
+                        <!-- BIEN -->
+
+                        <div class="property-info">
+
+                            <strong>
+
+                                {{
+                                    analysis.property.title ||
+                                    analysis.property.typeLocal ||
+                                    'Bien immobilier'
+                                }}
+
+                            </strong>
+
+
+                            <span>
+
+                                @if (analysis.property.city) {
+
+                                    {{
+                                        analysis.property.city
+                                    }}
+
+                                }
+
+
+                                @if (analysis.property.city &&
+                                analysis.property.codePostal) {
+
+                                    ·
+
+                                }
+
+
+                                @if (analysis.property.codePostal) {
+
+                                    {{
+                                        analysis.property.codePostal
+                                    }}
+
+                                }
+
+
+                                @if (analysis.property.surface) {
+
+                                    ·
+                                    {{
+                                        analysis.property.surface
+                                    }}
+                                    m²
+
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- VERDICT -->
+
+                        <div>
+
+                            @if (analysis.verdict) {
+
+                                <span
+                                    class="verdict-badge"
+
+                                    [class.invest]="
+                                        analysis.verdict === 'INVESTIR'
+                                    "
+
+                                    [class.favorable]="
+                                        analysis.verdict === 'FAVORABLE'
+                                    "
+
+                                    [class.negotiate]="
+                                        analysis.verdict === 'NEGOCIER'
+                                    "
+
+                                    [class.avoid]="
+                                        analysis.verdict === 'EVITER'
+                                    "
+
+                                    [class.error]="
+                                        analysis.verdict === 'ERREUR'
+                                    "
+                                >
+
+                                    @switch (analysis.verdict) {
+
+                                        @case ('INVESTIR') {
+
+                                            <i
+                                                class="bi bi-check-circle-fill"
+                                            ></i>
+
+                                        }
+                                        @case ('FAVORABLE') {
+
+                                            <i
+                                                class="bi bi-hand-thumbs-up-fill"
+                                            ></i>
+
+                                        }
+                                        @case ('NEGOCIER') {
+
+                                            <i
+                                                class="bi bi-arrow-left-right"
+                                            ></i>
+
+                                        }
+                                        @case ('EVITER') {
+
+                                            <i
+                                                class="bi bi-x-circle-fill"
+                                            ></i>
+
+                                        }
+                                        @case ('ERREUR') {
+
+                                            <i
+                                                class="bi bi-exclamation-circle-fill"
+                                            ></i>
+
+                                        }
+                                        @default {
+
+                                            <i
+                                                class="bi bi-question-circle"
+                                            ></i>
+
+                                        }
+
+                                    }
+
+                                    {{ analysis.verdict }}
+
+                                </span>
+
+
+                            } @else {
+
+                                <span
+                                    class="verdict-badge pending"
+                                >
+
+                                    <i
+                                        class="bi bi-hourglass-split"
+                                    ></i>
+
+                                    —
+
+                                </span>
+
+                            }
+
+                        </div>
+
+
+                        <!-- STATUT -->
+
+                        <div>
+
+                            <span
+                                class="status-badge"
+
+                                [class.completed]="
+                                    analysis.status === 'COMPLETED'
+                                "
+
+                                [class.failed]="
+                                    analysis.status === 'FAILED'
+                                "
+
+                                [class.pending]="
+                                    analysis.status === 'PENDING'
+                                "
+
+                                [class.processing]="
+                                    analysis.status === 'PROCESSING'
+                                "
+                            >
+
+                                @switch (analysis.status) {
+
+                                    @case ('COMPLETED') {
+
+                                        <i
+                                            class="bi bi-check2"
+                                        ></i>
+
+                                        Terminée
+
+                                    }
+                                    @case ('FAILED') {
+
+                                        <i
+                                            class="bi bi-x"
+                                        ></i>
+
+                                        Échec
+
+                                    }
+                                    @case ('PROCESSING') {
+
+                                        <i
+                                            class="bi bi-arrow-repeat"
+                                        ></i>
+
+                                        En cours
+
+                                    }
+                                    @case ('PENDING') {
+
+                                        <i
+                                            class="bi bi-clock"
+                                        ></i>
+
+                                        En attente
+
+                                    }
+                                    @default {
+
+                                        {{ analysis.status }}
+
+                                    }
+
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- DATE -->
+
+                        <div class="analysis-date">
+
+                            {{
+                                analysis.createdAt
+                                    | date:'dd/MM/yyyy'
+                            }}
+
+                            <span>
+
+                                {{
+                                    analysis.createdAt
+                                        | date:'HH:mm'
+                                }}
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                }
+
+
+                <!-- ========================================= -->
+                    <!-- PAGINATION -->
+                    <!-- ========================================= -->
+
+                @if (totalPages() > 1) {
+
+                    <div class="pagination">
+
+                        <button
+                            type="button"
+                            [disabled]="page() === 1"
+                            (click)="goToPage(page() - 1)"
+                            aria-label="Page précédente"
+                        >
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+
+                        <span>
+
+                            Page {{ page() }}
+                            /
+                            {{ totalPages() }}
+
+                        </span>
+
+
+                        <button
+                            type="button"
+                            [disabled]="page() === totalPages()"
+                            (click)="goToPage(page() + 1)"
+                            aria-label="Page suivante"
+                        >
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                }
+
+
+            } @else {
+
+
+                <!-- ========================================= -->
+                    <!-- EMPTY -->
+                    <!-- ========================================= -->
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i
+                            class="bi bi-bar-chart-line"
+                        ></i>
+
+                    </div>
+
+
+                    <strong>
+
+                        @if (search()) {
+
+                            Aucune analyse trouvée
+
+                        } @else {
+
+                            Aucune analyse
+
+                        }
+
+                    </strong>
+
+
+                    <span>
+
+                        @if (search()) {
+
+                            Aucune analyse ne correspond
+                                à votre recherche.
+
+                        } @else {
+
+                            Les analyses réalisées par
+                                les utilisateurs apparaîtront ici.
+
+                        }
+
+                    </span>
+
+
+                </div>
+
+            }
+
+
+        </div>
+
+    </section>
+
+</div>

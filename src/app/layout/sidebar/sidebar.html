@@ -235,6 +235,64 @@
 
         </div>
 
+        @if (isAdmin()) {
+
+            <div class="sidebar__divider"></div>
+
+            <div class="sidebar__section">
+
+        <span class="sidebar__label">
+            Administration
+        </span>
+
+                <a
+                    routerLink="/admin"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="sidebar__item"
+                    title="Tableau de bord"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Tableau de bord</span>
+                </a>
+
+                <a
+                    routerLink="/admin/users"
+                    routerLinkActive="active"
+                    class="sidebar__item"
+                    title="Utilisateurs"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-people"></i>
+                    <span>Utilisateurs</span>
+                </a>
+
+                <a
+                    routerLink="/admin/analyses"
+                    routerLinkActive="active"
+                    class="sidebar__item"
+                    title="Analyses"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Analyses</span>
+                </a>
+
+                <a
+                    routerLink="/admin/credits"
+                    routerLinkActive="active"
+                    class="sidebar__item"
+                    title="Crédits"
+                    (click)="closeSidebar()"
+                >
+                    <i class="bi bi-coin"></i>
+                    <span>Crédits</span>
+                </a>
+
+            </div>
+        }
+
     </nav>
 
 
